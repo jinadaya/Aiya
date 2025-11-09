@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://c165s6ojxbwv1"]
+
+[ext_resource type="PackedScene" uid="uid://6au4oc0p7y45" path="res://scenes/player/Player.tscn" id="1_5rfpy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vigvf"]
+size = Vector2(156976.5, 60)
+
+[node name="Beach" type="Node2D"]
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(256, 16768)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(243, -15689)
+shape = SubResource("RectangleShape2D_vigvf")
+
+[node name="Player" parent="." instance=ExtResource("1_5rfpy")]
+position = Vector2(429, 877.00006)
+scale = Vector2(5, 5)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(0.6, 0.6)
+limit_bottom = 1096
+limit_smoothed = true
+position_smoothing_enabled = true
+rotation_smoothing_enabled = true

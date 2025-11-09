@@ -1,0 +1,580 @@
+[gd_scene load_steps=29 format=3 uid="uid://dibqul3p8kp0a"]
+
+[ext_resource type="Script" uid="uid://2blva5moubgb" path="res://scripts/levels/cave/dark_cave.gd" id="1_j5c4p"]
+[ext_resource type="Shader" uid="uid://b7k3w7y8xdyo8" path="res://shaders/cave_special/DarkCaveMushroomGlow.gdshader" id="2_1oydr"]
+[ext_resource type="Texture2D" uid="uid://bbn8iu1yxujxs" path="res://sprites/levels/cave/shrooms/blue mushroom1.png" id="2_f0uad"]
+[ext_resource type="Texture2D" uid="uid://cni5x2jbdpeld" path="res://sprites/levels/cave/bg_1.jpg" id="2_xjxq4"]
+[ext_resource type="Script" uid="uid://di3yvy72snb6m" path="res://scripts/levels/cave/platforms.gd" id="3_p87h4"]
+[ext_resource type="Texture2D" uid="uid://omhe4wtgsgub" path="res://sprites/levels/cave/light/light_wall_sided.webp" id="3_ulbub"]
+[ext_resource type="Texture2D" uid="uid://bufi4lxx1hu2b" path="res://sprites/levels/cave/shrooms/blue mushroom4 - sky blue.png" id="3_v7pi3"]
+[ext_resource type="Texture2D" uid="uid://ds83egajvtabk" path="res://sprites/levels/cave/shrooms/blue mushroom2.png" id="4_1oydr"]
+[ext_resource type="PackedScene" uid="uid://f7mccsj0ymug" path="res://scenes/cave/CavePolygon.tscn" id="4_j5c4p"]
+[ext_resource type="Texture2D" uid="uid://b2uatdustx0pk" path="res://sprites/levels/cave/shrooms/blue mushroom4.png" id="5_qgj7v"]
+[ext_resource type="Texture2D" uid="uid://bdirydy83bmmr" path="res://sprites/levels/cave/bg_4.jpg" id="5_xjxq4"]
+[ext_resource type="PackedScene" uid="uid://6au4oc0p7y45" path="res://scenes/player/Player.tscn" id="5_xypda"]
+[ext_resource type="Texture2D" uid="uid://bh6evww0ihtwv" path="res://sprites/levels/cave/shrooms/Pink mushroom - vintage blue.png" id="6_mguce"]
+[ext_resource type="PackedScene" uid="uid://csay1hvhwytwg" path="res://scenes/cave/LightSource.tscn" id="6_pv782"]
+[ext_resource type="Script" uid="uid://brypmb8wn864y" path="res://scripts/levels/cave/cave_polygon.gd" id="6_rkihr"]
+[ext_resource type="Texture2D" uid="uid://wruci0ftucxl" path="res://sprites/levels/cave/shrooms/Yellow mushroom - V2 - light blue cap.png" id="8_1oydr"]
+[ext_resource type="Texture2D" uid="uid://dkr4sv2ym3ysu" path="res://sprites/levels/cave/light/light_1.webp" id="10_pv782"]
+[ext_resource type="Script" uid="uid://bv8xensh8gw15" path="res://scripts/levels/cave/light_source.gd" id="10_xypda"]
+[ext_resource type="Texture2D" uid="uid://c2vvrk484uu8t" path="res://sprites/levels/cave/bg_3.jpg" id="17_qgj7v"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1oydr"]
+shader = ExtResource("2_1oydr")
+shader_parameter/glow_color = Color(0.2, 0.6, 1, 1)
+shader_parameter/glow_intensity = 0.2410000114475
+shader_parameter/glow_spread = 0.0750000035625
+shader_parameter/pulse_speed = 2.0
+shader_parameter/pulse_min = 0.150000007125
+shader_parameter/pulse_max = 1.50000007125
+shader_parameter/blue_threshold = 0.3
+shader_parameter/blue_sensitivity = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qgj7v"]
+shader = ExtResource("2_1oydr")
+shader_parameter/glow_color = Color(0.2, 0.6, 1, 1)
+shader_parameter/glow_intensity = 0.0
+shader_parameter/glow_spread = 0.10000000149012
+shader_parameter/pulse_speed = 1.64000007464012
+shader_parameter/pulse_min = 0.0970000046075
+shader_parameter/pulse_max = 2.0
+shader_parameter/blue_threshold = 0.458000021755
+shader_parameter/blue_sensitivity = 3.0
+
+[sub_resource type="Animation" id="Animation_ulbub"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(22.000008, 870.99994)]
+}
+
+[sub_resource type="Animation" id="Animation_rkihr"]
+resource_name = "enter_anim"
+length = 1.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.23333335, 1.3666667),
+"transitions": PackedFloat32Array(0.23325807, 0.23325807),
+"update": 0,
+"values": [Vector2(72, 871), Vector2(140, 863)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xypda"]
+_data = {
+&"RESET": SubResource("Animation_ulbub"),
+&"enter_anim": SubResource("Animation_rkihr")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rkihr"]
+size = Vector2(10245, 588)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ulbub"]
+size = Vector2(403, 1291)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_81cy6"]
+size = Vector2(229.64838, 803.1096)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_14g87"]
+size = Vector2(267, 275)
+
+[node name="DarkCave" type="Node2D"]
+script = ExtResource("1_j5c4p")
+
+[node name="Shrooms" type="Node2D" parent="."]
+z_index = 1
+
+[node name="Shroom_1" type="TextureRect" parent="Shrooms"]
+material = SubResource("ShaderMaterial_1oydr")
+offset_left = 2508.0002
+offset_top = 2112.0
+offset_right = 2827.0002
+offset_bottom = 2518.3828
+rotation = -2.6179938
+texture = ExtResource("2_f0uad")
+expand_mode = 1
+
+[node name="Shroom_2" type="TextureRect" parent="Shrooms"]
+material = SubResource("ShaderMaterial_qgj7v")
+offset_left = 3971.0
+offset_top = 2207.0
+offset_right = 4290.0
+offset_bottom = 2613.3828
+texture = ExtResource("3_v7pi3")
+expand_mode = 1
+
+[node name="Shroom_3" type="TextureRect" parent="Shrooms"]
+material = SubResource("ShaderMaterial_qgj7v")
+offset_left = 6454.0
+offset_top = 2018.0002
+offset_right = 6773.0
+offset_bottom = 2424.383
+rotation = 2.3561945
+texture = ExtResource("4_1oydr")
+expand_mode = 1
+
+[node name="Shroom_4" type="TextureRect" parent="Shrooms"]
+material = SubResource("ShaderMaterial_qgj7v")
+offset_left = 8944.0
+offset_top = 1507.3828
+offset_right = 9263.0
+offset_bottom = 1889.0
+texture = ExtResource("5_qgj7v")
+expand_mode = 1
+
+[node name="Shroom_5" type="TextureRect" parent="Shrooms"]
+material = SubResource("ShaderMaterial_qgj7v")
+offset_left = 12338.999
+offset_top = 2530.9998
+offset_right = 12657.999
+offset_bottom = 2937.3826
+rotation = -3.403392
+texture = ExtResource("6_mguce")
+expand_mode = 1
+
+[node name="Shroom_6" type="TextureRect" parent="Shrooms"]
+material = SubResource("ShaderMaterial_qgj7v")
+offset_left = 13905.0
+offset_top = 2427.0
+offset_right = 14511.0
+offset_bottom = 3028.0
+texture = ExtResource("8_1oydr")
+expand_mode = 1
+flip_h = true
+
+[node name="LightZones" type="Node2D" parent="."]
+
+[node name="Light_save_1" type="PointLight2D" parent="LightZones"]
+position = Vector2(4138, 2304.0002)
+scale = Vector2(0.4360007, 0.43599972)
+texture = ExtResource("10_pv782")
+metadata/_custom_type_script = "uid://bv8xensh8gw15"
+
+[node name="Light_save_2" type="PointLight2D" parent="LightZones"]
+position = Vector2(9092.001, 1582)
+scale = Vector2(0.4520002, 0.4336947)
+texture = ExtResource("10_pv782")
+metadata/_custom_type_script = "uid://bv8xensh8gw15"
+
+[node name="Light_save_3" type="PointLight2D" parent="LightZones"]
+position = Vector2(14026.001, 2561)
+scale = Vector2(0.458, 0.43945146)
+texture = ExtResource("10_pv782")
+metadata/_custom_type_script = "uid://bv8xensh8gw15"
+
+[node name="Light_save_4" type="PointLight2D" parent="LightZones"]
+position = Vector2(18109, 3292)
+scale = Vector2(0.824001, 0.7906298)
+texture = ExtResource("10_pv782")
+metadata/_custom_type_script = "uid://bv8xensh8gw15"
+
+[node name="Light_save_5" type="PointLight2D" parent="LightZones"]
+position = Vector2(6323, 2097)
+scale = Vector2(0.4360007, 0.43599972)
+texture = ExtResource("10_pv782")
+metadata/_custom_type_script = "uid://bv8xensh8gw15"
+
+[node name="Light_save_6" type="PointLight2D" parent="LightZones"]
+position = Vector2(12197.001, 2508.0002)
+scale = Vector2(0.4520002, 0.4336947)
+texture = ExtResource("10_pv782")
+metadata/_custom_type_script = "uid://bv8xensh8gw15"
+
+[node name="Light_save_7" type="PointLight2D" parent="LightZones"]
+position = Vector2(2421, 2001)
+scale = Vector2(0.4360007, 0.43599972)
+texture = ExtResource("10_pv782")
+metadata/_custom_type_script = "uid://bv8xensh8gw15"
+
+[node name="LightSource" parent="." instance=ExtResource("6_pv782")]
+position = Vector2(685, 705.99994)
+scale = Vector2(7.0099998, 4.34)
+energy = 0.82
+texture = ExtResource("3_ulbub")
+script = null
+
+[node name="Darkness" type="CanvasModulate" parent="."]
+visible = false
+color = Color(0, 0, 0, 1)
+
+[node name="ParallaxBackground" type="Parallax2D" parent="."]
+
+[node name="Background1" type="Sprite2D" parent="ParallaxBackground"]
+position = Vector2(1986, 1126)
+scale = Vector2(0.998998, 1)
+texture = ExtResource("2_xjxq4")
+
+[node name="Background2" type="Sprite2D" parent="ParallaxBackground"]
+position = Vector2(250.24463, 3339)
+rotation = 3.1415925
+scale = Vector2(1.9818413, 0.9999999)
+skew = -0.19373167
+texture = ExtResource("2_xjxq4")
+flip_h = true
+
+[node name="Background3" type="Sprite2D" parent="ParallaxBackground"]
+position = Vector2(12241, 4579.0005)
+scale = Vector2(4.1931357, 4.2038355)
+texture = ExtResource("2_xjxq4")
+
+[node name="Platforms_1" type="StaticBody2D" parent="."]
+collision_layer = 2
+script = ExtResource("3_p87h4")
+
+[node name="CavePolygon_start" parent="Platforms_1" instance=ExtResource("4_j5c4p")]
+position = Vector2(0, 662)
+
+[node name="Polygon2D" type="Polygon2D" parent="Platforms_1/CavePolygon_start"]
+position = Vector2(-8, 0)
+texture = ExtResource("5_xjxq4")
+polygon = PackedVector2Array(-4, 353, 98, 340, 240, 339, 355, 344, 485, 342, 598, 347, 728, 358, 847, 349, 895, 355, 950, 353, 786, 455, 739, 520, 732, 578, 702, 622, 626, 655, 640, 731, 552, 797, 470, 814, 408, 933, 357, 1118, 234, 1255, 168, 1379, 154, 1531, 66, 1714, 117, 1881, 280, 2041, 280, 2201, 207, 2313, 294, 2524, 508, 2713, 0, 2688)
+
+[node name="CavePolygon_slope" type="Node2D" parent="Platforms_1"]
+script = ExtResource("6_rkihr")
+metadata/_custom_type_script = "uid://brypmb8wn864y"
+
+[node name="Polygon2D" type="Polygon2D" parent="Platforms_1/CavePolygon_slope"]
+position = Vector2(0, -16)
+texture = ExtResource("5_xjxq4")
+polygon = PackedVector2Array(-4, 366, 99, 337, 199, 321, 290, 318, 402, 299, 477, 333, 606, 347, 714, 316, 831, 312, 1056, 371, 1241, 438, 1392, 470, 1474, 532, 1508, 647, 1536, 913, 1524, 1135, 1540, 1360, 1503, 1699, 1580, 1567, 1598, 1460, 1638, 1326, 1730, 1310, 1757, 1236, 1754, 1152, 1863, 1035, 1857, 930, 1957, 784, 1942, 697, 1876, 632, 1895, 535, 1936, 411, 1915, 329, 1847, 234, 1904, 174, 1911, 97, 1920, 5, -7, 4)
+
+[node name="CavePolygon_1_1" type="Node2D" parent="Platforms_1"]
+script = ExtResource("6_rkihr")
+metadata/_custom_type_script = "uid://brypmb8wn864y"
+
+[node name="Polygon2D" type="Polygon2D" parent="Platforms_1/CavePolygon_1_1"]
+position = Vector2(-10, -27)
+texture = ExtResource("5_xjxq4")
+polygon = PackedVector2Array(1459, 1826, 1430, 1890, 1376, 1879, 1353, 1899, 1340.2043, 1907.3665, 1327, 1916, 1282, 1928, 1244, 1957, 1189, 1941, 1176, 1910, 1135, 1903, 1120, 1864, 1088, 1832)
+
+[node name="CavePolygon_1_2" type="Node2D" parent="Platforms_1"]
+script = ExtResource("6_rkihr")
+metadata/_custom_type_script = "uid://brypmb8wn864y"
+
+[node name="Polygon2D" type="Polygon2D" parent="Platforms_1/CavePolygon_1_2"]
+position = Vector2(-6, 97)
+texture = ExtResource("5_xjxq4")
+polygon = PackedVector2Array(1003, 2052, 686, 2052, 699, 2084, 691, 2112, 711, 2147, 743, 2183, 787, 2220, 796, 2274, 766, 2321, 772, 2350, 779, 2408, 805, 2443, 799, 2491, 775, 2560, 788, 2589, 772, 2689, 769, 2739, 741, 2811, 756, 2888, 737, 2963, 689, 3072, 688, 3144, 659, 3155, 641, 3197, 597, 3222, 519, 3243, 487, 3281, 437, 3276, 415, 3298, 396, 3292, 396, 3313, 554, 3325, 1253, 3298, 1221, 3256, 1176, 3263, 1115, 3239, 1089, 3186, 1025, 3152, 1024, 3101, 990, 3074, 952, 3017, 986, 2995, 980, 2951, 951, 2914, 958, 2875, 937, 2846, 921, 2782, 932, 2736, 920, 2694, 901, 2635, 913, 2607, 927, 2554, 892, 2516, 895, 2469, 866, 2404, 888, 2382, 904, 2347, 924, 2316, 904, 2291, 862, 2267, 863, 2240, 872, 2193, 862, 2161, 887, 2130, 934, 2123, 939, 2095, 963, 2082)
+
+[node name="CavePolygon_1_3" type="Node2D" parent="Platforms_1"]
+script = ExtResource("6_rkihr")
+metadata/_custom_type_script = "uid://brypmb8wn864y"
+
+[node name="Polygon2D" type="Polygon2D" parent="Platforms_1/CavePolygon_1_3"]
+position = Vector2(192, 26)
+texture = ExtResource("5_xjxq4")
+polygon = PackedVector2Array(1360, 2350, 1741, 2344, 1706, 2422, 1652, 2434, 1628, 2505, 1640, 2631, 1718, 2702, 1706, 2786, 1801, 2869, 1795, 2953, 1759, 3054, 1801, 3173, 1819, 3340, 1914, 3400, 1252, 3400, 1336, 3358, 1354, 3281, 1431, 3251, 1485, 3179, 1545, 3155, 1652, 3155, 1682, 3066, 1652, 3018, 1688, 2935, 1670, 2881, 1628, 2857, 1580, 2792, 1521, 2768, 1449, 2702, 1431, 2613, 1467, 2631, 1491, 2678, 1551, 2678, 1545, 2637, 1515, 2589, 1539, 2535, 1485, 2464, 1455, 2422, 1390, 2422)
+
+[node name="CavePolygon_end" type="Node2D" parent="Platforms_1"]
+script = ExtResource("6_rkihr")
+metadata/_custom_type_script = "uid://brypmb8wn864y"
+
+[node name="Polygon2D" type="Polygon2D" parent="Platforms_1/CavePolygon_end"]
+position = Vector2(1, -8)
+texture = ExtResource("17_qgj7v")
+polygon = PackedVector2Array(2732, 2196, 2862, 2202, 2954, 2196, 3033, 2196, 2975, 2239, 2977, 2283, 2952, 2321, 2975, 2383, 2947, 2445, 2994, 2488, 3061, 2502, 3052, 2555, 3095, 2574, 3136, 2604, 3219, 2617, 3291, 2612, 3324, 2531, 3367, 2516, 3377, 2450, 3340, 2425, 3324, 2383, 3320, 2342, 3334, 2316, 3364, 2280, 3411, 2252, 3411, 2212, 3394, 2175, 3398, 2140, 3415, 2110, 3405, 2082, 3395, 2037, 3377, 2005, 3351, 1980, 3340, 1951, 3322, 1902, 3301, 1862, 3266, 1828, 3156, 1781, 3319, 1786, 3654, 1781, 3525, 1819, 3480, 1846, 3458, 1886, 3451, 1940, 3458, 1986, 3466, 2016, 3467, 2067, 3470, 2113, 3463, 2168, 3477, 2223, 3472, 2268, 3424, 2349, 3425, 2396, 3448, 2454, 3500, 2478, 3534, 2502, 3557, 2520, 3582, 2556, 3625, 2581, 3735, 2564, 4050, 2550, 4203, 2550, 4334, 2482, 4193, 2693, 4122, 2827, 4103, 3362, 3463, 3324, 3486, 3238, 3525, 3161, 3539, 3047, 3558, 2937, 3520, 2817, 3424, 2755, 3334, 2712, 3262, 2693, 3186, 2679, 3057, 2669, 2966, 2688, 2956, 2808, 3014, 2918, 3076, 3018, 3085, 3156, 3109, 3314, 3181, 3333, 3181, 3386, 2985, 3386, 2780, 3390, 2617, 3395, 2488, 3357, 2488, 3300, 2560, 3266, 2660, 3271, 2727, 3261, 2751, 3219, 2780, 3161, 2732, 3104, 2775, 3061, 2784, 2999, 2823, 2903, 2904, 2856, 2899, 2784, 2880, 2712, 2808, 2684, 2775, 2675, 2744, 2684, 2690, 2756, 2644, 2801, 2617, 2780, 2584, 2793, 2544, 2829, 2526, 2865, 2490, 2840, 2448, 2858, 2431, 2878, 2377, 2864, 2345, 2896, 2285, 2865, 2284, 2826, 2243, 2790, 2561, 2791, 2581, 2769, 2623, 2764, 2654, 2743, 2673, 2718, 2677, 2640, 2721, 2643, 2754, 2637, 2785, 2638, 2820, 2644, 2849, 2646, 2894, 2650, 2909, 2621, 2947, 2607, 2955, 2566, 2985, 2540, 2947, 2497, 2894, 2430, 2899, 2378, 2861, 2330, 2842, 2282, 2746, 2244, 2670, 2235, 2608, 2206)
+
+[node name="CavePolygon_ceiling" type="Node2D" parent="Platforms_1"]
+script = ExtResource("6_rkihr")
+metadata/_custom_type_script = "uid://brypmb8wn864y"
+
+[node name="Polygon2D" type="Polygon2D" parent="Platforms_1/CavePolygon_ceiling"]
+texture_repeat = 2
+antialiased = true
+texture = ExtResource("5_xjxq4")
+texture_offset = Vector2(-4000, 0)
+polygon = PackedVector2Array(1949, 24, 2098, 99, 2231, 165, 2198, 315, 2189, 472, 2094, 546, 2128, 722, 2318, 979, 2521, 1074, 2507, 1284, 2629, 1406, 2744, 1460, 2805, 1582, 2778, 1764, 2913, 1934, 3001, 1961, 3008, 1406, 2974, 1324, 2866, 1135, 2928, 1012, 3036, 1161, 3302, 1219, 3733, 1327, 3980, 1535, 4010, 1690, 4112, 1775, 4280, 1799, 4404, 1693, 4604, 1627, 4654, 1498, 4828, 1522, 5229, 1733, 5554, 1698, 5713, 1533, 5950, 1478, 5905, 1213, 6222, 818, 6642, 635, 6929, 371, 7378, 392, 7657, 213, 7859, 340, 7964, 492, 8178, 504, 8318, 321, 8540, 501, 8713, 647, 8613, 825, 8713, 1025, 8342, 1080, 8791, 1092, 9011, 1213, 9131, 1010, 9388, 850, 9133, 543, 9450, 178, 9678, -9, 9396, -1, 4181, 16)
+
+[node name="CavePolygon_2_1" type="Node2D" parent="Platforms_1"]
+script = ExtResource("6_rkihr")
+metadata/_custom_type_script = "uid://brypmb8wn864y"
+
+[node name="Polygon2D" type="Polygon2D" parent="Platforms_1/CavePolygon_2_1"]
+polygon = PackedVector2Array(4669, 2764, 5012, 2765, 5007, 2797, 4966, 2800, 4944, 2831, 4914, 2839, 4882, 2883, 4872, 2924, 4860, 2883, 4855, 2902, 4833, 2846, 4821, 2858, 4782, 2834, 4765, 2846, 4745, 2844, 4713, 2814, 4684, 2809)
+
+[node name="CavePolygon_2_2" type="Node2D" parent="Platforms_1"]
+script = ExtResource("6_rkihr")
+metadata/_custom_type_script = "uid://brypmb8wn864y"
+
+[node name="Polygon2D" type="Polygon2D" parent="Platforms_1/CavePolygon_2_2"]
+position = Vector2(957, -84)
+polygon = PackedVector2Array(4669, 2764, 5012, 2765, 4973, 2784, 4966, 2800, 4944, 2831, 4914, 2839, 4878, 2837, 4821, 2858, 4788, 2837, 4745, 2844, 4741, 2814, 4698, 2806)
+
+[node name="CavePolygon_2_3" type="Node2D" parent="Platforms_1"]
+script = ExtResource("6_rkihr")
+metadata/_custom_type_script = "uid://brypmb8wn864y"
+
+[node name="Polygon2D" type="Polygon2D" parent="Platforms_1/CavePolygon_2_3"]
+position = Vector2(1806, -289)
+polygon = PackedVector2Array(4669, 2764, 5012, 2765, 4985, 2794, 4952, 2821, 4912, 2823, 4878, 2837, 4827, 2826, 4790, 2844, 4754, 2812, 4722, 2823, 4681, 2804)
+
+[node name="CavePolygon_2_4" type="Node2D" parent="Platforms_1"]
+script = ExtResource("6_rkihr")
+metadata/_custom_type_script = "uid://brypmb8wn864y"
+
+[node name="Polygon2D" type="Polygon2D" parent="Platforms_1/CavePolygon_2_4"]
+position = Vector2(2569, -514)
+polygon = PackedVector2Array(4669, 2764, 5012, 2765, 4973, 2803, 4917, 2803, 4912, 2823, 4878, 2837, 4827, 2826, 4790, 2832, 4763, 2811, 4716, 2795)
+
+[node name="CavePolygon_2_5" type="Node2D" parent="Platforms_1"]
+position = Vector2(-129, -25)
+script = ExtResource("6_rkihr")
+metadata/_custom_type_script = "uid://brypmb8wn864y"
+
+[node name="Polygon2D" type="Polygon2D" parent="Platforms_1/CavePolygon_2_5"]
+position = Vector2(3328, -727)
+polygon = PackedVector2Array(4669, 2764, 5012, 2765, 4957, 2796, 4951, 2828, 4912, 2823, 4878, 2837, 4827, 2826, 4789, 2856, 4749, 2851, 4722, 2823, 4683, 2799)
+
+[node name="CavePolygon_2_6" type="Node2D" parent="Platforms_1"]
+position = Vector2(-56, -7)
+script = ExtResource("6_rkihr")
+metadata/_custom_type_script = "uid://brypmb8wn864y"
+
+[node name="Polygon2D" type="Polygon2D" parent="Platforms_1/CavePolygon_2_6"]
+position = Vector2(2468, -966)
+polygon = PackedVector2Array(4669, 2764, 5000, 2764, 4957, 2796, 4944, 2819, 4912, 2823, 4878, 2837, 4827, 2826, 4787, 2838, 4757, 2813, 4714, 2813, 4683, 2799)
+
+[node name="CavePolygon_2_7" type="Node2D" parent="Platforms_1"]
+position = Vector2(637, -247)
+script = ExtResource("6_rkihr")
+metadata/_custom_type_script = "uid://brypmb8wn864y"
+
+[node name="Polygon2D" type="Polygon2D" parent="Platforms_1/CavePolygon_2_7"]
+position = Vector2(2384, -959)
+polygon = PackedVector2Array(4669, 2764, 5000, 2764, 4985, 2781, 4951, 2794, 4934, 2819, 4904, 2811, 4876, 2832, 4827, 2826, 4809, 2836, 4787, 2824, 4780, 2837, 4771, 2812, 4747, 2814, 4723, 2804, 4707, 2824, 4694, 2784)
+
+[node name="CavePolygon_2_8" type="Node2D" parent="Platforms_1"]
+position = Vector2(637, -247)
+script = ExtResource("6_rkihr")
+metadata/_custom_type_script = "uid://brypmb8wn864y"
+
+[node name="Polygon2D" type="Polygon2D" parent="Platforms_1/CavePolygon_2_8"]
+position = Vector2(3057, -974)
+polygon = PackedVector2Array(4669, 2764, 5000, 2764, 4985, 2781, 4951, 2794, 4934, 2819, 4904, 2811, 4876, 2832, 4827, 2826, 4809, 2836, 4787, 2824, 4780, 2837, 4771, 2812, 4747, 2814, 4723, 2804, 4707, 2824, 4694, 2784)
+
+[node name="CavePolygon_end_2" type="Node2D" parent="Platforms_1"]
+position = Vector2(637, -247)
+script = ExtResource("6_rkihr")
+metadata/_custom_type_script = "uid://brypmb8wn864y"
+
+[node name="Polygon2D" type="Polygon2D" parent="Platforms_1/CavePolygon_end_2"]
+texture_repeat = 2
+position = Vector2(3594, -742)
+texture = ExtResource("5_xjxq4")
+polygon = PackedVector2Array(4669, 2764, 5178, 2765, 5059, 2805, 5018, 2857, 4923, 2887, 4856, 2886, 4807, 2921, 4771, 2990, 4833, 3045, 4797, 3085, 4821, 3137, 4852, 3267, 4776, 3373, 4791, 3485, 4727, 3651, 4753, 3782, 4703, 3931, 4835, 4001, 4921, 3880, 4874, 4060, 4973, 3850, 4971, 4088, 5046, 3859, 5115, 4128, 5190, 4300, 5037, 4522, 4398, 4541, 3552, 4469, 3921, 4451, 4013, 4327, 4214, 4258, 4331, 4066, 4393, 3884, 4491, 3756, 4510, 3500, 4580, 3328, 4683, 3272, 4727, 3168, 4683, 3083, 4674, 2982, 4743, 2883, 4694, 2784)
+
+[node name="CavePolygon_3_1" type="Node2D" parent="Platforms_1"]
+position = Vector2(637, -247)
+script = ExtResource("6_rkihr")
+metadata/_custom_type_script = "uid://brypmb8wn864y"
+
+[node name="Polygon2D" type="Polygon2D" parent="Platforms_1/CavePolygon_3_1"]
+texture = ExtResource("5_xjxq4")
+texture_offset = Vector2(-5000, 0)
+polygon = PackedVector2Array(8913, 2568, 9287, 2512, 9361, 2390, 9404, 2396, 9471, 2298, 9379, 2261, 9343, 2138, 9251, 2101, 9214, 1905, 9281, 1764, 9208, 1586, 9189, 1371, 9109, 1266, 9079, 1125, 8993, 1009, 8753, 935, 8723, 849, 8901, 738, 10042, 732, 9987, 1113, 10049, 1303, 9938, 1383, 9901, 1536, 9748, 1598, 9766, 1727, 9551, 1770, 9527, 1892, 9410, 1923, 9349, 1985, 9435, 2095, 9453, 2199, 9533, 2292, 9582, 2451, 9541, 2500, 9587, 2563, 9570, 2691, 9471, 2598, 9318, 2654, 9072, 2641)
+
+[node name="CavePolygon_3_2" type="Node2D" parent="Platforms_1"]
+position = Vector2(637, -247)
+script = ExtResource("6_rkihr")
+metadata/_custom_type_script = "uid://brypmb8wn864y"
+
+[node name="Polygon2D" type="Polygon2D" parent="Platforms_1/CavePolygon_3_2"]
+texture_repeat = 2
+position = Vector2(-233, 2118)
+texture = ExtResource("5_xjxq4")
+polygon = PackedVector2Array(8913, 2568, 9287, 2512, 9361, 2390, 9404, 2396, 9471, 2298, 9379, 2261, 9343, 2138, 9251, 2101, 9281, 1764, 9189, 1371, 9109, 1266, 9079, 1125, 8993, 1009, 8753, 935, 8723, 849, 8901, 738, 9224, 812, 9398, 791, 9701, 791, 9867, 824, 10204, 799, 10666, 814, 10477, 982, 9987, 1113, 10049, 1303, 9938, 1383, 9901, 1536, 9766, 1727, 9527, 1892, 9410, 1923, 9349, 1985, 9435, 2095, 9453, 2199, 9533, 2292, 9582, 2451, 9692, 2500, 9729, 2629, 9570, 2691, 9471, 2598, 9072, 2641)
+
+[node name="CavePolygon_3_3" type="Node2D" parent="Platforms_1"]
+position = Vector2(637, -247)
+script = ExtResource("6_rkihr")
+metadata/_custom_type_script = "uid://brypmb8wn864y"
+
+[node name="Polygon2D" type="Polygon2D" parent="Platforms_1/CavePolygon_3_3"]
+texture_repeat = 2
+texture = ExtResource("5_xjxq4")
+polygon = PackedVector2Array(10664, 2610, 10651, 3345, 10610, 3425, 10702, 3373, 10714, 3289, 10724, 3159, 10851, 3143, 10889, 2973, 10796, 2874, 10911, 2764, 10834, 2654, 10763, 2445, 10625, 2346, 10455, 2390, 10389, 2203, 10191, 2115, 9806, 2131, 9828, 2340, 10075, 2335, 10059, 2472, 10202, 2494, 10262, 2593, 10504, 2505, 10625, 2604)
+
+[node name="CavePolygon_3_4" type="Node2D" parent="Platforms_1"]
+position = Vector2(637, -247)
+script = ExtResource("6_rkihr")
+metadata/_custom_type_script = "uid://brypmb8wn864y"
+
+[node name="Polygon2D" type="Polygon2D" parent="Platforms_1/CavePolygon_3_4"]
+texture_repeat = 3
+position = Vector2(10484, 3890)
+scale = Vector2(0.68235296, 1.0000002)
+texture = ExtResource("5_xjxq4")
+polygon = PackedVector2Array(-185.70117, -66.09863, -185.70117, -654.0984, -370.35645, -621.09863, -402.59766, -451.09863, -499.32227, -209.09863, -637.0801, -143.09863, -579.9258, -33.098633, -757.2529, 76.90137, -596.0459, 235.90112, -653.2012, 417.90112, -459.75293, 444.90112, -330.7871, 521.9011, -162.25293, 516.9011, -338.11523, 384.90112, -178.37402, 362.90112, -338.11523, 186.90137, -226.73535, 87.90137)
+
+[node name="CavePolygon_3_5" type="Node2D" parent="Platforms_1"]
+position = Vector2(637, -247)
+script = ExtResource("6_rkihr")
+metadata/_custom_type_script = "uid://brypmb8wn864y"
+
+[node name="Polygon2D" type="Polygon2D" parent="Platforms_1/CavePolygon_3_5"]
+texture_repeat = 2
+position = Vector2(47, -1)
+texture = ExtResource("5_xjxq4")
+polygon = PackedVector2Array(10677, 3714, 11143, 3717, 11079, 3795, 11004, 3813, 10987, 3902, 10908, 3913, 10880, 3995, 10816, 3959, 10784, 3874, 10748, 3827, 10702, 3767)
+
+[node name="CavePolygon_3_6" type="Node2D" parent="Platforms_1"]
+position = Vector2(637, -247)
+script = ExtResource("6_rkihr")
+metadata/_custom_type_script = "uid://brypmb8wn864y"
+
+[node name="Polygon2D" type="Polygon2D" parent="Platforms_1/CavePolygon_3_6"]
+texture_repeat = 2
+position = Vector2(951, -141)
+texture = ExtResource("5_xjxq4")
+polygon = PackedVector2Array(10677, 3714, 11143, 3717, 11114, 3743, 11067, 3751, 11045, 3823, 10996, 3875, 10946, 3886, 10938, 3946, 10878, 4006, 10823, 3957, 10774, 3968, 10779, 3869, 10719, 3828, 10741, 3757, 10694, 3751)
+
+[node name="CavePolygon_3_7" type="Node2D" parent="Platforms_1"]
+position = Vector2(637, -247)
+script = ExtResource("6_rkihr")
+metadata/_custom_type_script = "uid://brypmb8wn864y"
+
+[node name="Polygon2D" type="Polygon2D" parent="Platforms_1/CavePolygon_3_7"]
+texture_repeat = 2
+position = Vector2(1765, -442)
+texture = ExtResource("5_xjxq4")
+polygon = PackedVector2Array(10677, 3714, 10996, 3718, 11143, 3717, 11089, 3749, 11076, 3780, 11017, 3805, 10996, 3875, 10959, 3800, 10918, 3818, 10867, 3910, 10856, 3835, 10800, 3793, 10749, 3741)
+
+[node name="CavePolygon_3_8" type="Node2D" parent="Platforms_1"]
+position = Vector2(637, -247)
+script = ExtResource("6_rkihr")
+metadata/_custom_type_script = "uid://brypmb8wn864y"
+
+[node name="Polygon2D" type="Polygon2D" parent="Platforms_1/CavePolygon_3_8"]
+texture_repeat = 2
+position = Vector2(2530, -653)
+texture = ExtResource("5_xjxq4")
+polygon = PackedVector2Array(10677, 3714, 11143, 3717, 11089, 3749, 11076, 3780, 11023, 3868, 11019, 3994, 11110, 4078, 11082, 4192, 11094, 4327, 11154, 4356, 11121, 4471, 11147, 4604, 11149, 4715, 11014, 4794, 11117, 4862, 11175, 4981, 11104, 5065, 11140, 5150, 11225, 5318, 10317, 5344, 10401, 5154, 10506, 5062, 10639, 4881, 10720, 4768, 10677, 4603, 10560, 4478, 10581, 4267, 10699, 4150, 10703, 3986, 10787, 3910, 10800, 3793, 10749, 3741)
+
+[node name="CavePolygon_4_1" type="Node2D" parent="Platforms_1"]
+position = Vector2(637, -247)
+script = ExtResource("6_rkihr")
+metadata/_custom_type_script = "uid://brypmb8wn864y"
+
+[node name="Polygon2D" type="Polygon2D" parent="Platforms_1/CavePolygon_4_1"]
+texture_repeat = 2
+position = Vector2(3647, -521)
+texture = ExtResource("5_xjxq4")
+polygon = PackedVector2Array(10677, 3714, 11143, 3717, 11097, 3765, 11039, 3787, 11027, 3825, 10996, 3842, 10958, 3820, 10919, 3810, 10881, 3803, 10856, 3835, 10798, 3785, 10729, 3767)
+
+[node name="CavePolygon_4_2" type="Node2D" parent="Platforms_1"]
+position = Vector2(637, -247)
+script = ExtResource("6_rkihr")
+metadata/_custom_type_script = "uid://brypmb8wn864y"
+
+[node name="Polygon2D" type="Polygon2D" parent="Platforms_1/CavePolygon_4_2"]
+texture_repeat = 2
+position = Vector2(4596, -434)
+texture = ExtResource("5_xjxq4")
+polygon = PackedVector2Array(10677, 3714, 11143, 3717, 11097, 3765, 11039, 3787, 11027, 3825, 10996, 3842, 10958, 3820, 10919, 3810, 10881, 3803, 10856, 3835, 10798, 3785, 10729, 3767)
+
+[node name="CavePolygon_4_3" type="Node2D" parent="Platforms_1"]
+position = Vector2(637, -247)
+script = ExtResource("6_rkihr")
+metadata/_custom_type_script = "uid://brypmb8wn864y"
+
+[node name="Polygon2D" type="Polygon2D" parent="Platforms_1/CavePolygon_4_3"]
+texture_repeat = 2
+position = Vector2(5564, -99)
+texture = ExtResource("5_xjxq4")
+polygon = PackedVector2Array(10677, 3714, 11143, 3717, 11097, 3765, 11039, 3787, 11027, 3825, 10996, 3842, 10958, 3820, 10919, 3810, 10881, 3803, 10856, 3835, 10798, 3785, 10729, 3767)
+
+[node name="CavePolygon_4_4" type="Node2D" parent="Platforms_1"]
+position = Vector2(637, -247)
+script = ExtResource("6_rkihr")
+metadata/_custom_type_script = "uid://brypmb8wn864y"
+
+[node name="Polygon2D" type="Polygon2D" parent="Platforms_1/CavePolygon_4_4"]
+texture_repeat = 2
+position = Vector2(6639, 201)
+texture = ExtResource("5_xjxq4")
+polygon = PackedVector2Array(10522, 3720, 11143, 3717, 11282, 3524, 11353, 3359, 11331, 3193, 11437, 3116, 11435, 2912, 11299, 2719, 11278, 2556, 11141, 2428, 10891, 2351, 11387, 2333, 11624, 2325, 11625, 4746, 9937, 4743, 10088, 4429, 10092, 4276, 9967, 4022, 10120, 3994, 10283, 3982, 10364, 3893, 10488, 3833)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_xypda")
+}
+
+[node name="Restart" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+metadata/_edit_group_ = true
+
+[node name="Restart_1" type="CollisionShape2D" parent="Restart"]
+position = Vector2(5115, 3584)
+shape = SubResource("RectangleShape2D_rkihr")
+
+[node name="Restart_2" type="CollisionShape2D" parent="Restart"]
+position = Vector2(14709, 4300)
+shape = SubResource("RectangleShape2D_rkihr")
+
+[node name="ExitDungeon" type="Area2D" parent="."]
+position = Vector2(-203, 642)
+collision_layer = 15
+collision_mask = 15
+metadata/_edit_group_ = true
+
+[node name="ExitDungeon" type="CollisionShape2D" parent="ExitDungeon"]
+shape = SubResource("RectangleShape2D_ulbub")
+
+[node name="SaveArea" type="Area2D" parent="."]
+metadata/_edit_group_ = true
+
+[node name="Collision" type="CollisionShape2D" parent="SaveArea"]
+position = Vector2(4235.824, 2150)
+scale = Vector2(0.9999999, 0.9999999)
+shape = SubResource("RectangleShape2D_81cy6")
+
+[node name="Collision2" type="CollisionShape2D" parent="SaveArea"]
+position = Vector2(9184, 1385)
+scale = Vector2(0.9999999, 0.9999999)
+shape = SubResource("RectangleShape2D_81cy6")
+
+[node name="Collision3" type="CollisionShape2D" parent="SaveArea"]
+position = Vector2(14149, 2415)
+scale = Vector2(0.9999999, 0.9999999)
+shape = SubResource("RectangleShape2D_81cy6")
+
+[node name="FinishArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FinishArea"]
+position = Vector2(18290, 3534)
+shape = SubResource("RectangleShape2D_14g87")
+
+[node name="Player" parent="." instance=ExtResource("5_xypda")]
+z_index = 2
+texture_filter = 1
+position = Vector2(22.000008, 870.99994)
+scale = Vector2(5, 5)
+
+[node name="Camera" type="Camera2D" parent="Player"]
+zoom = Vector2(0.84, 0.84)
+limit_left = 4
+limit_top = -1
+limit_right = 18685
+limit_bottom = 4307
+
+[node name="PlayerLightsource" type="PointLight2D" parent="Player"]
+color = Color(1, 1, 1, 0.3764706)
+energy = 0.65
+texture = ExtResource("10_pv782")
+texture_scale = 0.04
+script = ExtResource("10_xypda")
+metadata/_custom_type_script = "uid://bv8xensh8gw15"

@@ -1,0 +1,313 @@
+[gd_scene load_steps=25 format=3 uid="uid://6au4oc0p7y45"]
+
+[ext_resource type="Script" uid="uid://c0ady6pyemrt" path="res://scripts/player/player.gd" id="1_gfjak"]
+[ext_resource type="Texture2D" uid="uid://bcoyfsqi2g8jt" path="res://sprites/tmp/char_blue_1.png" id="2_4kuee"]
+[ext_resource type="Script" uid="uid://cymn65cwhuk7a" path="res://scripts/player/fsmachine/fs_machine.gd" id="3_4kuee"]
+[ext_resource type="Script" uid="uid://crtyknaqk07op" path="res://scripts/player/fsmachine/idle_state.gd" id="4_524rm"]
+[ext_resource type="Script" uid="uid://dqpwh4bm7w3pm" path="res://scripts/player/fsmachine/air_state.gd" id="5_npwbq"]
+[ext_resource type="Script" uid="uid://2qtehi8qomyy" path="res://scripts/player/fsmachine/wall_state.gd" id="6_v42im"]
+[ext_resource type="Script" uid="uid://d0764c5luagto" path="res://scripts/player/fsmachine/walking_state.gd" id="7_pn6s4"]
+[ext_resource type="Script" uid="uid://b71hdbbllfu8l" path="res://scripts/player/fsmachine/fall_state.gd" id="8_v42im"]
+[ext_resource type="Script" uid="uid://df45d4jl00hxq" path="res://scripts/player/abilities/voice.gd" id="10_5stf6"]
+[ext_resource type="Script" uid="uid://2005rg70wnxx" path="res://scripts/player/abilities/stone.gd" id="10_7oing"]
+[ext_resource type="Shader" uid="uid://65tra01wjbpc" path="res://shaders/StoneForceField.gdshader" id="10_180ig"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_524rm"]
+radius = 8.0
+
+[sub_resource type="Animation" id="Animation_npwbq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_4kuee")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [11]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [16]
+}
+
+[sub_resource type="Animation" id="Animation_tpg5x"]
+resource_name = "idle"
+length = 0.5
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_4kuee")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [11]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_c3xxp"]
+resource_name = "run"
+length = 0.7
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_4kuee")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [11]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [16, 17, 18, 19, 20, 21, 22, 23]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v42im"]
+_data = {
+&"RESET": SubResource("Animation_npwbq"),
+&"idle": SubResource("Animation_tpg5x"),
+&"run": SubResource("Animation_c3xxp")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pn6s4"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7oing"]
+animation = &"run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5stf6"]
+animation = &"run"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_180ig"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_pn6s4")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_7oing")
+blend_point_1/pos = 1.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_5stf6")
+blend_point_2/pos = -1.0
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_20koh"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ov1oi"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_rn7t0"]
+states/Run/node = SubResource("AnimationNodeBlendSpace1D_180ig")
+states/Run/position = Vector2(382.89996, 99.48125)
+transitions = ["Start", "Run", SubResource("AnimationNodeStateMachineTransition_20koh"), "Run", "End", SubResource("AnimationNodeStateMachineTransition_ov1oi")]
+graph_offset = Vector2(56.399967, -27.03751)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5stf6"]
+shader = ExtResource("10_180ig")
+shader_parameter/radius = 0.0
+shader_parameter/ring_width = 0.08
+shader_parameter/distortion_strength = 0.02
+shader_parameter/fade_alpha = 0.170000008075
+shader_parameter/wave_center = Vector2(0.5, 0.5)
+shader_parameter/ring_color = Color(0.3, 0.6, 1, 1)
+shader_parameter/ring_intensity = 0.8
+shader_parameter/wave_frequency = 20.0
+shader_parameter/spark_color = Color(0.4, 0.8, 1, 1)
+shader_parameter/spark_density = 15.0
+shader_parameter/spark_speed = 2.0
+shader_parameter/spark_intensity = 1.5
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_gfjak")
+metadata/_edit_group_ = true
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 12)
+shape = SubResource("CapsuleShape2D_524rm")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_4kuee")
+hframes = 8
+vframes = 11
+frame = 16
+
+[node name="AudioPlayer" type="AudioStreamPlayer2D" parent="."]
+
+[node name="APlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_v42im")
+}
+
+[node name="ATree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_rn7t0")
+anim_player = NodePath("../APlayer")
+parameters/Run/blend_position = -0.00050127506
+
+[node name="FSMachine" type="Node" parent="."]
+script = ExtResource("3_4kuee")
+
+[node name="Idle" type="Node" parent="FSMachine"]
+script = ExtResource("4_524rm")
+
+[node name="Air" type="Node" parent="FSMachine"]
+script = ExtResource("5_npwbq")
+
+[node name="Wall" type="Node" parent="FSMachine"]
+script = ExtResource("6_v42im")
+
+[node name="Walk" type="Node" parent="FSMachine"]
+script = ExtResource("7_pn6s4")
+
+[node name="Fall" type="Node" parent="FSMachine"]
+script = ExtResource("8_v42im")
+
+[node name="AbilitiesLayer" type="CanvasLayer" parent="."]
+physics_interpolation_mode = 2
+follow_viewport_enabled = true
+
+[node name="Voice" type="Node2D" parent="AbilitiesLayer"]
+script = ExtResource("10_5stf6")
+
+[node name="Line2D" type="Line2D" parent="AbilitiesLayer/Voice"]
+
+[node name="Stone" type="CanvasLayer" parent="AbilitiesLayer"]
+physics_interpolation_mode = 2
+follow_viewport_enabled = true
+
+[node name="Stone" type="ColorRect" parent="AbilitiesLayer/Stone"]
+material = SubResource("ShaderMaterial_5stf6")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+script = ExtResource("10_7oing")
+
+[node name="WallChecker1" type="RayCast2D" parent="."]
+rotation = -1.5707964
+target_position = Vector2(-6.119594e-07, 14)
+
+[node name="WallChecker2" type="RayCast2D" parent="."]
+position = Vector2(0, 22)
+rotation = -1.5707964
+target_position = Vector2(0, 14)
+
+[node name="WallChecker3" type="RayCast2D" parent="."]
+rotation = 1.5707964
+target_position = Vector2(-6.119594e-07, 14)
+
+[node name="WallChecker4" type="RayCast2D" parent="."]
+position = Vector2(0, 22)
+rotation = 1.5707964
+target_position = Vector2(0, 14)

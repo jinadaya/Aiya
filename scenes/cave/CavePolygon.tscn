@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://f7mccsj0ymug"]
+
+[ext_resource type="Script" uid="uid://brypmb8wn864y" path="res://scripts/levels/cave/cave_polygon.gd" id="1_d13so"]
+
+[node name="CavePolygon" type="Node2D"]
+script = ExtResource("1_d13so")

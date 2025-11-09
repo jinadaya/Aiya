@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://csay1hvhwytwg"]
+
+[ext_resource type="Script" uid="uid://bv8xensh8gw15" path="res://scripts/levels/cave/light_source.gd" id="2_omfaf"]
+
+[node name="LightSource" type="PointLight2D"]
+blend_mode = 2
+texture_scale = 0.2
+script = ExtResource("2_omfaf")

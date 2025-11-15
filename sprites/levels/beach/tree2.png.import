@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnd6iegfi0eky"
-path="res://.godot/imported/wave_fg.svg-97e343a8767ba8520b884f78fa5c5335.ctex"
+uid="uid://bjksqf1iq1ofs"
+path="res://.godot/imported/tree2.png-cd4c90bea268d74eb9035ea74dbe279b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/levels/beach/waves/wave_fg.svg"
-dest_files=["res://.godot/imported/wave_fg.svg-97e343a8767ba8520b884f78fa5c5335.ctex"]
+source_file="res://sprites/levels/beach/tree2.png"
+dest_files=["res://.godot/imported/tree2.png-cd4c90bea268d74eb9035ea74dbe279b.ctex"]
 
 [params]
 
@@ -38,6 +38,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

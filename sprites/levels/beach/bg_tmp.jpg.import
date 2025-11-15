@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bod7kxhutr4lc"
-path="res://.godot/imported/wave_bg.svg-fcecde13affaf35b58fe4cf46f7b1260.ctex"
+uid="uid://gvsrwccmfrg"
+path="res://.godot/imported/bg_tmp.jpg-428c6abacff17d20dec3aaf3b42746f1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/levels/beach/waves/wave_bg.svg"
-dest_files=["res://.godot/imported/wave_bg.svg-fcecde13affaf35b58fe4cf46f7b1260.ctex"]
+source_file="res://sprites/levels/beach/bg_tmp.jpg"
+dest_files=["res://.godot/imported/bg_tmp.jpg-428c6abacff17d20dec3aaf3b42746f1.ctex"]
 
 [params]
 
@@ -38,6 +38,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

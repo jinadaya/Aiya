@@ -6,52 +6,52 @@ var inbetween_state : InbetweenState
 
 signal transitioned(from : PlayerState, to : StringName)
 
-func handle_input(_input : InputEvent):
+func handle_input(_input : InputEvent) -> void:
 	pass
 
-func enter(_from : PlayerState):
+func enter(_from : PlayerState) -> void:
 	pass
 
-func exit():
+func exit() -> void:
 	pass
 
-func process(_delta : float):
+func process(_delta : float) -> void:
 	pass
 
-func physics_process(_delta : float):
+func physics_process(_delta : float) -> void:
 	pass
 
-func set_body(new_body : CharacterBody2D):
+func set_body(new_body : CharacterBody2D) -> void:
 	body = new_body
 
 func apply_gravity(delta: float, is_falling: bool = false) -> void:
-	var jump_released = not InputManager.is_just_pressed(InputManager.Action.JUMP)
-	var current_gravity = inbetween_state.get_current_gravity(is_falling, jump_released and body.velocity.y < 0)
+	var jump_released : bool = not InputManager.is_just_pressed(InputManager.Action.JUMP)
+	var current_gravity : float = inbetween_state.get_current_gravity(is_falling, jump_released and body.velocity.y < 0)
 	
 	body.velocity.y += current_gravity * delta
 	
 	# Apply max fall speed
-	var max_speed = inbetween_state.fast_fall_speed if InputManager.get_y_axis() > 0 else inbetween_state.max_fall_speed
+	var max_speed : float = inbetween_state.fast_fall_speed if InputManager.get_y_axis() > 0 else inbetween_state.max_fall_speed
 	body.velocity.y = min(body.velocity.y, max_speed)
 
 func apply_horizontal_movement(delta: float) -> void:
-	var x_dir = InputManager.get_x_axis()
+	var x_dir : float = InputManager.get_x_axis()
 	
 	# Select movement parameters based on grounded state
-	var speed = inbetween_state.ground_speed
-	var accel = inbetween_state.ground_acceleration
-	var decel = inbetween_state.ground_deceleration 
+	var speed : float = inbetween_state.ground_speed
+	var accel : float = inbetween_state.ground_acceleration
+	var decel : float = inbetween_state.ground_deceleration 
 	
 	if x_dir != 0:
-		var target_speed = speed * x_dir
+		var target_speed : float = speed * x_dir
 		body.velocity.x = move_toward(body.velocity.x, target_speed, accel * delta)
 	else:
 		body.velocity.x = move_toward(body.velocity.x, 0, decel * delta)
 
 func try_transition_on_floor(default_state: StringName = "") -> bool:
 	if body.is_on_floor():
-		var x_dir = InputManager.get_x_axis()
-		var to_state = IdleState.get_state_name() if x_dir == 0 else WalkingState.get_state_name()
+		var x_dir : float = InputManager.get_x_axis()
+		var to_state : StringName = IdleState.get_state_name() if x_dir == 0 else WalkingState.get_state_name()
 		if default_state != "":
 			to_state = default_state
 		transitioned.emit(self, to_state)
@@ -72,7 +72,7 @@ func handle_jump_input() -> void:
 	if InputManager.is_just_released(InputManager.Action.JUMP):
 		inbetween_state.is_jump_held = false
 
-func handle_jump_with_priority():
+func handle_jump_with_priority() -> void:
 	if inbetween_state.can_buffer_jump():
 		if inbetween_state.can_wall_jump():
 			execute_wall_jump()
@@ -92,12 +92,16 @@ func execute_jump(force_multiplier: float = 1.0) -> void:
 
 func execute_wall_jump() -> void:
 	if (not body.facing_flat_wall()): return
-	var normal = inbetween_state.last_wall_normal
+	var normal : Vector2 = inbetween_state.last_wall_normal
 	body.velocity.x = inbetween_state.wall_jump_force.x * normal.x
 	body.velocity.y = inbetween_state.wall_jump_force.y
 	inbetween_state.wall_jump_timer = 0
 	inbetween_state.buffer_jump_timer = 0
 	inbetween_state.block_jumps()
+
+func slow_down(extra_velocity: float) -> void:
+	print("Axis is ", extra_velocity * inbetween_state.ground_deceleration)
+	body.velocity.x -= extra_velocity * inbetween_state.ground_deceleration
 
 static func get_state_name() -> StringName:
 	return &""

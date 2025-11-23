@@ -1,27 +1,261 @@
-[gd_scene load_steps=3 format=3 uid="uid://c165s6ojxbwv1"]
+[gd_scene load_steps=26 format=3 uid="uid://c165s6ojxbwv1"]
 
 [ext_resource type="PackedScene" uid="uid://6au4oc0p7y45" path="res://scenes/player/Player.tscn" id="1_5rfpy"]
+[ext_resource type="Texture2D" uid="uid://gvsrwccmfrg" path="res://sprites/levels/beach/bg_tmp.jpg" id="1_an8uc"]
+[ext_resource type="Script" uid="uid://bs6pnk7auu6su" path="res://scripts/levels/beach/beach.gd" id="1_g5ysr"]
+[ext_resource type="Shader" uid="uid://dkiempfjhb7ca" path="res://shaders/Blur.gdshader" id="2_w2d0x"]
+[ext_resource type="Texture2D" uid="uid://bjksqf1iq1ofs" path="res://sprites/levels/beach/tree2.png" id="3_aopj7"]
+[ext_resource type="Texture2D" uid="uid://be3qgyvy204q0" path="res://sprites/levels/beach/house_no_bg.png" id="3_g5ysr"]
+[ext_resource type="Texture2D" uid="uid://ba2tmghsa7pxw" path="res://sprites/levels/beach/stone_no_bg.png" id="3_sre26"]
+[ext_resource type="Texture2D" uid="uid://bhmmxs57b82qy" path="res://sprites/levels/beach/tree1.png" id="4_b54ua"]
+[ext_resource type="Shader" uid="uid://58oaiw4d3ahf" path="res://shaders/beach_special/SandDunes.gdshader" id="6_b54ua"]
+[ext_resource type="Texture2D" uid="uid://dblsk0f3xrflh" path="res://sprites/levels/beach/house_2_no_bg.png" id="6_w2d0x"]
+[ext_resource type="Shader" uid="uid://ut310dqpjk4r" path="res://shaders/beach_special/Sand.gdshader" id="7_aopj7"]
+[ext_resource type="Texture2D" uid="uid://d1qnkg2fb0v04" path="res://sprites/levels/beach/fence_no_bg.png" id="7_swrkq"]
+[ext_resource type="Texture2D" uid="uid://cbxhjmucamhil" path="res://sprites/levels/beach/city_wall_no_bg.png" id="13_niucu"]
+[ext_resource type="Texture2D" uid="uid://dq47inkfmafvm" path="res://sprites/levels/beach/city_entrance_no_doors.PNG" id="14_8n8wd"]
+[ext_resource type="Texture2D" uid="uid://xhthiergsuua" path="res://sprites/levels/beach/cave_entrance_tmp.PNG" id="15_a73je"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vigvf"]
-size = Vector2(156976.5, 60)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_swrkq"]
+shader = ExtResource("2_w2d0x")
+shader_parameter/blur_amount = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w2d0x"]
+shader = ExtResource("2_w2d0x")
+shader_parameter/blur_amount = 8.5710004071225
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1tact"]
+shader = ExtResource("6_b54ua")
+shader_parameter/scale = 2.0
+shader_parameter/height = 1.0
+shader_parameter/detail = 3.0
+shader_parameter/wind_direction = 0.785
+shader_parameter/time_speed = 0.05
+shader_parameter/watercolor_bleeding = 0.15
+shader_parameter/paper_texture_strength = 0.3
+shader_parameter/color_variation = 0.2
+shader_parameter/edge_irregularity = 0.4
+shader_parameter/edge_wave_amplitude = 0.15
+shader_parameter/edge_wave_frequency = 4.0
+shader_parameter/edge_softness = 0.2
+shader_parameter/sand_light = Color(0.98, 0.92, 0.78, 1)
+shader_parameter/sand_mid = Color(0.9, 0.82, 0.65, 1)
+shader_parameter/sand_dark = Color(0.75, 0.65, 0.5, 1)
+shader_parameter/sand_shadow = Color(0.55, 0.48, 0.4, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ll41g"]
+size = Vector2(11190, 1926)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aopj7"]
+shader = ExtResource("7_aopj7")
+shader_parameter/sand_color_light = Color(0.96, 0.89, 0.73, 1)
+shader_parameter/sand_color_mid = Color(0.88, 0.79, 0.62, 1)
+shader_parameter/sand_color_dark = Color(0.72, 0.61, 0.45, 1)
+shader_parameter/brush_stroke_size = 10.0
+shader_parameter/paper_texture = 1.0
+shader_parameter/pigment_granulation = 0.4090000194275
+shader_parameter/edge_darkening = 1.0
+shader_parameter/gradient_strength = 1.0
+shader_parameter/gradient_start = 0.0
+shader_parameter/shadow_color = Color(0.20721464, 0.17063364, 0.11779441, 1)
+shader_parameter/time_scale = 0.222000010545
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b54ua"]
+size = Vector2(872, 1206)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1tact"]
+size = Vector2(188, 1263)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wa6ql"]
+size = Vector2(462, 1701)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mmvtk"]
+size = Vector2(540, 547)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rvgsd"]
+resource_local_to_scene = true
+size = Vector2(401, 429.5)
 
 [node name="Beach" type="Node2D"]
+script = ExtResource("1_g5ysr")
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="Foreground" type="Parallax2D" parent="Background"]
+z_index = 10
+scroll_scale = Vector2(2.5, 1)
+scroll_offset = Vector2(2272, 355)
+
+[node name="House" type="Sprite2D" parent="Background/Foreground"]
+modulate = Color(0.29382524, 0.29382524, 0.29382524, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_swrkq")
+position = Vector2(381.00003, 488)
+rotation = -0.2617994
+scale = Vector2(2.1680064, 2.1680071)
+texture = ExtResource("3_g5ysr")
+
+[node name="Stone" type="Sprite2D" parent="Background/Foreground"]
+self_modulate = Color(0.18765087, 0.18765087, 0.18765087, 1)
+material = SubResource("ShaderMaterial_w2d0x")
+position = Vector2(12724, 383)
+rotation = -0.2617994
+scale = Vector2(1.8264947, 1.8264948)
+texture = ExtResource("3_sre26")
+
+[node name="Stone2" type="Sprite2D" parent="Background/Foreground"]
+self_modulate = Color(0.27055946, 0.27055946, 0.27055946, 1)
+material = SubResource("ShaderMaterial_w2d0x")
+position = Vector2(3528, 454.00003)
+rotation = 0.2617994
+scale = Vector2(1.4320861, 1.4320861)
+texture = ExtResource("3_sre26")
+
+[node name="Trees" type="Node2D" parent="Background/Foreground"]
+position = Vector2(-10523, -1518)
+
+[node name="TreeLeft" type="Sprite2D" parent="Background/Foreground/Trees"]
+material = SubResource("ShaderMaterial_w2d0x")
+scale = Vector2(1.9617555, 1.9617555)
+texture = ExtResource("3_aopj7")
+
+[node name="Tree1" type="Sprite2D" parent="Background/Foreground/Trees"]
+material = SubResource("ShaderMaterial_w2d0x")
+position = Vector2(1493, -359)
+scale = Vector2(2.2408628, 2.183084)
+texture = ExtResource("4_b54ua")
+flip_h = true
+
+[node name="House2" type="Sprite2D" parent="Background/Foreground"]
+self_modulate = Color(0.22354707, 0.22354707, 0.22354707, 1)
+material = SubResource("ShaderMaterial_w2d0x")
+position = Vector2(9972, 747.00037)
+rotation = -0.2617994
+scale = Vector2(3.6412632, 3.6412632)
+texture = ExtResource("6_w2d0x")
+
+[node name="Fence" type="Sprite2D" parent="Background/Foreground"]
+self_modulate = Color(0.43788615, 0.43788615, 0.43788615, 1)
+material = SubResource("ShaderMaterial_w2d0x")
+position = Vector2(5510, 351)
+rotation = 0.12217305
+scale = Vector2(2.0403516, 2.0403519)
+texture = ExtResource("7_swrkq")
+
+[node name="Fence2" type="Sprite2D" parent="Background/Foreground"]
+self_modulate = Color(0.43788615, 0.43788615, 0.43788615, 1)
+material = SubResource("ShaderMaterial_w2d0x")
+position = Vector2(7127, 533)
+rotation = 0.09599311
+scale = Vector2(2.0403516, 2.0403519)
+texture = ExtResource("7_swrkq")
+
+[node name="Background" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.2, 1)
+scroll_offset = Vector2(4508, -1964)
+
+[node name="Lighthouse" type="Sprite2D" parent="Background/Background"]
+position = Vector2(-3614, 1645.0001)
+scale = Vector2(1.7097203, 1.7097203)
+texture = ExtResource("1_an8uc")
+
+[node name="PreForeground" type="Parallax2D" parent="Background"]
+z_index = 2
+scroll_scale = Vector2(1.75, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Background/PreForeground"]
+material = SubResource("ShaderMaterial_1tact")
+offset_left = -5280.0
+offset_top = 136.0
+offset_right = 14934.0
+offset_bottom = 825.0
+
+[node name="Player" parent="." instance=ExtResource("1_5rfpy")]
+z_index = 4
+texture_filter = 1
+position = Vector2(-1247, -1584)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(0.63, 0.63)
+limit_left = -3691
+limit_top = -4212
+limit_right = 8008
+limit_bottom = 713
 
 [node name="Floor" type="StaticBody2D" parent="."]
-position = Vector2(256, 16768)
+z_index = 1
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
-position = Vector2(243, -15689)
-shape = SubResource("RectangleShape2D_vigvf")
+position = Vector2(2555, 1104)
+shape = SubResource("RectangleShape2D_ll41g")
 
-[node name="Player" parent="." instance=ExtResource("1_5rfpy")]
-position = Vector2(429, 877.00006)
-scale = Vector2(5, 5)
+[node name="TextureRect" type="ColorRect" parent="Floor"]
+material = SubResource("ShaderMaterial_aopj7")
+offset_left = -3053.0
+offset_top = 140.0
+offset_right = 8037.0
+offset_bottom = 1063.0
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(0.6, 0.6)
-limit_bottom = 1096
-limit_smoothed = true
-position_smoothing_enabled = true
-rotation_smoothing_enabled = true
+[node name="SlowDownArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SlowDownArea"]
+position = Vector2(-2081, -408)
+shape = SubResource("RectangleShape2D_b54ua")
+
+[node name="BorderLeft" type="StaticBody2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BorderLeft"]
+position = Vector2(-2587, -417)
+shape = SubResource("RectangleShape2D_1tact")
+
+[node name="StartFallArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StartFallArea"]
+position = Vector2(-1233, -965.5)
+shape = SubResource("RectangleShape2D_wa6ql")
+
+[node name="VoiceArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VoiceArea"]
+position = Vector2(0, -127.5)
+shape = SubResource("RectangleShape2D_mmvtk")
+
+[node name="TownArea" type="Area2D" parent="."]
+z_index = 2
+position = Vector2(6311, -135)
+
+[node name="CityWallNoBg" type="Sprite2D" parent="TownArea"]
+position = Vector2(577.9995, 26)
+scale = Vector2(0.6189917, 0.7256741)
+texture = ExtResource("13_niucu")
+
+[node name="CityWallNoBg3" type="Sprite2D" parent="TownArea"]
+position = Vector2(1232, 26)
+scale = Vector2(0.6189917, 0.7256741)
+texture = ExtResource("13_niucu")
+flip_h = true
+
+[node name="CityWallNoBg2" type="Sprite2D" parent="TownArea"]
+position = Vector2(-639, 26)
+scale = Vector2(0.6189917, 0.7256741)
+texture = ExtResource("13_niucu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TownArea"]
+position = Vector2(-16, 55)
+shape = SubResource("RectangleShape2D_rvgsd")
+
+[node name="Sprite2D" type="Sprite2D" parent="TownArea"]
+position = Vector2(-4, -4)
+texture = ExtResource("14_8n8wd")
+
+[node name="CaveArea" type="Area2D" parent="."]
+z_index = 2
+position = Vector2(7835, -76)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CaveArea"]
+shape = SubResource("RectangleShape2D_rvgsd")
+
+[node name="Sprite2D" type="Sprite2D" parent="CaveArea"]
+texture = ExtResource("15_a73je")

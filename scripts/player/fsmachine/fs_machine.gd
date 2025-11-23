@@ -2,8 +2,9 @@ extends Node
 class_name FSMachine
 
 @export var current_state : PlayerState = null
+@export var slow_down_decelleration : float = 1000
 var states : Dictionary [ StringName , PlayerState ]
-var inbetween_state = InbetweenState.new()
+var inbetween_state : InbetweenState = InbetweenState.new()
 var body : CharacterBody2D
 
 func _ready() -> void:
@@ -11,8 +12,11 @@ func _ready() -> void:
 		if child is PlayerState:
 			if not current_state:
 				current_state = child
+			@warning_ignore("unsafe_method_access") # Safe since we in branch child is PlayerState
 			states[child.get_state_name()] = child
+			@warning_ignore("unsafe_property_access")
 			child.inbetween_state = inbetween_state
+			@warning_ignore("unsafe_property_access", "unsafe_method_access")
 			child.transitioned.connect(_state_changed)
 		else:
 			push_warning(child.name + " in " + self.name + " node.")
@@ -31,13 +35,13 @@ func physics_process(delta: float) -> void:
 		current_state.physics_process(delta)
 	body.move_and_slide()
 
-func _state_changed(from : PlayerState, to : StringName):
+func _state_changed(from : PlayerState, to : StringName) -> void:
 	if from != current_state:
 		return
 	if from == states[to]:
 		return
 	
-	var new_state = states[to]
+	var new_state : PlayerState = states[to]
 	if not new_state:
 		return
 	
@@ -48,8 +52,13 @@ func _state_changed(from : PlayerState, to : StringName):
 	current_state = new_state
 	print("Player FSMachine: changed state to ", current_state.name)
 
-func set_body(new_body : CharacterBody2D):
+func set_body(new_body : CharacterBody2D) -> void:
 	body = new_body
 	var c_states : Array[PlayerState] = states.values()
 	for state in c_states:
 		state.set_body(new_body)
+
+func slow_down_body(direction : int) -> void:
+	var axis_mlp : int = signi(direction)
+	if current_state is WalkingState:
+		(current_state as WalkingState).slow_down_body(axis_mlp)

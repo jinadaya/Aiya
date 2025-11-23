@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://6au4oc0p7y45"]
+[gd_scene load_steps=28 format=3 uid="uid://6au4oc0p7y45"]
 
 [ext_resource type="Script" uid="uid://c0ady6pyemrt" path="res://scripts/player/player.gd" id="1_gfjak"]
 [ext_resource type="Texture2D" uid="uid://bcoyfsqi2g8jt" path="res://sprites/tmp/char_blue_1.png" id="2_4kuee"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://df45d4jl00hxq" path="res://scripts/player/abilities/voice.gd" id="10_5stf6"]
 [ext_resource type="Script" uid="uid://2005rg70wnxx" path="res://scripts/player/abilities/stone.gd" id="10_7oing"]
 [ext_resource type="Shader" uid="uid://65tra01wjbpc" path="res://shaders/StoneForceField.gdshader" id="10_180ig"]
+[ext_resource type="Shader" uid="uid://dc7sggqy4ocah" path="res://shaders/Vignette.gdshader" id="12_180ig"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_524rm"]
 radius = 8.0
@@ -226,7 +227,26 @@ shader_parameter/spark_density = 15.0
 shader_parameter/spark_speed = 2.0
 shader_parameter/spark_intensity = 1.5
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_180ig"]
+particle_flag_disable_z = true
+velocity_pivot = Vector3(0, -1, 0)
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 12.0
+initial_velocity_max = 18.0
+gravity = Vector3(0, 98, 0)
+scale_min = 2.6
+scale_max = 3.3999999
+color = Color(0.72156864, 0.6117647, 0.4509804, 1)
+turbulence_enabled = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_20koh"]
+shader = ExtResource("12_180ig")
+shader_parameter/outerRadius = 1.8000000855
+shader_parameter/MainAlpha = 1.0
+shader_parameter/vignette_color = Color(0, 0, 0, 1)
+
 [node name="Player" type="CharacterBody2D"]
+scale = Vector2(5, 5)
 script = ExtResource("1_gfjak")
 metadata/_edit_group_ = true
 
@@ -311,3 +331,21 @@ target_position = Vector2(-6.119594e-07, 14)
 position = Vector2(0, 22)
 rotation = 1.5707964
 target_position = Vector2(0, 14)
+
+[node name="SandParticles" type="GPUParticles2D" parent="."]
+position = Vector2(0, 27)
+amount = 200
+fixed_fps = 60
+draw_order = 0
+process_material = SubResource("ParticleProcessMaterial_180ig")
+
+[node name="Vignette" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="CanvasModulate" type="ColorRect" parent="Vignette"]
+material = SubResource("ShaderMaterial_20koh")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

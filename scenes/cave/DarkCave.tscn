@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dibqul3p8kp0a"]
+[gd_scene load_steps=33 format=3 uid="uid://dibqul3p8kp0a"]
 
 [ext_resource type="Script" uid="uid://2blva5moubgb" path="res://scripts/levels/cave/dark_cave.gd" id="1_j5c4p"]
 [ext_resource type="Shader" uid="uid://b7k3w7y8xdyo8" path="res://shaders/cave_special/DarkCaveMushroomGlow.gdshader" id="2_1oydr"]
@@ -19,6 +19,9 @@
 [ext_resource type="Texture2D" uid="uid://dkr4sv2ym3ysu" path="res://sprites/levels/cave/light/light_1.webp" id="10_pv782"]
 [ext_resource type="Script" uid="uid://bv8xensh8gw15" path="res://scripts/levels/cave/light_source.gd" id="10_xypda"]
 [ext_resource type="Texture2D" uid="uid://c2vvrk484uu8t" path="res://sprites/levels/cave/bg_3.jpg" id="17_qgj7v"]
+[ext_resource type="Shader" uid="uid://c3qtkvwmo0pj5" path="res://shaders/ItemShine.gdshader" id="20_fy5c4"]
+[ext_resource type="Texture2D" uid="uid://dvapq8p0ku6b4" path="res://sprites/levels/cave/stone.png" id="21_k0ymg"]
+[ext_resource type="Script" uid="uid://dqo73jb8fpave" path="res://scripts/levels/cave/stone.gd" id="22_k0ymg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1oydr"]
 shader = ExtResource("2_1oydr")
@@ -90,6 +93,30 @@ size = Vector2(229.64838, 803.1096)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_14g87"]
 size = Vector2(267, 275)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jyxhv"]
+resource_local_to_scene = true
+shader = ExtResource("20_fy5c4")
+shader_parameter/shine_color = Color(1, 1, 1, 0.2784314)
+shader_parameter/shine_angle = 22.500000335277
+shader_parameter/shine_speed = 0.3999999910592
+shader_parameter/shine_delay = 0.0
+shader_parameter/shine_reverse = true
+shader_parameter/Line_Width = 0.09
+shader_parameter/Line_Smoothness = 0.10000000149012
+shader_parameter/Brightness = 1.5710000746225
+shader_parameter/Distortion = 2.0
+shader_parameter/LensStrength = 0.0400000019
+shader_parameter/glow_color = Color(0.2, 0.6, 1, 1)
+shader_parameter/glow_intensity = 0.2000000095
+shader_parameter/glow_spread = 0.10000000149012
+shader_parameter/pulse_speed = 2.0
+shader_parameter/pulse_min = 0.4
+shader_parameter/pulse_max = 1.2
+shader_parameter/blue_threshold = 0.3
+shader_parameter/blue_sensitivity = 3.0
+shader_parameter/enable_shine = true
+shader_parameter/enable_glow = true
 
 [node name="DarkCave" type="Node2D"]
 script = ExtResource("1_j5c4p")
@@ -175,9 +202,9 @@ scale = Vector2(0.458, 0.43945146)
 texture = ExtResource("10_pv782")
 metadata/_custom_type_script = "uid://bv8xensh8gw15"
 
-[node name="Light_save_4" type="PointLight2D" parent="LightZones"]
-position = Vector2(18109, 3292)
-scale = Vector2(0.824001, 0.7906298)
+[node name="Light_save_7" type="PointLight2D" parent="LightZones"]
+position = Vector2(18300.002, 3521)
+scale = Vector2(0.3160007, 0.303203)
 texture = ExtResource("10_pv782")
 metadata/_custom_type_script = "uid://bv8xensh8gw15"
 
@@ -193,7 +220,7 @@ scale = Vector2(0.4520002, 0.4336947)
 texture = ExtResource("10_pv782")
 metadata/_custom_type_script = "uid://bv8xensh8gw15"
 
-[node name="Light_save_7" type="PointLight2D" parent="LightZones"]
+[node name="Light_save_4" type="PointLight2D" parent="LightZones"]
 position = Vector2(2421, 2001)
 scale = Vector2(0.4360007, 0.43599972)
 texture = ExtResource("10_pv782")
@@ -508,6 +535,7 @@ texture = ExtResource("5_xjxq4")
 polygon = PackedVector2Array(10522, 3720, 11143, 3717, 11282, 3524, 11353, 3359, 11331, 3193, 11437, 3116, 11435, 2912, 11299, 2719, 11278, 2556, 11141, 2428, 10891, 2351, 11387, 2333, 11624, 2325, 11625, 4746, 9937, 4743, 10088, 4429, 10092, 4276, 9967, 4022, 10120, 3994, 10283, 3982, 10364, 3893, 10488, 3833)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+active = false
 libraries = {
 &"": SubResource("AnimationLibrary_xypda")
 }
@@ -561,7 +589,7 @@ shape = SubResource("RectangleShape2D_14g87")
 [node name="Player" parent="." instance=ExtResource("5_xypda")]
 z_index = 2
 texture_filter = 1
-position = Vector2(22.000008, 870.99994)
+position = Vector2(18014, 3441)
 scale = Vector2(5, 5)
 
 [node name="Camera" type="Camera2D" parent="Player"]
@@ -578,3 +606,10 @@ texture = ExtResource("10_pv782")
 texture_scale = 0.04
 script = ExtResource("10_xypda")
 metadata/_custom_type_script = "uid://bv8xensh8gw15"
+
+[node name="Stone" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_jyxhv")
+position = Vector2(18302, 3520.0002)
+scale = Vector2(0.103458636, 0.10345864)
+texture = ExtResource("21_k0ymg")
+script = ExtResource("22_k0ymg")

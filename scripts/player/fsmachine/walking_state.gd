@@ -1,6 +1,8 @@
 extends PlayerState
 class_name WalkingState
 
+var slow_down_decelleration : int = 0
+
 func enter(_from: PlayerState) -> void:
 	inbetween_state.reset_air_jumps()
 	inbetween_state.reset_coyote()
@@ -20,18 +22,27 @@ func physics_process(delta: float) -> void:
 	
 	# Check if fell off platform
 	if not body.is_on_floor():
-		var to_state = FallState.get_state_name()
+		var to_state : StringName = FallState.get_state_name()
 		transitioned.emit(self, to_state)
 		return
 	
 	# Transition to idle if stopped
-	var x_dir = InputManager.get_x_axis()
+	var x_dir : float = InputManager.get_x_axis()
 	if x_dir == 0:
 		transitioned.emit(self, IdleState.get_state_name())
 		return
 	
+	# Slow donw body
+	if slow_down_decelleration != 0:
+		print("slow dec = ", slow_down_decelleration)
+		slow_down(slow_down_decelleration * delta)
+	
 	# Apply horizontal movement
 	apply_horizontal_movement(delta)
+
+func slow_down_body(axis : int) -> void:
+	var walk_dir : int = int(signf(body.velocity.x))
+	if (walk_dir == axis): slow_down_decelleration = axis
 
 static func get_state_name() -> StringName:
 	return &"Walking"

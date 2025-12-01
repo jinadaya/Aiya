@@ -1,0 +1,44 @@
+[
+	{
+		"entity_name": "NARRATOR",
+		"text": "Looks like some kind of an old, abandoned city.",
+		"preview": "",
+		"options": [1],
+		"anchor_reachable": false,
+		"display_name": "Voice"
+	},
+	{
+		"entity_name": "NARRATOR",
+		"text": "Look at this magical gates. Probably you need something magical to open it?",
+		"preview": "Look onto it",
+		"options": [2],
+		"anchor_reachable": false,
+		"display_name": "Voice"
+	},
+	{
+		"entity_name": "NARRATOR",
+		"text": "Hmm... Something tells me that it is right in that cave over there.",
+		"preview": "How do I get in?",
+		"options": [3,4],
+		"anchor_reachable": false,
+		"display_name": "Voice"
+	},
+	{
+		"entity_name": "NARRATOR",
+		"text": "Let's go over there then.",
+		"preview": "Guess, you are right.",
+		"options": [],
+		"anchor_reachable": true,
+		"display_name": "Aiya",
+		"last": true
+	},
+	{
+		"entity_name": "NARRATOR",
+		"text": "You can see sounds, I guess it won't be a problem.",
+		"preview": "Seems like a scary cave to me.",
+		"options": [],
+		"anchor_reachable": true,
+		"display_name": "Aiya",
+		"last": true
+	},
+]

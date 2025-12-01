@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://ufmd468mws3j"]
+
+[ext_resource type="Script" uid="uid://k5mvhkpuort" path="res://scenes/ancient_city/platform.gd" id="1_ju3fh"]
+[ext_resource type="Texture2D" uid="uid://e2ul8bd2pt1k" path="res://sprites/levels/ancient_city/1/brick4.png" id="2_ket4n"]
+[ext_resource type="Texture2D" uid="uid://bc8usmttebq36" path="res://sprites/levels/stone_validator.png" id="3_0m3l5"]
+[ext_resource type="Shader" uid="uid://b7k3w7y8xdyo8" path="res://shaders/cave_special/DarkCaveMushroomGlow.gdshader" id="3_ket4n"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0m3l5"]
+shader = ExtResource("3_ket4n")
+shader_parameter/glow_color = Color(0.06666667, 0.4117647, 0.58431375, 1)
+shader_parameter/glow_intensity = 0.9600000456
+shader_parameter/glow_spread = 0.03
+shader_parameter/pulse_speed = 2.0
+shader_parameter/pulse_min = 0.050000002375
+shader_parameter/pulse_max = 1.4000000665
+shader_parameter/blue_threshold = 0.3
+shader_parameter/blue_sensitivity = 3.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ket4n"]
+size = Vector2(347, 281)
+
+[node name="Platform" type="AnimatableBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_ju3fh")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-3, -41)
+polygon = PackedVector2Array(-101, -41, 105, -43, 110, -36, 111, -18, 110, -2, 111, 4, 104, 36, 95, 40, 29, 41, -83, 43, -112, 38, -116, 25, -115, 2, -112, -5, -110, -23, -106, -37, -102, -41, -100, -41)
+
+[node name="Platform" type="Sprite2D" parent="."]
+position = Vector2(-4.999998, -45)
+scale = Vector2(0.23349625, 0.26055434)
+texture = ExtResource("2_ket4n")
+
+[node name="StoneValidator" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_0m3l5")
+position = Vector2(-1.0000153, -165)
+scale = Vector2(0.09388888, 0.093888886)
+texture = ExtResource("3_0m3l5")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(-1, -219)
+shape = SubResource("RectangleShape2D_ket4n")

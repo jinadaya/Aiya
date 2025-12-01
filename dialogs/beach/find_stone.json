@@ -1,0 +1,23 @@
+[
+  {
+	"entity_name": "NARRATOR",
+	"text": "Maybe that's something to take care of?",
+	"preview": "",
+	"options": [1],
+	"anchor_reachable": false
+  },
+  {
+	"entity_name": "PLAYER",
+	"text": "Seems pretty familiar to me.",
+	"preview": "Pick up the stone",
+	"options": [2],
+	"anchor_reachable": false
+  },
+  {
+	"entity_name": "NARRATOR",
+	"text": "The stone pulses gently in your hand, as if responding to your touch. You sense it will be useful.",
+	"preview": "Store it safely",
+	"options": [],
+	"anchor_reachable": true
+  }
+]

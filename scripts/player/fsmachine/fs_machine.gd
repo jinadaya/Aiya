@@ -6,6 +6,8 @@ class_name FSMachine
 var states : Dictionary [ StringName , PlayerState ]
 var inbetween_state : InbetweenState = InbetweenState.new()
 var body : CharacterBody2D
+var playback : AnimationNodeStateMachinePlayback
+var atree : AnimationTree
 
 func _ready() -> void:
 	for child in get_children(false):
@@ -46,11 +48,18 @@ func _state_changed(from : PlayerState, to : StringName) -> void:
 		return
 	
 	if current_state:
-		print("Player FSMachine: changing state from ", current_state.name)
 		current_state.exit()
 	new_state.enter(from)
 	current_state = new_state
-	print("Player FSMachine: changed state to ", current_state.name)
+
+func set_atree(tree: AnimationTree) -> void:
+	atree = tree
+	atree.active = true
+	playback = atree.get("parameters/playback")
+	
+	# Pass playback to all states
+	for state in states.values():
+		state.playback = playback
 
 func set_body(new_body : CharacterBody2D) -> void:
 	body = new_body

@@ -11,19 +11,21 @@
 extends CharacterBody2D
 class_name Player
 
+var sprite : Sprite2D
 var body : CharacterBody2D = self
 var on_sand : bool = false
-@onready var sprite : Sprite2D = $Sprite
+var is_echoeing: bool = false
+var wall_enabled : bool = false
 
-@onready var a_tree : AnimationTree = $ATree
-@onready var anim_player : AnimationPlayer = $APlayer
+var step_material : String = ""
+
 @onready var audio_player : AudioStreamPlayer2D = $AudioPlayer
 
 @onready var fsm : FSMachine = $FSMachine
 
 @onready var voice : VoiceAbility = $AbilitiesLayer/Voice
-@onready var stone : StoneAbility = $AbilitiesLayer/Stone/Stone
 
+@onready var stone : StoneAbility = $AbilitiesLayer/Stone/Stone
 @onready var wall_check_1 : RayCast2D = $WallChecker1
 @onready var wall_check_2 : RayCast2D = $WallChecker2
 @onready var wall_check_3 : RayCast2D = $WallChecker3
@@ -31,23 +33,41 @@ var on_sand : bool = false
 
 @onready var particles : GPUParticles2D = $SandParticles
 
+@onready var hint : Label = $Container/Hint
+@onready var pict_hint : TextureRect = $Container/TextureRect
+
+@onready var atree : AnimationTree = $ATree
+
+signal push_voice()
+signal push_stone()
+
 func _ready() -> void:
+	step_material = WorldInfo.current_walking_material
+	sprite = $PlayerSprite
+	hint.modulate.a = 0
+	pict_hint.modulate.a = 0
+	
 	wall_check_1.collision_mask = CollisionMaskStorage.layer_for(CollisionMaskStorage.CollisionLayer.PLATFORM)
 	wall_check_2.collision_mask = CollisionMaskStorage.layer_for(CollisionMaskStorage.CollisionLayer.PLATFORM)
 	wall_check_3.collision_mask = CollisionMaskStorage.layer_for(CollisionMaskStorage.CollisionLayer.PLATFORM)
 	wall_check_4.collision_mask = CollisionMaskStorage.layer_for(CollisionMaskStorage.CollisionLayer.PLATFORM)
+	
 	collision_layer = CollisionMaskStorage.layer_for(CollisionMaskStorage.CollisionLayer.PLAYER)
 	collision_mask = CollisionMaskStorage.get_mask_for_layer(CollisionMaskStorage.CollisionLayer.PLAYER)
+	
 	particles.emitting = false
+	
+	fsm.set_atree(atree)
 	fsm.set_body(body)
-	a_tree.active = true
 
 func _process(delta : float) -> void:
 	fsm.process(delta)
 	particles.emitting = on_sand and fsm.current_state is WalkingState
 	if InputManager.is_pressed(InputManager.Action.VOICE) and Inventory.is_item_collected(Inventory.Item.VOICE):
-		voice.start_wave(self.global_position)
+		push_voice.emit()
+		voice.start_wave(self.global_position, is_echoeing)
 	if InputManager.is_pressed(InputManager.Action.STONE) and Inventory.is_item_collected(Inventory.Item.STONE):
+		push_stone.emit()
 		stone.start_wave(self.global_position)
 
 func _physics_process(delta: float) -> void:
@@ -77,5 +97,26 @@ func _looks_at_wall(wall_check_top : RayCast2D, wall_check_bottom : RayCast2D) -
 	return same_dir and horizontal
 
 func slow_down(direction : int, ) -> void:
-	print("slow down with", direction)
 	fsm.slow_down_body(direction)
+
+func show_pict_hint(path: String = "") -> void:
+	if not path.is_empty():
+		var texture: Texture = load(path)
+		if not texture: return
+		pict_hint.texture = texture
+		create_tween().tween_property(pict_hint, "modulate:a", 1, 0.5)
+	else:
+		var pict_tween = create_tween().tween_property(pict_hint, "modulate:a", 0, 0.5)
+		await pict_tween.finished
+		pict_hint.texture = null
+
+func show_hint(text: String = "") -> void:
+	if not text.is_empty():
+		hint.show()
+		create_tween().tween_property(hint, "modulate:a", 1, 0.5)
+		hint.text = text
+	else:
+		create_tween().tween_property(hint, "modulate:a", 0, 0.5)
+
+func set_anim(anim: String) -> void:
+	fsm.playback.travel(anim)

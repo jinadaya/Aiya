@@ -22,30 +22,27 @@ LevelManager="*res://scripts/utils/LevelManager.gd"
 SongStorage="*res://scripts/utils/SongStorage.gd"
 CollisionMaskStorage="*res://scripts/utils/CollisionMaskStorage.gd"
 GlobalFader="*res://scripts/utils/Fader.gd"
-DialogStorage="*res://scripts/utils/DialogStorage.gd"
+DialogStorage="*res://scripts/utils/dialogs/DialogStorage.gd"
 Inventory="*res://scripts/player/Inventory.gd"
-
-[debug]
-
-gdscript/warnings/untyped_declaration=1
-gdscript/warnings/unsafe_property_access=1
-gdscript/warnings/unsafe_method_access=1
-gdscript/warnings/unsafe_cast=1
-gdscript/warnings/unsafe_call_argument=1
+DialogManager="*res://scripts/utils/dialogs/DialogManager.gd"
+WorldInfo="*res://scripts/utils/WorldInfo.gd"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/initial_position_type=0
-window/size/resizable=false
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_width"
 
 [editor]
 
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/richtext2/plugin.cfg")
 
 [file_customization]
 
@@ -55,6 +52,10 @@ folder_colors={
 "res://scripts/": "blue",
 "res://sprites/": "yellow"
 }
+
+[gui]
+
+theme/custom_font="uid://chwh8gclx14pd"
 
 [input]
 
@@ -100,6 +101,12 @@ down={
 , Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":1,"axis_value":1.0,"script":null)
 ]
 }
+interact={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":70,"key_label":0,"unicode":102,"location":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":2,"pressure":0.0,"pressed":false,"script":null)
+]
+}
 
 [layer_names]
 
@@ -115,3 +122,12 @@ textures/webp_compression/lossless_compression_factor=10.0
 textures/default_filters/anisotropic_filtering_level=3
 textures/decals/filter=4
 textures/light_projectors/filter=4
+
+[richer_text_label]
+
+fonts={
+&"Cat": "res://theme/fonts/Cat.ttf",
+&"God": "res://theme/fonts/God.ttf",
+&"Narrator": "res://theme/fonts/Narrator.ttf",
+&"Owl": "res://theme/fonts/Owl.ttf"
+}

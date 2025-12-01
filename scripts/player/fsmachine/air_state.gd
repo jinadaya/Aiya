@@ -2,11 +2,17 @@ extends PlayerState
 class_name AirState
 
 func enter(from: PlayerState) -> void:
+	if body.velocity.y > 0:
+		playback.travel("mid_air")
+	elif body.velocity.y < 0:
+		playback.travel("jump_start")
+		
 	# Only set buffer if coming from non-grounded state
 	if from and (from is IdleState or from is WalkingState):
 		inbetween_state.buffer_jump_timer = 0
 
 func physics_process(delta: float) -> void:
+	super.physics_process(delta)
 	# Handle jump input for air jumps
 	handle_jump_input()
 	

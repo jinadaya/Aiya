@@ -1,0 +1,19 @@
+[
+	{
+		"entity_name": "NARRATOR",
+		"text": "Maybe we can call for someone?",
+		"preview": "",
+		"options": [1],
+		"anchor_reachable": false,
+		"display_name": "Voice"
+	},
+	{
+		"entity_name": "NARRATOR",
+		"text": "Try to call someone, pressing [Q] on your keyboard.",
+		"preview": "Look around",
+		"options": [],
+		"anchor_reachable": false,
+		"display_name": "Voice",
+		"last": true
+	}
+]

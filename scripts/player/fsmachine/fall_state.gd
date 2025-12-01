@@ -1,7 +1,11 @@
 extends PlayerState
 class_name FallState
 
+func enter(_from: PlayerState) -> void:
+	playback.travel("mid_air")
+
 func physics_process(delta: float) -> void:
+	super.physics_process(delta)
 	# Handle jump input
 	handle_jump_input()
 	

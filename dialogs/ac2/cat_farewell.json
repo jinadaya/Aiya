@@ -1,0 +1,59 @@
+[
+	{
+		"entity_name": "CAT",
+		"text": "Thank you, I'll pass it by myself later.",
+		"preview": "",
+		"options": [1],
+		"anchor_reachable": false,
+		"display_name": "???"
+	},
+	{
+		"entity_name": "CAT",
+		"text": "Actually, nevermind. I don't want to cross the bridge anymore.",
+		"preview": "You going to tell me what I did now?",
+		"options": [2],
+		"anchor_reachable": false,
+		"display_name": "Kitten"
+	},
+	{
+		"entity_name": "CAT",
+		"text": "Oh, yeah. You forbid to be happy.",
+		"preview": "Hey, kitten!",
+		"options": [3],
+		"anchor_reachable": false,
+		"display_name": "Kitten"
+	},
+	{
+		"entity_name": "CAT",
+		"text": "You was, if I'm not mistaken, with this green-hat guy. You was a happy teen, I should say.",
+		"preview": "What?",
+		"options": [4],
+		"anchor_reachable": false,
+		"display_name": "Kitten"
+	},
+	{
+		"entity_name": "CAT",
+		"text": "Mhm. And then something happend. You locked up Wise Owl, broke the bridge to Lighthouse.",
+		"preview": "Again this guy.",
+		"options": [5],
+		"anchor_reachable": false,
+		"display_name": "Kitten"
+	},
+	{
+		"entity_name": "CAT",
+		"text": "Nevermind. Actually, my name is not kitte, I am Happy Kitten.",
+		"preview": "I'm sorry.",
+		"options": [6],
+		"anchor_reachable": false,
+		"display_name": "Happy Kitten"
+	},
+	{
+		"entity_name": "CAT",
+		"text": "Well, I was one,",
+		"preview": "Can tell.",
+		"options": [],
+		"anchor_reachable": false,
+		"display_name": "Happy Kitten",
+		"last": true
+	}
+]

@@ -48,11 +48,14 @@ func _physics_process(delta: float):
 		_draw_wave()
 
 
-func start_wave(start_position: Vector2):
+func start_wave(start_position: Vector2, echo: bool = false):
 	if cooldown_timer > 0.0:
 		return
 	if in_progress > 0.0:
 		return
+	
+	if echo: MusicManager.play_sfx(load("res://audio/VOICE_SOUND_ECHO.wav"))
+	else: MusicManager.play_sfx(load("res://audio/VOICE_SOUND.mp3"))
 	
 	in_progress = lifetime + time_lock
 	cooldown_timer = cooldown

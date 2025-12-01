@@ -45,7 +45,6 @@ func _ready():
 	visible = false
 
 func _initialize_shader_parameters():
-	"""Инициализирует параметры шейдера"""
 	_shader_material.set_shader_parameter("radius", 0.0)
 	_shader_material.set_shader_parameter("ring_width", ring_width)
 	_shader_material.set_shader_parameter("distortion_strength", distortion_strength)
@@ -86,14 +85,10 @@ func _update_wave(delta: float):
 		_stop_wave()
 
 func start_wave(world_position: Vector2):
-	"""
-	Запускает волну от указанной мировой позиции
-	
-	Args:
-		world_position: Позиция в мировых координатах (обычно global_position игрока)
-	"""
 	if _is_active:
 		return
+	
+	MusicManager.play_sfx(load("res://audio/STONE_SOUND.mp3"))
 	
 	# Конвертируем мировую позицию в UV координаты экрана СРАЗУ
 	# и сохраняем их - они НЕ будут обновляться во время анимации
@@ -110,7 +105,6 @@ func start_wave(world_position: Vector2):
 	_shader_material.set_shader_parameter("fade_alpha", 1.0)
 
 func _stop_wave():
-	"""Останавливает волну"""
 	_is_active = false
 	visible = false
 	_current_radius = 0.0
@@ -155,9 +149,7 @@ func _world_to_uv(world_pos: Vector2) -> Vector2:
 ## Вспомогательные функции для внешнего использования
 
 func is_wave_active() -> bool:
-	"""Проверяет, активна ли волна в данный момент"""
 	return _is_active
 
 func stop_immediately():
-	"""Немедленно останавливает волну без анимации"""
 	_stop_wave()

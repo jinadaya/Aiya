@@ -3,6 +3,7 @@ class_name PlayerState
 
 var body : Player
 var inbetween_state : InbetweenState
+var playback : AnimationNodeStateMachinePlayback
 
 signal transitioned(from : PlayerState, to : StringName)
 
@@ -19,7 +20,8 @@ func process(_delta : float) -> void:
 	pass
 
 func physics_process(_delta : float) -> void:
-	pass
+	#var flipped = InputManager.get_x_axis() < 0 if InputManager.get_x_axis() != 0 else body.velocity.x < 0
+	body.sprite.flip_h = body.velocity.x < 0
 
 func set_body(new_body : CharacterBody2D) -> void:
 	body = new_body
@@ -27,7 +29,6 @@ func set_body(new_body : CharacterBody2D) -> void:
 func apply_gravity(delta: float, is_falling: bool = false) -> void:
 	var jump_released : bool = not InputManager.is_just_pressed(InputManager.Action.JUMP)
 	var current_gravity : float = inbetween_state.get_current_gravity(is_falling, jump_released and body.velocity.y < 0)
-	
 	body.velocity.y += current_gravity * delta
 	
 	# Apply max fall speed
@@ -40,7 +41,7 @@ func apply_horizontal_movement(delta: float) -> void:
 	# Select movement parameters based on grounded state
 	var speed : float = inbetween_state.ground_speed
 	var accel : float = inbetween_state.ground_acceleration
-	var decel : float = inbetween_state.ground_deceleration 
+	var decel : float = inbetween_state.ground_deceleration
 	
 	if x_dir != 0:
 		var target_speed : float = speed * x_dir
@@ -59,7 +60,7 @@ func try_transition_on_floor(default_state: StringName = "") -> bool:
 	return false
 
 func try_transition_on_wall() -> bool:
-	if body.is_on_wall():
+	if body.is_on_wall() and body.facing_flat_wall() and body.wall_enabled:
 		transitioned.emit(self, WallSlideState.get_state_name())
 		return true
 	return false
@@ -100,7 +101,6 @@ func execute_wall_jump() -> void:
 	inbetween_state.block_jumps()
 
 func slow_down(extra_velocity: float) -> void:
-	print("Axis is ", extra_velocity * inbetween_state.ground_deceleration)
 	body.velocity.x -= extra_velocity * inbetween_state.ground_deceleration
 
 static func get_state_name() -> StringName:

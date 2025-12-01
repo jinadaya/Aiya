@@ -1,0 +1,210 @@
+[
+	{
+		"entity_name": "NARRATOR",
+		"text": "You want to enlight a lighthouse don't you?",
+		"preview": "Look around",
+		"options": [1],
+		"anchor_reachable": false,
+		"display_name": "Voice",
+		"font": "uid://1mgnjh3mmdn5"
+	},
+	{
+		"entity_name": "NARRATOR",
+		"text": "You need fuel to light something up.",
+		"preview": "Guess so..",
+		"options": [2],
+		"anchor_reachable": false,
+		"display_name": "Voice",
+		"font": "res://theme/fonts/God.ttf"
+	},
+	{
+		"entity_name": "NARRATOR",
+		"text": "Well, you have nothing left anyway.",
+		"preview": "And what fuel this lighthouse uses?",
+		"options": [3],
+		"anchor_reachable": false,
+		"display_name": "Voice",
+		"font": "res://theme/fonts/God.ttf"
+	},
+	{
+		"entity_name": "NARRATOR",
+		"text": "You could use your poems, but you decide to close them long time ago.",
+		"preview": "...",
+		"options": [4],
+		"anchor_reachable": false,
+		"display_name": "Voice",
+		"font": "res://theme/fonts/God.ttf"
+	},
+	{
+		"entity_name": "NARRATOR",
+		"text": "You could use your happiness, but you choose to be always unsatisfied.",
+		"preview": "...",
+		"options": [5],
+		"anchor_reachable": false,
+		"display_name": "Voice",
+		"font": "res://theme/fonts/God.ttf"
+	},
+	{
+		"entity_name": "NARRATOR",
+		"text": "You could, at least, use you passion and dreams. But you forgot and get rid them.",
+		"preview": "...",
+		"options": [6],
+		"anchor_reachable": false,
+		"display_name": "Voice",
+		"font": "res://theme/fonts/God.ttf"
+	},
+	{
+		"entity_name": "NARRATOR",
+		"text": "So, do you have something left to offer me?",
+		"preview": "...",
+		"options": [7, 8],
+		"anchor_reachable": false,
+		"display_name": "Voice",
+		"font": "res://theme/fonts/God.ttf"
+	},
+	{
+		"entity_name": "NARRATOR",
+		"text": "You really think I need money?",
+		"preview": "I have moeny.",
+		"options": [9],
+		"anchor_reachable": false,
+		"display_name": "Voice",
+		"font": "res://theme/fonts/God.ttf"
+	},
+	{
+		"entity_name": "NARRATOR",
+		"text": "You think I don't know every person's very hair?",
+		"preview": "I have connections outside.",
+		"options": [9],
+		"anchor_reachable": false,
+		"display_name": "Voice",
+		"font": "res://theme/fonts/God.ttf"
+	},
+	{
+		"entity_name": "NARRATOR",
+		"text": "Someone calls me a God. Others call me simple energy. I have a lot of names. Yet only one is true.",
+		"preview": "Who are you then?",
+		"options": [10],
+		"anchor_reachable": false,
+		"display_name": "Voice",
+		"font": "res://theme/fonts/God.ttf"
+	},
+	{
+		"entity_name": "NARRATOR",
+		"text": "I am also truthful and defer to no one.",
+		"preview": "God helps humans, doesn't He?",
+		"options": [11],
+		"anchor_reachable": false,
+		"display_name": "Voice",
+		"font": "res://theme/fonts/God.ttf"
+	},
+	{
+		"entity_name": "NARRATOR",
+		"text": "If I just help you out, will you ever remember about that little Kitten? Or Wise Owl and her great poems?",
+		"preview": "That means You won't help me?",
+		"options": [12],
+		"anchor_reachable": false,
+		"display_name": "Voice",
+		"font": "res://theme/fonts/God.ttf"
+	},
+	{
+		"entity_name": "NARRATOR",
+		"text": "Will you ever dream or try to achieve what you been dreaming of as a child? Do something I created you for?",
+		"preview": "...",
+		"options": [13],
+		"anchor_reachable": false,
+		"display_name": "Voice",
+		"font": "res://theme/fonts/God.ttf"
+	},
+	{
+		"entity_name": "NARRATOR",
+		"text": "Will you ever remember about me?",
+		"preview": "...",
+		"options": [14],
+		"anchor_reachable": false,
+		"display_name": "Voice",
+		"font": "res://theme/fonts/God.ttf"
+	},
+	{
+		"entity_name": "NARRATOR",
+		"text": "Let Me tell you a story. Story about a Man who was born by a virgin woman.",
+		"preview": "I don't know. Will I?",
+		"options": [15],
+		"anchor_reachable": false,
+		"display_name": "Voice",
+		"font": "res://theme/fonts/God.ttf"
+	},
+	{
+		"entity_name": "NARRATOR",
+		"text": "He was a carpenter, he was living just a normal life.",
+		"preview": "...",
+		"options": [16],
+		"anchor_reachable": false,
+		"display_name": "Voice",
+		"font": "res://theme/fonts/God.ttf"
+	},
+	{
+		"entity_name": "NARRATOR",
+		"text": "Except for the fact that He was my beloved Son.",
+		"preview": "...",
+		"options": [17],
+		"anchor_reachable": false,
+		"display_name": "Voice",
+		"font": "res://theme/fonts/God.ttf"
+	},
+	{
+		"entity_name": "NARRATOR",
+		"text": "Then you should know how His listeners treat Him when He left them and go to another city?",
+		"preview": "I heard that story before.",
+		"options": [18],
+		"anchor_reachable": false,
+		"display_name": "Voice",
+		"font": "res://theme/fonts/God.ttf"
+	},
+	{
+		"entity_name": "NARRATOR",
+		"text": "I want you to never forget about Me and Mine love to you.",
+		"preview": "I am not like them.",
+		"options": [19],
+		"anchor_reachable": false,
+		"display_name": "Voice",
+		"font": "res://theme/fonts/God.ttf"
+	},
+	{
+		"entity_name": "NARRATOR",
+		"text": "You ready to give me the last thing you have to light this thing up?",
+		"preview": "I will not.",
+		"options": [20, 21],
+		"anchor_reachable": false,
+		"display_name": "Voice",
+		"font": "res://theme/fonts/God.ttf"
+	},
+	{
+		"entity_name": "NARRATOR",
+		"text": "I take it as a great gift. I think this is enough to make lighthouse work.",
+		"preview": "I'll give you my voice.",
+		"options": [22],
+		"anchor_reachable": false,
+		"display_name": "Voice",
+		"font": "res://theme/fonts/God.ttf"
+	},
+	{
+		"entity_name": "NARRATOR",
+		"text": "This is your choice. I cannot blame or affect you anyhow.",
+		"preview": "No, I'll do it my way.",
+		"options": [22],
+		"anchor_reachable": false,
+		"display_name": "Voice",
+		"font": "res://theme/fonts/God.ttf"
+	},
+	{
+		"entity_name": "NARRATOR",
+		"text": "Remember, even though you walk through the valley of the shadow of death, fear no evil, for I am with you;",
+		"preview": "Thank you.",
+		"options": [],
+		"anchor_reachable": false,
+		"display_name": "Voice",
+		"font": "res://theme/fonts/God.ttf",
+		"last": true
+	}
+]

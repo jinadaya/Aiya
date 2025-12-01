@@ -1,0 +1,107 @@
+[
+	{
+		"entity_name": "OWL",
+		"text": "Whoo-whoo do I see!",
+		"preview": "",
+		"options": [1],
+		"anchor_reachable": false,
+		"display_name": "???"
+	},
+	{
+		"entity_name": "OWL",
+		"text": "Of c-whoo-urse you know me!",
+		"preview": "Do I know you?",
+		"options": [2],
+		"anchor_reachable": false,
+		"display_name": "???"
+	},
+	{
+		"entity_name": "OWL",
+		"text": "WHOO-AT?! I am a wise owl!",
+		"preview": "Well... I don't remember you.",
+		"options": [3],
+		"anchor_reachable": false,
+		"display_name": "Wise Owl"
+	},
+	{
+		"entity_name": "OWL",
+		"text": "I've been waiting for yo-whoo to free me!",
+		"preview": "Wise Owl.",
+		"options": [4],
+		"anchor_reachable": false,
+		"display_name": "Wise Owl"
+	},
+	{
+		"entity_name": "OWL",
+		"text": "Don't you remember?",
+		"preview": "Why are you in this cage?",
+		"options": [5],
+		"anchor_reachable": false,
+		"display_name": "Wise Owl"
+	},
+	{
+		"entity_name": "OWL",
+		"text": "Well, I've been making some poems. As always.",
+		"preview": "Not really.",
+		"options": [6],
+		"anchor_reachable": false,
+		"display_name": "Wise Owl"
+	},
+	{
+		"entity_name": "OWL",
+		"text": "EXACTLY! Our poems were awesome!",
+		"preview": "Yeah. Reminds me myself as a child",
+		"options": [7],
+		"anchor_reachable": false,
+		"display_name": "Wise Owl"
+	},
+	{
+		"entity_name": "OWL",
+		"text": "Anyway. I was writing my p-whoo-ems. And some guy in green hat with a party of boys...",
+		"preview": "*Ours?*",
+		"options": [8],
+		"anchor_reachable": false,
+		"display_name": "Wise Owl"
+	},
+	{
+		"entity_name": "OWL",
+		"text": "...he lauthed and run up to me. And they closed me in here.",
+		"preview": "*sounds pretty familiar to me*",
+		"options": [9],
+		"anchor_reachable": false,
+		"display_name": "Wise Owl"
+	},
+	{
+		"entity_name": "OWL",
+		"text": "As far as I remember, you was with this green-hat gu-whoo-y.",
+		"preview": "Why didn't I helped you?",
+		"options": [10],
+		"anchor_reachable": false,
+		"display_name": "Wise Owl"
+	},
+	{
+		"entity_name": "OWL",
+		"text": "Nevermind. Yo-whoo here and he's not. Could you help me anyway?",
+		"preview": "I'm sorry.",
+		"options": [11],
+		"anchor_reachable": false,
+		"display_name": "Wise Owl"
+	},
+	{
+		"entity_name": "OWL",
+		"text": "Go up to that panel and use your stone.",
+		"preview": "What I need to do?",
+		"options": [12],
+		"anchor_reachable": false,
+		"display_name": "Wise Owl"
+	},
+	{
+		"entity_name": "OWL",
+		"text": "I'll be waiting! And I got something for you also.",
+		"preview": "Okay.",
+		"options": [],
+		"anchor_reachable": false,
+		"display_name": "Wise Owl",
+		"last": true
+	}
+]

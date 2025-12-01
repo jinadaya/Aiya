@@ -7,47 +7,41 @@ extends Node2D
 @onready var save_area : Area2D = $SaveArea
 @onready var finish_area : Area2D = $FinishArea
 
-var current_save_point : Vector2 = Vector2(140.0, 863.0)
+var current_save_point : Vector2 = Vector2(72.0, 871.0)
 
-# idk it works and thats okay
 const SAVE_POINT_DISTANCE_THRESHOLD : int = 1000
 
 func _ready() -> void:
+	player.particles.hide()
+	player.is_echoeing = true
 	_setup_interactable_areas()
 	_player_enter()
 
-func _process(_delta: float) -> void:
-	player.set_physics_process(not anim.is_playing() or not GlobalFader.is_fading)
-
 func _player_enter():
+	player.wall_enabled = true
 	anim.play("enter_anim")
 
 func _on_player_fell(body : Node2D):
 	if body != player: return
-	print("Cave: Player fell down.")
 	await GlobalFader.fade_out()
 	player.position = current_save_point
 	GlobalFader.fade_in()
 
 func _on_player_exit_cave(body : Node2D):
 	if body != player: return
-	print("Cave: Player exit cave.")
+	LevelManager.go(LevelManager.Location.CAVE, LevelManager.Location.BEACH)
 
 func _player_picked_stone_up(body : Node2D):
 	if body != player: return
-	print("Cave: Player picked up a stone.")
 	Inventory.collect_item(Inventory.Item.STONE)
 	_on_player_exit_cave(body)
 
 func _save_player_position(body : Node2D):
 	if body != player: return
-	print("Cave: save player position at: ", player.position)
-	print(player.position.distance_to(current_save_point))
 	if player.position.distance_to(current_save_point) < SAVE_POINT_DISTANCE_THRESHOLD : return
 	current_save_point = player.position
 
 func _setup_interactable_areas():
-	print("Cave: setup interactable areas")
 	restart_area.collision_layer = CollisionMaskStorage.layer_for(CollisionMaskStorage.CollisionLayer.OBSTACLE)
 	exit.collision_layer = CollisionMaskStorage.layer_for(CollisionMaskStorage.CollisionLayer.OBSTACLE)
 	save_area.collision_layer = CollisionMaskStorage.layer_for(CollisionMaskStorage.CollisionLayer.OBSTACLE)

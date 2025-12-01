@@ -70,10 +70,10 @@ tracks/0/path = NodePath("Player:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.23333335, 1.3666667),
+"times": PackedFloat32Array(0, 1.3666667),
 "transitions": PackedFloat32Array(0.23325807, 0.23325807),
 "update": 0,
-"values": [Vector2(72, 871), Vector2(140, 863)]
+"values": [Vector2(72, 931), Vector2(140, 933)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xypda"]
@@ -86,7 +86,7 @@ _data = {
 size = Vector2(10245, 588)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ulbub"]
-size = Vector2(403, 1291)
+size = Vector2(391, 1291)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_81cy6"]
 size = Vector2(229.64838, 803.1096)
@@ -234,7 +234,6 @@ texture = ExtResource("3_ulbub")
 script = null
 
 [node name="Darkness" type="CanvasModulate" parent="."]
-visible = false
 color = Color(0, 0, 0, 1)
 
 [node name="ParallaxBackground" type="Parallax2D" parent="."]
@@ -267,7 +266,7 @@ position = Vector2(0, 662)
 [node name="Polygon2D" type="Polygon2D" parent="Platforms_1/CavePolygon_start"]
 position = Vector2(-8, 0)
 texture = ExtResource("5_xjxq4")
-polygon = PackedVector2Array(-4, 353, 98, 340, 240, 339, 355, 344, 485, 342, 598, 347, 728, 358, 847, 349, 895, 355, 950, 353, 786, 455, 739, 520, 732, 578, 702, 622, 626, 655, 640, 731, 552, 797, 470, 814, 408, 933, 357, 1118, 234, 1255, 168, 1379, 154, 1531, 66, 1714, 117, 1881, 280, 2041, 280, 2201, 207, 2313, 294, 2524, 508, 2713, 0, 2688)
+polygon = PackedVector2Array(-207, 354, 98, 340, 240, 339, 355, 344, 485, 342, 598, 347, 728, 358, 847, 349, 895, 355, 950, 353, 786, 455, 739, 520, 732, 578, 702, 622, 626, 655, 640, 731, 552, 797, 470, 814, 408, 933, 357, 1118, 234, 1255, 168, 1379, 154, 1531, 66, 1714, 117, 1881, 280, 2041, 280, 2201, 207, 2313, 294, 2524, 508, 2713, 0, 2688)
 
 [node name="CavePolygon_slope" type="Node2D" parent="Platforms_1"]
 script = ExtResource("6_rkihr")
@@ -475,9 +474,9 @@ metadata/_custom_type_script = "uid://brypmb8wn864y"
 
 [node name="Polygon2D" type="Polygon2D" parent="Platforms_1/CavePolygon_3_7"]
 texture_repeat = 2
-position = Vector2(1765, -442)
+position = Vector2(1747, -363)
 texture = ExtResource("5_xjxq4")
-polygon = PackedVector2Array(10677, 3714, 10996, 3718, 11143, 3717, 11089, 3749, 11076, 3780, 11017, 3805, 10996, 3875, 10959, 3800, 10918, 3818, 10867, 3910, 10856, 3835, 10800, 3793, 10749, 3741)
+polygon = PackedVector2Array(10677, 3714, 10996, 3718, 11097, 3654, 11295, 3649, 11143, 3717, 11089, 3749, 11076, 3780, 11017, 3805, 10996, 3875, 10959, 3800, 10918, 3818, 10867, 3910, 10856, 3835, 10800, 3793, 10749, 3741)
 
 [node name="CavePolygon_3_8" type="Node2D" parent="Platforms_1"]
 position = Vector2(637, -247)
@@ -535,7 +534,6 @@ texture = ExtResource("5_xjxq4")
 polygon = PackedVector2Array(10522, 3720, 11143, 3717, 11282, 3524, 11353, 3359, 11331, 3193, 11437, 3116, 11435, 2912, 11299, 2719, 11278, 2556, 11141, 2428, 10891, 2351, 11387, 2333, 11624, 2325, 11625, 4746, 9937, 4743, 10088, 4429, 10092, 4276, 9967, 4022, 10120, 3994, 10283, 3982, 10364, 3893, 10488, 3833)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-active = false
 libraries = {
 &"": SubResource("AnimationLibrary_xypda")
 }
@@ -560,6 +558,7 @@ collision_mask = 15
 metadata/_edit_group_ = true
 
 [node name="ExitDungeon" type="CollisionShape2D" parent="ExitDungeon"]
+position = Vector2(-23.5, 0)
 shape = SubResource("RectangleShape2D_ulbub")
 
 [node name="SaveArea" type="Area2D" parent="."]
@@ -589,17 +588,18 @@ shape = SubResource("RectangleShape2D_14g87")
 [node name="Player" parent="." instance=ExtResource("5_xypda")]
 z_index = 2
 texture_filter = 1
-position = Vector2(18014, 3441)
-scale = Vector2(5, 5)
+position = Vector2(22.000008, 870.99994)
 
 [node name="Camera" type="Camera2D" parent="Player"]
-zoom = Vector2(0.84, 0.84)
+zoom = Vector2(0.7, 0.7)
 limit_left = 4
 limit_top = -1
 limit_right = 18685
 limit_bottom = 4307
 
 [node name="PlayerLightsource" type="PointLight2D" parent="Player"]
+position = Vector2(32.000008, -255.99991)
+scale = Vector2(6.256249, 5.821033)
 color = Color(1, 1, 1, 0.3764706)
 energy = 0.65
 texture = ExtResource("10_pv782")

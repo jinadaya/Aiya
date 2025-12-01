@@ -1,0 +1,144 @@
+[gd_scene load_steps=14 format=3 uid="uid://wbc130jsxl0j"]
+
+[ext_resource type="Texture2D" uid="uid://6d0ov5eq13gk" path="res://sprites/levels/lighthouse.jpg" id="1_0ohvn"]
+[ext_resource type="PackedScene" uid="uid://6au4oc0p7y45" path="res://scenes/player/Player.tscn" id="1_1f3cb"]
+[ext_resource type="Script" uid="uid://cu7c745gb0eq0" path="res://scenes/lighthouse/lighthouse.gd" id="1_tusi8"]
+[ext_resource type="Shader" uid="uid://djq3tmvw6ev7b" path="res://scenes/lighthouse/Lighthouse.gdshader" id="4_cmt0p"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0ohvn"]
+distance = 17.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tusi8"]
+distance = 336.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_cmt0p"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tusi8"]
+size = Vector2(72, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cmt0p"]
+size = Vector2(542, 1058.5)
+
+[sub_resource type="Curve2D" id="Curve2D_gdvae"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -1096, 61, -24.361408, -12.180704, 24.361408, 12.180704, -999, 93, -20.301174, -25.714819, 20.301174, 25.714819, -929, 159, -2.706823, -36.542114, 2.706823, 36.542114, -897, 258, 12.180704, -32.481876, -12.180704, 32.481876, -907, 370, 0, 0, 0, 0, -942, 428, 13.534116, -25.714819, -13.534116, 25.714819, -1006, 502, 1.3534116, -35.1887, -1.3534116, 35.1887, -1028, 569, -6.905364, -15.537068, 6.905364, 15.537068, -1019, 636, -27.448822, -22.615067, 27.448822, 22.615067, -962, 691)
+}
+point_count = 10
+
+[sub_resource type="Animation" id="Animation_v6qgd"]
+resource_name = "Enter"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FallPath/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uahxe"]
+_data = {
+&"Enter": SubResource("Animation_v6qgd")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gdvae"]
+shader = ExtResource("4_cmt0p")
+shader_parameter/ray_angle = 0.3
+shader_parameter/ray_position = 0.4
+shader_parameter/spread = 1.0
+shader_parameter/cutoff = 0.30000006175000005
+shader_parameter/falloff = 0.0
+shader_parameter/edge_fade = 0.15
+shader_parameter/speed = 1.0
+shader_parameter/ray1_density = 8.0
+shader_parameter/ray2_density = 30.0
+shader_parameter/ray2_intensity = 0.502000023845
+shader_parameter/color = Vector4(1, 0.9, 0.65, 0.8)
+shader_parameter/hdr = true
+shader_parameter/seed = 4.0
+
+[node name="Lighthouse" type="Node2D" node_paths=PackedStringArray("transition_camera", "character_camera")]
+script = ExtResource("1_tusi8")
+transition_camera = NodePath("TransitionCamera")
+character_camera = NodePath("FallPath/PathFollow2D/Player/CharacterCamera")
+
+[node name="Env" type="StaticBody2D" parent="."]
+collision_layer = 2
+
+[node name="Floor" type="CollisionShape2D" parent="Env"]
+position = Vector2(13, 942)
+shape = SubResource("WorldBoundaryShape2D_0ohvn")
+
+[node name="Left" type="CollisionShape2D" parent="Env"]
+position = Vector2(-1676, 323)
+rotation = 1.5707964
+shape = SubResource("WorldBoundaryShape2D_tusi8")
+
+[node name="Right" type="CollisionShape2D" parent="Env"]
+position = Vector2(1454, 286)
+shape = SubResource("WorldBoundaryShape2D_cmt0p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env"]
+position = Vector2(-1311, 469)
+shape = SubResource("RectangleShape2D_tusi8")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Env"]
+position = Vector2(1302, 463)
+shape = SubResource("RectangleShape2D_tusi8")
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -999
+position = Vector2(0, 262)
+scale = Vector2(0.71807235, 0.7180723)
+texture = ExtResource("1_0ohvn")
+
+[node name="TransitionCamera" type="Camera2D" parent="."]
+limit_left = -1337
+limit_top = -631
+limit_right = 1323
+limit_bottom = 1148
+
+[node name="LastTalk" type="Area2D" parent="."]
+position = Vector2(215.57886, 705.0294)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LastTalk"]
+position = Vector2(-145.57886, -326.77942)
+shape = SubResource("RectangleShape2D_cmt0p")
+
+[node name="FallPath" type="Path2D" parent="."]
+position = Vector2(338, -1)
+curve = SubResource("Curve2D_gdvae")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="FallPath"]
+position = Vector2(-1096, 61)
+rotates = false
+
+[node name="Player" parent="FallPath/PathFollow2D" instance=ExtResource("1_1f3cb")]
+
+[node name="CharacterCamera" type="Camera2D" parent="FallPath/PathFollow2D/Player"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_uahxe")
+}
+
+[node name="CenterCamera" type="Camera2D" parent="."]
+position = Vector2(109, 339)
+zoom = Vector2(1.07, 1.07)
+
+[node name="GodRaysCamera" type="Camera2D" parent="."]
+position = Vector2(424, 463)
+zoom = Vector2(1.1, 1.1)
+
+[node name="Rays" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_gdvae")
+offset_left = 616.0
+offset_top = -148.0
+offset_right = 1153.0
+offset_bottom = 927.0

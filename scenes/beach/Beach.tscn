@@ -1,7 +1,6 @@
-[gd_scene load_steps=26 format=3 uid="uid://c165s6ojxbwv1"]
+[gd_scene load_steps=48 format=3 uid="uid://c165s6ojxbwv1"]
 
 [ext_resource type="PackedScene" uid="uid://6au4oc0p7y45" path="res://scenes/player/Player.tscn" id="1_5rfpy"]
-[ext_resource type="Texture2D" uid="uid://gvsrwccmfrg" path="res://sprites/levels/beach/bg_tmp.jpg" id="1_an8uc"]
 [ext_resource type="Script" uid="uid://bs6pnk7auu6su" path="res://scripts/levels/beach/beach.gd" id="1_g5ysr"]
 [ext_resource type="Shader" uid="uid://dkiempfjhb7ca" path="res://shaders/Blur.gdshader" id="2_w2d0x"]
 [ext_resource type="Texture2D" uid="uid://bjksqf1iq1ofs" path="res://sprites/levels/beach/tree2.png" id="3_aopj7"]
@@ -12,9 +11,22 @@
 [ext_resource type="Texture2D" uid="uid://dblsk0f3xrflh" path="res://sprites/levels/beach/house_2_no_bg.png" id="6_w2d0x"]
 [ext_resource type="Shader" uid="uid://ut310dqpjk4r" path="res://shaders/beach_special/Sand.gdshader" id="7_aopj7"]
 [ext_resource type="Texture2D" uid="uid://d1qnkg2fb0v04" path="res://sprites/levels/beach/fence_no_bg.png" id="7_swrkq"]
+[ext_resource type="Texture2D" uid="uid://nup4rujrtddc" path="res://sprites/levels/beach/bech_bg_extended .jpg" id="9_c05v7"]
+[ext_resource type="Texture2D" uid="uid://cxhv73xn6odq2" path="res://sprites/levels/beach/city_bg_shadow.png" id="11_t8i1y"]
+[ext_resource type="Texture2D" uid="uid://drjflwfdehe4x" path="res://sprites/levels/beach/city_bg_shadow_2.png" id="12_knrfj"]
+[ext_resource type="Texture2D" uid="uid://df4ieehwlb8jl" path="res://sprites/levels/beach/door.png" id="13_a73je"]
 [ext_resource type="Texture2D" uid="uid://cbxhjmucamhil" path="res://sprites/levels/beach/city_wall_no_bg.png" id="13_niucu"]
-[ext_resource type="Texture2D" uid="uid://dq47inkfmafvm" path="res://sprites/levels/beach/city_entrance_no_doors.PNG" id="14_8n8wd"]
-[ext_resource type="Texture2D" uid="uid://xhthiergsuua" path="res://sprites/levels/beach/cave_entrance_tmp.PNG" id="15_a73je"]
+[ext_resource type="Texture2D" uid="uid://c7u6ni5m6tlpv" path="res://sprites/levels/beach/door_l.png" id="14_wa6ql"]
+[ext_resource type="Texture2D" uid="uid://dxvlr556gnybx" path="res://sprites/levels/ancient_city/1/brick3.png" id="15_c05v7"]
+[ext_resource type="Texture2D" uid="uid://gvj4vp7gkkgl" path="res://sprites/levels/beach/door_r.png" id="15_mmvtk"]
+[ext_resource type="Texture2D" uid="uid://xbfiplo54fuo" path="res://sprites/levels/beach/city_enter_no_door.png" id="16_rvgsd"]
+[ext_resource type="Shader" uid="uid://oghnab3jvhl1" path="res://shaders/MonitorGlow.gdshader" id="16_wa6ql"]
+[ext_resource type="Texture2D" uid="uid://d3hci3iqx68lc" path="res://sprites/levels/beach/cave_main.png" id="19_rvgsd"]
+[ext_resource type="Texture2D" uid="uid://cyyfj4x4d2yse" path="res://sprites/levels/beach/cave_fore.png" id="20_pmca0"]
+[ext_resource type="Theme" uid="uid://bwxqixtd6171m" path="res://theme/StartMenuScene.theme" id="24_knrfj"]
+[ext_resource type="Script" uid="uid://d1xl02antqw1t" path="res://scenes/beach/start_menu.gd" id="25_ddjx0"]
+[ext_resource type="Texture2D" uid="uid://c4046dnutf10e" path="res://sprites/levels/beach/logo_anim_sprite_sheet.png" id="26_i531f"]
+[ext_resource type="Shader" uid="uid://dno5cmhpiakap" path="res://scenes/SimpleBlur.gdshader" id="27_i531f"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_swrkq"]
 shader = ExtResource("2_w2d0x")
@@ -24,60 +36,165 @@ shader_parameter/blur_amount = 5.0
 shader = ExtResource("2_w2d0x")
 shader_parameter/blur_amount = 8.5710004071225
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1tact"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8n8wd"]
 shader = ExtResource("6_b54ua")
-shader_parameter/scale = 2.0
-shader_parameter/height = 1.0
-shader_parameter/detail = 3.0
-shader_parameter/wind_direction = 0.785
-shader_parameter/time_speed = 0.05
-shader_parameter/watercolor_bleeding = 0.15
-shader_parameter/paper_texture_strength = 0.3
-shader_parameter/color_variation = 0.2
-shader_parameter/edge_irregularity = 0.4
-shader_parameter/edge_wave_amplitude = 0.15
-shader_parameter/edge_wave_frequency = 4.0
-shader_parameter/edge_softness = 0.2
-shader_parameter/sand_light = Color(0.98, 0.92, 0.78, 1)
-shader_parameter/sand_mid = Color(0.9, 0.82, 0.65, 1)
-shader_parameter/sand_dark = Color(0.75, 0.65, 0.5, 1)
-shader_parameter/sand_shadow = Color(0.55, 0.48, 0.4, 1)
+shader_parameter/color = Color(0.5529412, 0.5294118, 0.3019608, 0.8)
+shader_parameter/frequency = 3.0
+shader_parameter/compress = 1.0
+shader_parameter/add_light = 0.0
+shader_parameter/scale = 0.73999998345952
+shader_parameter/speed = 0.05997764665892191
+shader_parameter/x_angle = 1.57
+shader_parameter/y_angle = 1.57
+shader_parameter/base_alpha = 0.39999994635519975
+shader_parameter/refraction_ratio = 10.0
+shader_parameter/clear = 0.999999977648
+shader_parameter/surf_sinpowder = 8.0
+shader_parameter/surf_speed = -10.0
+shader_parameter/surf_angle = 1.5699998773626298
+shader_parameter/surf_magnitude = 0.0
+shader_parameter/s11 = 0.3999997675391995
+shader_parameter/sinpowder = 8.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ll41g"]
-size = Vector2(11190, 1926)
+size = Vector2(11190, 2653)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_aopj7"]
 shader = ExtResource("7_aopj7")
-shader_parameter/sand_color_light = Color(0.96, 0.89, 0.73, 1)
-shader_parameter/sand_color_mid = Color(0.88, 0.79, 0.62, 1)
-shader_parameter/sand_color_dark = Color(0.72, 0.61, 0.45, 1)
+shader_parameter/sand_color_light = Color(0.7882353, 0.7490196, 0.68235296, 1)
+shader_parameter/sand_color_mid = Color(0.654902, 0.61960787, 0.56078434, 1)
+shader_parameter/sand_color_dark = Color(0.84705883, 0.78431374, 0.5411765, 1)
 shader_parameter/brush_stroke_size = 10.0
 shader_parameter/paper_texture = 1.0
 shader_parameter/pigment_granulation = 0.4090000194275
 shader_parameter/edge_darkening = 1.0
 shader_parameter/gradient_strength = 1.0
 shader_parameter/gradient_start = 0.0
-shader_parameter/shadow_color = Color(0.20721464, 0.17063364, 0.11779441, 1)
+shader_parameter/shadow_color = Color(0.10336731, 0.080749996, 0.050592944, 1)
 shader_parameter/time_scale = 0.222000010545
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_b54ua"]
-size = Vector2(872, 1206)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1tact"]
 size = Vector2(188, 1263)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wa6ql"]
-size = Vector2(462, 1701)
+size = Vector2(462, 4376)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mmvtk"]
 size = Vector2(540, 547)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rvgsd"]
 resource_local_to_scene = true
-size = Vector2(401, 429.5)
+size = Vector2(389.5, 574.375)
 
-[node name="Beach" type="Node2D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mmvtk"]
+shader = ExtResource("16_wa6ql")
+shader_parameter/glow_color = Color(0.447, 0.565, 0.2, 1)
+shader_parameter/glow_intensity = 1.6000000760000002
+shader_parameter/glow_spread = 0.03
+shader_parameter/pulse_speed = 2.0
+shader_parameter/pulse_min = 0.4
+shader_parameter/pulse_max = 1.2
+shader_parameter/green_threshold = 0.3
+shader_parameter/green_sensitivity = 3.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pmca0"]
+lifetime_randomness = 0.6
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 100.29
+gravity = Vector3(0, 98, 0)
+scale_max = 5.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a73je"]
+size = Vector2(1509, 506)
+
+[sub_resource type="Animation" id="Animation_yd2vn"]
+resource_name = "door_open"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CityEnterArea/DoorL:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.4, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-64, -9), Vector2(-232, -9)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CityEnterArea/DoorR:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(47, -6), Vector2(239, -6)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t8i1y"]
+_data = {
+&"door_open": SubResource("Animation_yd2vn")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8n8wd"]
+size = Vector2(357.91284, 179.07703)
+
+[sub_resource type="Animation" id="Animation_2lm8c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Menu/Logo:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_d1y0j"]
+resource_name = "aiya_logo_intro"
+length = 3.0
+step = 0.0167
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Menu/Logo:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0501, 0.1002, 0.1503, 0.2004, 0.2505, 0.3006, 0.3507, 0.4008, 0.4509, 0.501, 0.5511, 0.6012, 0.6513, 0.7014, 0.7682, 0.835, 0.9352, 1.0354, 1.1356, 1.2358, 1.336, 1.4362, 1.5364),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 23, 22]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c148p"]
+_data = {
+&"RESET": SubResource("Animation_2lm8c"),
+&"aiya_logo_intro": SubResource("Animation_d1y0j")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2lm8c"]
+shader = ExtResource("27_i531f")
+shader_parameter/samples = 11
+shader_parameter/lod = 2
+shader_parameter/tint_color = Color(0, 0, 0, 0)
+shader_parameter/intensity = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r6cgm"]
+
+[node name="Beach" type="Node2D" node_paths=PackedStringArray("transition_camera", "character_camera")]
 script = ExtResource("1_g5ysr")
+transition_camera = NodePath("TransitionCamera")
+character_camera = NodePath("Player/Camera2D")
 
 [node name="Background" type="Node2D" parent="."]
 
@@ -98,7 +215,7 @@ texture = ExtResource("3_g5ysr")
 [node name="Stone" type="Sprite2D" parent="Background/Foreground"]
 self_modulate = Color(0.18765087, 0.18765087, 0.18765087, 1)
 material = SubResource("ShaderMaterial_w2d0x")
-position = Vector2(12724, 383)
+position = Vector2(14040.001, 569.0004)
 rotation = -0.2617994
 scale = Vector2(1.8264947, 1.8264948)
 texture = ExtResource("3_sre26")
@@ -116,13 +233,14 @@ position = Vector2(-10523, -1518)
 
 [node name="TreeLeft" type="Sprite2D" parent="Background/Foreground/Trees"]
 material = SubResource("ShaderMaterial_w2d0x")
-scale = Vector2(1.9617555, 1.9617555)
+position = Vector2(758.9999, 127)
+scale = Vector2(1.3470182, 1.3771158)
 texture = ExtResource("3_aopj7")
 
 [node name="Tree1" type="Sprite2D" parent="Background/Foreground/Trees"]
 material = SubResource("ShaderMaterial_w2d0x")
-position = Vector2(1493, -359)
-scale = Vector2(2.2408628, 2.183084)
+position = Vector2(1531.0002, 565.0001)
+scale = Vector2(1.1254784, 1.0964589)
 texture = ExtResource("4_b54ua")
 flip_h = true
 
@@ -151,57 +269,74 @@ scale = Vector2(2.0403516, 2.0403519)
 texture = ExtResource("7_swrkq")
 
 [node name="Background" type="Parallax2D" parent="Background"]
-scroll_scale = Vector2(0.2, 1)
+scroll_scale = Vector2(0.2, 0.6)
 scroll_offset = Vector2(4508, -1964)
 
 [node name="Lighthouse" type="Sprite2D" parent="Background/Background"]
-position = Vector2(-3614, 1645.0001)
-scale = Vector2(1.7097203, 1.7097203)
-texture = ExtResource("1_an8uc")
+position = Vector2(-3119.0005, 572.0001)
+scale = Vector2(1.736487, 1.7364867)
+texture = ExtResource("9_c05v7")
 
 [node name="PreForeground" type="Parallax2D" parent="Background"]
-z_index = 2
+top_level = true
+z_index = 8
 scroll_scale = Vector2(1.75, 1)
+scroll_offset = Vector2(0, 47)
 
 [node name="ColorRect" type="ColorRect" parent="Background/PreForeground"]
-material = SubResource("ShaderMaterial_1tact")
-offset_left = -5280.0
-offset_top = 136.0
-offset_right = 14934.0
-offset_bottom = 825.0
+material = SubResource("ShaderMaterial_8n8wd")
+offset_left = -5909.0
+offset_top = 94.0
+offset_right = 12209.0
+offset_bottom = 795.0
+
+[node name="CityBack" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.9, 1)
+scroll_offset = Vector2(-4, -13)
+
+[node name="CityBgShadow" type="Sprite2D" parent="Background/CityBack"]
+position = Vector2(5778.37, -608.8436)
+scale = Vector2(2.5443287, 2.5443292)
+texture = ExtResource("11_t8i1y")
+
+[node name="CityBack2" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.8, 1)
+
+[node name="CityBgShadow" type="Sprite2D" parent="Background/CityBack2"]
+position = Vector2(6053, -721.00006)
+scale = Vector2(1.9342664, 1.8603917)
+texture = ExtResource("12_knrfj")
+flip_h = true
 
 [node name="Player" parent="." instance=ExtResource("1_5rfpy")]
 z_index = 4
 texture_filter = 1
-position = Vector2(-1247, -1584)
+position = Vector2(-1249, -5017.9995)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(0.63, 0.63)
-limit_left = -3691
-limit_top = -4212
-limit_right = 8008
-limit_bottom = 713
+zoom = Vector2(0.6, 0.6)
+limit_left = -2843
+limit_top = -4776
+limit_right = 8161
+limit_bottom = 709
+limit_smoothed = true
+position_smoothing_enabled = true
 
 [node name="Floor" type="StaticBody2D" parent="."]
 z_index = 1
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
-position = Vector2(2555, 1104)
+position = Vector2(2555, 1467.5)
 shape = SubResource("RectangleShape2D_ll41g")
 
 [node name="TextureRect" type="ColorRect" parent="Floor"]
+z_index = 1
 material = SubResource("ShaderMaterial_aopj7")
 offset_left = -3053.0
 offset_top = 140.0
-offset_right = 8037.0
-offset_bottom = 1063.0
-
-[node name="SlowDownArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SlowDownArea"]
-position = Vector2(-2081, -408)
-shape = SubResource("RectangleShape2D_b54ua")
+offset_right = 7879.0
+offset_bottom = 874.0
 
 [node name="BorderLeft" type="StaticBody2D" parent="."]
 collision_layer = 2
@@ -213,49 +348,215 @@ shape = SubResource("RectangleShape2D_1tact")
 [node name="StartFallArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StartFallArea"]
-position = Vector2(-1233, -965.5)
+position = Vector2(-1233, -2660)
 shape = SubResource("RectangleShape2D_wa6ql")
 
 [node name="VoiceArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VoiceArea"]
-position = Vector2(0, -127.5)
+position = Vector2(2285, -125)
 shape = SubResource("RectangleShape2D_mmvtk")
 
-[node name="TownArea" type="Area2D" parent="."]
+[node name="TownEntry" type="Node2D" parent="."]
+
+[node name="Brick3" type="Sprite2D" parent="TownEntry"]
+position = Vector2(5440, -117)
+rotation = 1.5707964
+scale = Vector2(0.37204382, 0.37204397)
+texture = ExtResource("15_c05v7")
+
+[node name="CityEnterArea" type="Area2D" parent="TownEntry"]
 z_index = 2
 position = Vector2(6311, -135)
 
-[node name="CityWallNoBg" type="Sprite2D" parent="TownArea"]
-position = Vector2(577.9995, 26)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TownEntry/CityEnterArea"]
+position = Vector2(-9, -13.8125)
+shape = SubResource("RectangleShape2D_rvgsd")
+
+[node name="Door" type="Sprite2D" parent="TownEntry/CityEnterArea"]
+position = Vector2(-12, -9)
+scale = Vector2(0.18031394, 0.1794125)
+texture = ExtResource("13_a73je")
+
+[node name="DoorL" type="Sprite2D" parent="TownEntry/CityEnterArea"]
+position = Vector2(-64, -9)
+scale = Vector2(0.18105747, 0.18105747)
+texture = ExtResource("14_wa6ql")
+
+[node name="DoorR" type="Sprite2D" parent="TownEntry/CityEnterArea"]
+position = Vector2(47, -6)
+scale = Vector2(0.18558377, 0.18120497)
+texture = ExtResource("15_mmvtk")
+
+[node name="Gates" type="Sprite2D" parent="TownEntry/CityEnterArea"]
+self_modulate = Color(0.8960939, 0.8960939, 0.8960939, 1)
+material = SubResource("ShaderMaterial_mmvtk")
+position = Vector2(-6, -95)
+scale = Vector2(0.471519, 0.471519)
+texture = ExtResource("16_rvgsd")
+
+[node name="OpenPrtclsLeft" type="GPUParticles2D" parent="TownEntry/CityEnterArea"]
+position = Vector2(-194, 91)
+scale = Vector2(0.25, 1.8)
+amount = 20
+lifetime = 0.4
+speed_scale = 13.0
+randomness = 0.25
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_pmca0")
+
+[node name="OpenPrtclsRight" type="GPUParticles2D" parent="TownEntry/CityEnterArea"]
+position = Vector2(174, 96)
+scale = Vector2(0.25, 1.8)
+amount = 20
+lifetime = 0.4
+speed_scale = 13.0
+randomness = 0.25
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_pmca0")
+
+[node name="CityViewArea" type="Area2D" parent="TownEntry"]
+z_index = 2
+position = Vector2(4921, -135)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TownEntry/CityViewArea"]
+position = Vector2(334.5, 22)
+shape = SubResource("RectangleShape2D_a73je")
+
+[node name="CityWallNoBg" type="Sprite2D" parent="TownEntry"]
+position = Vector2(6864.999, -109)
 scale = Vector2(0.6189917, 0.7256741)
 texture = ExtResource("13_niucu")
 
-[node name="CityWallNoBg3" type="Sprite2D" parent="TownArea"]
-position = Vector2(1232, 26)
+[node name="CityWallNoBg3" type="Sprite2D" parent="TownEntry"]
+position = Vector2(7410, -109)
 scale = Vector2(0.6189917, 0.7256741)
 texture = ExtResource("13_niucu")
 flip_h = true
 
-[node name="CityWallNoBg2" type="Sprite2D" parent="TownArea"]
-position = Vector2(-639, 26)
+[node name="CityWallNoBg2" type="Sprite2D" parent="TownEntry"]
+position = Vector2(5700.9995, -109)
 scale = Vector2(0.6189917, 0.7256741)
 texture = ExtResource("13_niucu")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TownArea"]
-position = Vector2(-16, 55)
+[node name="CityCamera" type="Camera2D" parent="TownEntry"]
+position = Vector2(5327, -468)
+zoom = Vector2(0.5, 0.5)
+limit_left = 4885
+limit_top = -1244
+limit_right = 7273
+limit_bottom = 185
+
+[node name="DoorAnim" type="AnimationPlayer" parent="TownEntry"]
+libraries = {
+&"": SubResource("AnimationLibrary_t8i1y")
+}
+
+[node name="CaveEntry" type="Node2D" parent="."]
+position = Vector2(7867, -76.99974)
+rotation = 0.08726646
+
+[node name="CaveArea" type="Area2D" parent="CaveEntry"]
+z_index = 1
+rotation = -0.08726646
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CaveEntry/CaveArea"]
+position = Vector2(95.75, 0.9997406)
 shape = SubResource("RectangleShape2D_rvgsd")
 
-[node name="Sprite2D" type="Sprite2D" parent="TownArea"]
-position = Vector2(-4, -4)
-texture = ExtResource("14_8n8wd")
+[node name="CaveMain" type="Sprite2D" parent="CaveEntry"]
+z_index = 1
+position = Vector2(-105.18378, 4.4013996)
+rotation = -0.1308997
+scale = Vector2(0.36766976, 0.36766976)
+texture = ExtResource("19_rvgsd")
 
-[node name="CaveArea" type="Area2D" parent="."]
+[node name="CaveOuter" type="Sprite2D" parent="CaveEntry"]
+z_index = 5
+position = Vector2(-7.1084394, 23.92786)
+rotation = -0.1308997
+scale = Vector2(0.37230733, 0.37230772)
+texture = ExtResource("20_pmca0")
+
+[node name="CaveCeiling" type="StaticBody2D" parent="CaveEntry"]
+position = Vector2(-30.172619, 33.75792)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CaveEntry/CaveCeiling"]
+position = Vector2(70.12172, -173.77277)
+shape = SubResource("RectangleShape2D_8n8wd")
+
+[node name="CaveCamera" type="Camera2D" parent="CaveEntry"]
+position = Vector2(-819.95544, 70.73274)
+
+[node name="TransitionCamera" type="Camera2D" parent="."]
+limit_left = -2940
+limit_top = -4818
+limit_right = 7963
+limit_bottom = 480
+
+[node name="Menu" type="PanelContainer" parent="."]
+offset_left = -2217.0
+offset_top = -4017.0
+offset_right = -300.0
+offset_bottom = -3931.0
+theme = ExtResource("24_knrfj")
+script = ExtResource("25_ddjx0")
+
+[node name="Logo" type="Sprite2D" parent="Menu"]
+z_index = 5
+position = Vector2(971, -226)
+texture = ExtResource("26_i531f")
+hframes = 5
+vframes = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
+z_index = 5
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="Menu/VBoxContainer"]
+z_index = 3
+custom_minimum_size = Vector2(720, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Start game"
+
+[node name="IntroAnimation" type="AnimationPlayer" parent="Menu"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_c148p")
+}
+
+[node name="MenuCamera" type="Camera2D" parent="Menu"]
+z_index = 999
+position = Vector2(970, -226)
+zoom = Vector2(1.05, 1.05)
+
+[node name="BG" type="Node" parent="Menu"]
+
+[node name="BlurLayer" type="ColorRect" parent="Menu/BG"]
 z_index = 2
-position = Vector2(7835, -76)
+material = SubResource("ShaderMaterial_2lm8c")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2214.0
+offset_top = -4784.0
+offset_right = -2218.0
+offset_bottom = -4785.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+mouse_behavior_recursive = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CaveArea"]
-shape = SubResource("RectangleShape2D_rvgsd")
-
-[node name="Sprite2D" type="Sprite2D" parent="CaveArea"]
-texture = ExtResource("15_a73je")
+[node name="Background" type="TextureRect" parent="Menu/BG"]
+z_index = 1
+material = SubResource("ShaderMaterial_r6cgm")
+offset_left = -2219.0
+offset_top = -4786.0
+offset_right = -299.0
+offset_bottom = -3706.0
+mouse_behavior_recursive = 1
+texture = ExtResource("9_c05v7")
+expand_mode = 1

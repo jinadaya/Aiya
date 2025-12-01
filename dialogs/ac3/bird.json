@@ -1,0 +1,35 @@
+[
+	{
+		"entity_name": "CAT",
+		"text": "Huh? You wanna go to Lighthouse ain't you?",
+		"preview": "",
+		"options": [1],
+		"anchor_reachable": false,
+		"display_name": "Bird"
+	},
+	{
+		"entity_name": "CAT",
+		"text": "You ask this? Ain't you remember how you tought me to fly? Huh?",
+		"preview": "You know how to get there?",
+		"options": [2],
+		"anchor_reachable": false,
+		"display_name": "Bird"
+	},
+	{
+		"entity_name": "CAT",
+		"text": "Oh.. That's bad, huh? Anyway just use your dress as we been using those rustling bags!",
+		"preview": "Well, I almost forget everything.",
+		"options": [3],
+		"anchor_reachable": false,
+		"display_name": "Bird"
+	},
+	{
+		"entity_name": "CAT",
+		"text": "Reminds me of good ol' days! Huh?",
+		"preview": "Okay, I'll try.",
+		"options": [],
+		"anchor_reachable": false,
+		"display_name": "Bird",
+		"last": true
+	}
+]

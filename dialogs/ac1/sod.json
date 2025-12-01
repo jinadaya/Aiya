@@ -1,0 +1,51 @@
+[
+	{
+		"entity_name": "OWL",
+		"text": "Whoo-whoo-hoo! I am free!",
+		"preview": "",
+		"options": [1],
+		"anchor_reachable": false,
+		"display_name": "Wise Owl"
+	},
+	{
+		"entity_name": "OWL",
+		"text": "I know where you need to go, little Aiya.",
+		"preview": "Glad for you.",
+		"options": [2],
+		"anchor_reachable": false,
+		"display_name": "Wise Owl"
+	},
+	{
+		"entity_name": "OWL",
+		"text": "Go to the lighthouse. Just go left.",
+		"preview": "Tell me.",
+		"options": [3],
+		"anchor_reachable": false,
+		"display_name": "Wise Owl"
+	},
+	{
+		"entity_name": "OWL",
+		"text": "Yeah. I know that, I am wise either way. Here, take it.",
+		"preview": "There's a huge wall over there.",
+		"options": [4],
+		"anchor_reachable": false,
+		"display_name": "Wise Owl"
+	},
+	{
+		"entity_name": "OWL",
+		"text": "Missing gear. I took it from elevator so that green-hat guy won't get past that wall.",
+		"preview": "What's that?",
+		"options": [5],
+		"anchor_reachable": false,
+		"display_name": "Wise Owl"
+	},
+	{
+		"entity_name": "OWL",
+		"text": "Aiya, it is a pleause to serve yo-whoo!",
+		"preview": "Thank you, Owl",
+		"options": [],
+		"anchor_reachable": false,
+		"display_name": "Wise Owl",
+		"last": true
+	}
+]

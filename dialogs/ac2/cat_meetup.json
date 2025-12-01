@@ -1,0 +1,75 @@
+[
+	{
+		"entity_name": "CAT",
+		"text": "Oh... This is... You...",
+		"preview": "",
+		"options": [1],
+		"anchor_reachable": false,
+		"display_name": "???"
+	},
+	{
+		"entity_name": "CAT",
+		"text": "Wow... I almost forgot that... Name?",
+		"preview": "Hello, kitty.",
+		"options": [2],
+		"anchor_reachable": false,
+		"display_name": "Kitten"
+	},
+	{
+		"entity_name": "CAT",
+		"text": "Oh, yeah. How could I forgot.",
+		"preview": "You're kitten. This is not your name",
+		"options": [3],
+		"anchor_reachable": false,
+		"display_name": "Kitten"
+	},
+	{
+		"entity_name": "CAT",
+		"text": "About who are you now.",
+		"preview": "Forgot what?",
+		"options": [4],
+		"anchor_reachable": false,
+		"display_name": "Kitten"
+	},
+	{
+		"entity_name": "CAT",
+		"text": "Ofcourse. Everyone here knows you. And knows what you did.",
+		"preview": "Do you know me?",
+		"options": [5],
+		"anchor_reachable": false,
+		"display_name": "Kitten"
+	},
+	{
+		"entity_name": "CAT",
+		"text": "Well... I guess it doesn't matter anymore.",
+		"preview": "What I did? I just came here.",
+		"options": [6],
+		"anchor_reachable": false,
+		"display_name": "Kitten"
+	},
+	{
+		"entity_name": "CAT",
+		"text": "I don't like talk about that day. Anyway, if you're here now, maybe you could help me to pass that bridge?",
+		"preview": "Will you tell me about what I did?",
+		"options": [7],
+		"anchor_reachable": false,
+		"display_name": "Kitten"
+	},
+	{
+		"entity_name": "CAT",
+		"text": "Alright. We can handle this. Just like when you was full of enjoyment.",
+		"preview": "Then will you tell me about my past?",
+		"options": [8],
+		"anchor_reachable": false,
+		"display_name": "Kitten"
+	},
+	{
+		"entity_name": "CAT",
+		"text": "It's high time.",
+		"preview": "Okay, let's deal with this bridge.",
+		"options": [],
+		"anchor_reachable": false,
+		"display_name": "Kitten",
+		"last": true
+	}
+]

@@ -20,9 +20,9 @@ const JUMP_BLOCK_THRESHOLD : float = 0.05
 # === VERTICAL MOVEMENT ===
 @export_group("Gravity & Falling")
 @export var gravity_scale: float = 1.0
-@export var fall_gravity_multiplier: float = 1.2
-@export var max_fall_speed: float = 800
-@export var fast_fall_speed: float = 900
+@export var fall_gravity_multiplier: float = 2.0
+@export var max_fall_speed: float = 2000
+@export var fast_fall_speed: float = 2500
 
 # === JUMP ===
 @export_group("Jump")

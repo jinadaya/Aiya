@@ -1,205 +1,112 @@
 shader_type canvas_item;
 
-// Параметры дюн
-uniform float scale : hint_range(0.1, 10.0) = 2.0;
-uniform float height : hint_range(0.1, 2.0) = 1.0;
-uniform float detail : hint_range(1.0, 10.0) = 3.0;
-uniform float wind_direction : hint_range(0.0, 6.28318) = 0.785;
-uniform float time_speed : hint_range(0.0, 1.0) = 0.05;
 
-// Параметры акварельного эффекта
-uniform float watercolor_bleeding : hint_range(0.0, 0.5) = 0.15; // Растекание краски
-uniform float paper_texture_strength : hint_range(0.0, 1.0) = 0.3;
-uniform float color_variation : hint_range(0.0, 0.5) = 0.2;
-uniform float edge_irregularity : hint_range(0.0, 1.0) = 0.4;
+uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_nearest;
 
-// Параметры волнистых краёв
-uniform float edge_wave_amplitude : hint_range(0.0, 0.5) = 0.15;
-uniform float edge_wave_frequency : hint_range(0.1, 10.0) = 4.0;
-uniform float edge_softness : hint_range(0.0, 0.5) = 0.2;
+uniform vec4 color: source_color = vec4(0.,0.5,1.0,1.0);
+//uniform float amplitude : hint_range(0., 2., 0.01) = 2.;
+uniform float frequency : hint_range(0., 1000. , 1.) = 3.;
+uniform float compress : hint_range(1., 2. , 0.01) = 1.;
+uniform float add_light : hint_range(0., 2. , 0.01) = 0.;
 
-// Акварельная палитра песка
-uniform vec3 sand_light : source_color = vec3(0.98, 0.92, 0.78);
-uniform vec3 sand_mid : source_color = vec3(0.90, 0.82, 0.65);
-uniform vec3 sand_dark : source_color = vec3(0.75, 0.65, 0.50);
-uniform vec3 sand_shadow : source_color = vec3(0.55, 0.48, 0.40);
+uniform float scale : hint_range(0., 2. , 0.01) = 1.;
+uniform float speed : hint_range(-1000., 1000. , 0.01) = 1.;
+uniform float x_angle: hint_range(-1.57, 1.57, 0.01) = 1.57;
+uniform float y_angle: hint_range(-1.57, 1.57, 0.01) = 1.57;
+uniform float base_alpha : hint_range(-2., 2. , 0.01) = 0.8;
+uniform float refraction_ratio: hint_range(-100, 100, 0.01) = 10.;//0.2;
+uniform float clear : hint_range(0., 1. , 0.01) = 0.;
 
-// Функция хеша
-float hash(vec2 p) {
-    p = fract(p * vec2(123.34, 456.21));
-    p += dot(p, p + 45.32);
-    return fract(p.x * p.y);
+uniform float surf_sinpowder : hint_range(0., 8. , 1.) = 8.;
+uniform float surf_speed : hint_range(-10., 10. , 0.01) = 1.;
+uniform float surf_angle : hint_range(-1.57, 1.57, 0.01) = 1.57;
+uniform float surf_magnitude : hint_range(0., 10. , 0.01) = 0.;
+
+uniform float s11: hint_range(-10, 10, 0.01) = 2.221;
+uniform float sinpowder : hint_range(0., 8. , 1.) = 8.;
+
+vec2 UVtoSreenUV(vec2 uv, bool is_camera_center, vec2 texture_pixel_size, vec2 screen_pixel_size, vec4 fragcoord) {
+
+	vec2 suv = (uv - 0.5)*2.;
+
+	if (is_camera_center) {
+
+		return (fragcoord.xy + suv*0.01/texture_pixel_size)*screen_pixel_size*0.5;
+	} else {
+
+		return (fragcoord.xy + suv*0.01/texture_pixel_size)*screen_pixel_size;
+	}
 }
 
-// Улучшенный шум
-float noise(vec2 p) {
-    vec2 i = floor(p);
-    vec2 f = fract(p);
-    f = f * f * (3.0 - 2.0 * f);
-    
-    float a = hash(i);
-    float b = hash(i + vec2(1.0, 0.0));
-    float c = hash(i + vec2(0.0, 1.0));
-    float d = hash(i + vec2(1.0, 1.0));
-    
-    return mix(mix(a, b, f.x), mix(c, d, f.x), f.y);
+vec2 shiftuv2(vec2 uv, float shiftratio) {
+
+	vec2 suv = (uv - 0.5)*2.;
+
+	return (suv + suv*-1.*shiftratio)*0.5 + 0.5;
 }
 
-// Фрактальный шум
-float fbm(vec2 p) {
-    float value = 0.0;
-    float amplitude = 0.5;
-    float frequency = 1.0;
-    
-    for(int i = 0; i < 5; i++) {
-        value += amplitude * noise(p * frequency);
-        frequency *= 2.0;
-        amplitude *= 0.5;
-    }
-    
-    return value;
+float yget(float x,float fc1,float fc2,float fc3,float fc4,float tc1,float tc2,float tc3,float tc4,float amc1,float amc2,float amc3,float amc4,float way,float addt) {
+
+	float t = speed*TIME*way + addt;
+	float y = sin(x * frequency);
+
+	y += pow(abs(sin(x*frequency*fc1 + t*tc1)),sinpowder)*amc1;
+	y += pow(abs(sin(x*frequency*fc2 + t*tc2)),sinpowder)*amc2;
+	y += pow(abs(sin(x*frequency*fc3 + t*tc3)),sinpowder)*amc3;
+	y += pow(abs(sin(x*frequency*fc4 + t*tc4)),sinpowder)*amc4;
+	y /= (amc1+amc2+amc3+amc4);
+
+	return y;
 }
 
-// Турбулентность для акварельного эффекта
-float turbulence(vec2 p) {
-    float t = 0.0;
-    float f = 1.0;
-    for(int i = 0; i < 4; i++) {
-        t += abs(noise(p * f)) / f;
-        f *= 2.0;
-    }
-    return t;
-}
+void fragment(){
 
-// Текстура бумаги
-float paper_texture(vec2 uv) {
-    float paper = fbm(uv * 50.0);
-    paper += noise(uv * 200.0) * 0.3;
-    return paper;
-}
+	vec2 st = (UV-0.5)*2.*scale;
 
-// Генерация формы дюны
-float dune_shape(vec2 uv) {
-    vec2 wind_vec = vec2(cos(wind_direction), sin(wind_direction));
-    
-    // Добавляем органическое искажение для акварельного вида
-    vec2 distorted_uv = uv + vec2(
-        turbulence(uv * 3.0 + TIME * time_speed) * watercolor_bleeding,
-        turbulence(uv * 3.0 + vec2(5.2, 1.3) + TIME * time_speed) * watercolor_bleeding
-    );
-    
-    float dune_noise = fbm(distorted_uv * scale + wind_vec * TIME * time_speed * 0.5);
-    float detail_noise = fbm(distorted_uv * scale * detail * 0.5);
-    
-    float asymmetry = smoothstep(0.3, 0.7, dune_noise) * 0.3;
-    
-    float dune = dune_noise * height;
-    dune += detail_noise * 0.2 * height;
-    dune *= (1.0 + asymmetry);
-    
-    return dune;
-}
+	float dl = distance(vec2(0.), vec2(dFdx(st.x), dFdy(st.y)));
 
-// Вычисление нормали
-vec3 calculate_normal(vec2 uv, float epsilon) {
-    float h = dune_shape(uv);
-    float hx = dune_shape(uv + vec2(epsilon, 0.0));
-    float hy = dune_shape(uv + vec2(0.0, epsilon));
-    
-    vec2 gradient = vec2(hx - h, hy - h) / epsilon;
-    return normalize(vec3(-gradient.x, -gradient.y, 1.0));
-}
+	vec2 st2 = ((UV-0.5)*2. + dl)*scale;
 
-// Волнистые неровные края (акварельные)
-float wavy_edge(vec2 uv) {
-    vec2 edge_dist = min(uv, 1.0 - uv);
-    float dist_to_edge = min(edge_dist.x, edge_dist.y);
-    
-    // Органические волны с неровностями
-    float angle = atan(uv.y - 0.5, uv.x - 0.5);
-    float perimeter = length(uv - 0.5) * 6.28318;
-    
-    float wave = sin(angle * edge_wave_frequency + TIME * time_speed * 2.0) * 0.5 + 0.5;
-    wave += turbulence(vec2(perimeter, angle) * 3.0) * edge_irregularity;
-    wave *= edge_wave_amplitude;
-    
-    // Добавляем неровности характерные для акварели
-    float irregularity = turbulence(uv * 10.0 + TIME * time_speed) * 0.1 * edge_irregularity;
-    
-    float edge_threshold = wave + irregularity;
-    
-    // Мягкий размытый край как у акварели
-    float alpha = smoothstep(edge_threshold - edge_softness * 2.0, edge_threshold + edge_softness, dist_to_edge);
-    
-    // Дополнительная неравномерность прозрачности на краях
-    alpha *= 0.85 + noise(uv * 20.0) * 0.15;
-    
-    return alpha;
-}
+	float x = st.x;
+	float y = st.y;
 
-void fragment() {
-    vec2 uv = UV;
-    
-    // Волнистая маска краёв
-    float edge_alpha = wavy_edge(uv);
-    
-    // Генерируем высоту дюны
-    float dune_height = dune_shape(uv);
-    
-    // Вычисляем нормаль для мягкого освещения
-    vec3 normal = calculate_normal(uv, 0.01);
-    
-    // Мягкое рассеянное освещение (как у акварели)
-    vec3 light_dir = normalize(vec3(0.4, 0.6, 1.0));
-    float light = max(dot(normal, light_dir), 0.0);
-    light = pow(light, 0.7); // Смягчаем контраст
-    
-    // Ambient occlusion
-    float ao = smoothstep(0.0, 0.6, dune_height);
-    
-    // Цветовые вариации как у акварели
-    float color_noise = fbm(uv * 8.0 + TIME * time_speed * 0.3);
-    vec3 color_shift = vec3(
-        color_noise * color_variation,
-        color_noise * color_variation * 0.8,
-        color_noise * color_variation * 0.6
-    );
-    
-    // Выбираем цвет с плавными переходами
-    vec3 color;
-    float light_smooth = smoothstep(0.3, 0.9, light);
-    
-    if (light_smooth > 0.66) {
-        color = mix(sand_mid, sand_light, (light_smooth - 0.66) / 0.34);
-    } else if (light_smooth > 0.33) {
-        color = mix(sand_dark, sand_mid, (light_smooth - 0.33) / 0.33);
-    } else {
-        color = mix(sand_shadow, sand_dark, light_smooth / 0.33);
-    }
-    
-    // Применяем цветовые вариации
-    color += color_shift;
-    
-    // Ambient occlusion
-    color *= 0.6 + 0.4 * ao;
-    
-    // Текстура бумаги
-    float paper = paper_texture(uv);
-    color = mix(color, color * paper, paper_texture_strength);
-    
-    // Эффект растекания краски (больше пигмента в тенях)
-    float pigment_density = 1.0 - light_smooth * 0.3;
-    color *= pigment_density;
-    
-    // Небольшие пятна как у акварели
-    float spots = smoothstep(0.7, 0.9, noise(uv * 30.0));
-    color = mix(color, color * 0.85, spots * 0.2);
-    
-    // Финальная прозрачность с градиентом на краях
-    float final_alpha = edge_alpha;
-    
-    // Неравномерная прозрачность как у акварели
-    final_alpha *= 0.75 + turbulence(uv * 5.0) * 0.25;
-    
-    COLOR = vec4(color, final_alpha);
+	float adda = pow(abs(sin(surf_speed*TIME*scale + x*sin(surf_angle) + y*cos(surf_angle))),surf_sinpowder)*surf_magnitude;
+
+	st.x += adda*cos(surf_angle);
+	st.y += adda*sin(surf_angle);
+
+	COLOR = color;
+
+ 	float a1 = (yget(distance(vec2(0.),st),1.30,1.72,s11,3.1122,1.,1.121,0.437,4.,4.5,4.,5.,2.5,1.,0.)
+	+ yget(distance(vec2(0.5,3.5),st),1.32,1.72,s11,3.1122,1.,1.121,0.437,4.269,4.5,4.,5.,2.5,-1.,0.)
+	+ yget(distance(vec2(4.5,-4.5),st),1.31,1.72,s11,3.1122,1.,1.121,0.437,4.269,4.5,4.,5.,2.5,1.,0.)
+	+ yget(distance(vec2(-5.5,-2.5),st),1.27,1.72,s11,3.1122,1.,1.121,0.437,5.,4.5,4.,5.,2.5,-1.,0.)
+	+ yget(distance(vec2(-7.5,3.5),st),1.25,1.72,s11,3.1122,1.,1.121,0.437,5.,4.5,4.,5.,2.5,1.,0.)
+	+ yget(distance(vec2(3.25,3.25),st),1.34,1.72,s11,3.1122,1.,1.121,0.437,4.269,4.5,4.,5.,2.5,1.,0.)
+	+ yget(distance(vec2(6.25,-4.25),st),1.36,1.72,s11,3.1122,1.,1.121,0.437,4.269,4.5,4.,5.,2.5,-1.,0.)
+	+ yget(distance(vec2(-7.25,-1.25),st),1.27,1.72,s11,3.1122,1.,1.121,0.437,5.,4.5,4.,5.,2.5,1.,0.)
+	+ yget(distance(vec2(-0.25,5.25),st),1.59,1.72,s11,3.1122,1.,1.121,0.437,5.,4.5,4.,5.,2.5,-1.,0.))/9.;
+
+ 	float a2 = (yget(distance(vec2(0.),st2),1.30,1.72,s11,3.1122,1.,1.121,0.437,4.,4.5,4.,5.,2.5,1.,0.)
+	+ yget(distance(vec2(0.5,3.5),st2),1.32,1.72,s11,3.1122,1.,1.121,0.437,4.269,4.5,4.,5.,2.5,-1.,0.)
+	+ yget(distance(vec2(4.5,-4.5),st2),1.31,1.72,s11,3.1122,1.,1.121,0.437,4.269,4.5,4.,5.,2.5,1.,0.)
+	+ yget(distance(vec2(-5.5,-2.5),st2),1.27,1.72,s11,3.1122,1.,1.121,0.437,5.,4.5,4.,5.,2.5,-1.,0.)
+	+ yget(distance(vec2(-7.5,3.5),st2),1.25,1.72,s11,3.1122,1.,1.121,0.437,5.,4.5,4.,5.,2.5,1.,0.)
+	+ yget(distance(vec2(3.25,3.25),st2),1.34,1.72,s11,3.1122,1.,1.121,0.437,4.269,4.5,4.,5.,2.5,1.,0.)
+	+ yget(distance(vec2(6.25,-4.25),st2),1.36,1.72,s11,3.1122,1.,1.121,0.437,4.269,4.5,4.,5.,2.5,-1.,0.)
+	+ yget(distance(vec2(-7.25,-1.25),st2),1.27,1.72,s11,3.1122,1.,1.121,0.437,5.,4.5,4.,5.,2.5,1.,0.)
+	+ yget(distance(vec2(-0.25,5.25),st2),1.59,1.72,s11,3.1122,1.,1.121,0.437,5.,4.5,4.,5.,2.5,-1.,0.))/9.;
+
+	float da = clamp((a2 - a1)*compress, 0., 1.);
+	float ang = atan(da/dl);
+
+	vec2 rUV = UV;
+	rUV.y = (1. - rUV.y) + FRAGCOORD.y*SCREEN_PIXEL_SIZE.y;
+	//vec4 RsC = textureLod(screen_texture, UVtoSreenUV(rUV, false, TEXTURE_PIXEL_SIZE, SCREEN_PIXEL_SIZE, FRAGCOORD), 0.0);//vec4(0.);
+	vec4 bC = textureLod(screen_texture, UVtoSreenUV(shiftuv2(UV, ang*refraction_ratio), false, TEXTURE_PIXEL_SIZE, SCREEN_PIXEL_SIZE, FRAGCOORD), 0.0);
+
+	float a = ((sin(ang - PI*0.5 + y_angle) + cos(ang - PI*1.5 + x_angle)) + adda)/1.5;//sin(ang - PI*0.5 + y_angle)*0.5 - cos(ang + x_angle)*0.5;
+
+	COLOR.a = clamp(base_alpha + a, 0., 1.);
+	COLOR.rgb = clamp(COLOR.rgb + mix(vec3(COLOR.a), bC.rgb, clear)*vec3(1. + add_light), vec3(0.), vec3(1.));
 }

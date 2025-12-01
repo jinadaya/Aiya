@@ -1,9 +1,17 @@
 extends PlayerState
 class_name IdleState
 
-func enter(_from: PlayerState) -> void:
+func enter(from: PlayerState) -> void:
 	inbetween_state.reset_air_jumps()
 	inbetween_state.reset_coyote()
+	if playback:
+		if from is FallState:
+			playback.travel("landing")
+			await playback.state_finished
+		if abs(body.velocity.x) > 0:
+			playback.travel("end_run")
+		else:
+			playback.travel("idle")
 
 func physics_process(delta: float) -> void:
 	# Keep coyote timer fresh

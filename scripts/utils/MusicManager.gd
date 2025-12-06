@@ -30,9 +30,11 @@ func _ready():
 	steps_player.bus = STEPS_BUS
 	add_child(steps_player)
 	
+	# Connect level changes to music changes
+	LevelManager.music_level_changed.connect(_change_music_according_to_level)
+	
 	# Ensure audio buses exist
 	_setup_audio_buses()
-	LevelManager.level_changed.connect(_change_music_according_to_level)
 
 func _process(delta):
 	if is_playing_steps:
@@ -41,18 +43,22 @@ func _process(delta):
 			_play_next_step()
 			step_timer = step_interval
 
-func _change_music_according_to_level(_from: LevelManager.Location, to: LevelManager.Location) -> void:
+func _change_music_according_to_level(to: LevelManager.Location) -> void:
 	var change_to
 	match to:
-		LevelManager.Location.BEACH: change_to = load("res://audio/BEACH.mp3")
-		LevelManager.Location.CAVE: change_to = load("res://audio/DC.mp3")
+		LevelManager.Location.BEACH:
+			change_to = load("res://audio/BEACH_NEW.wav")
+		LevelManager.Location.CAVE:
+			change_to = load("res://audio/DC_NEW.wav")
 		LevelManager.Location.ANCIENT_CITY_1,\
 		LevelManager.Location.ANCIENT_CITY_2,\
-		LevelManager.Location.ANCIENT_CITY_3: change_to = load("res://audio/AC.mp3")
-		LevelManager.Location.LIGHTHOUSE: change_to = load("res://audio/LH.mp3")
-		_: return
-	print("change music to ", to)
-	fade_to_music(change_to, 1)
+		LevelManager.Location.ANCIENT_CITY_3:
+			change_to = load("res://audio/AC_NEW.wav")
+		LevelManager.Location.LIGHTHOUSE:
+			change_to = load("res://audio/LH_NEW.wav")
+		LevelManager.Location.INIT:
+			change_to = load("res://audio/MENU.wav")
+	fade_to_music(change_to, 1.3)
 
 func _setup_audio_buses():
 	var buses = [MUSIC_BUS, SFX_BUS, STEPS_BUS]
@@ -77,10 +83,6 @@ func play_music(stream: AudioStream, fade_in: bool = true, fade_duration: float 
 		current_music = stream
 		music_player.volume_db = 0.0
 		music_player.play()
-	
-	music_player.finished.connect(func():
-		fade_to_music(stream)
-	)
 
 func fade_to_music(new_stream: AudioStream, duration: float = 1.0):
 	if music_fade_tween:
@@ -93,7 +95,11 @@ func fade_to_music(new_stream: AudioStream, duration: float = 1.0):
 		current_music = new_stream
 		music_player.play()
 	)
+	music_player.finished.connect(react_to_music_stop)
 	music_fade_tween.tween_property(music_player, "volume_db", -15.0, duration / 2.0)
+
+func react_to_music_stop() -> void:
+	fade_to_music(current_music, 0.1)
 
 func stop_music(fade_out: bool = true, fade_duration: float = 1.0):
 	if not music_player.playing:

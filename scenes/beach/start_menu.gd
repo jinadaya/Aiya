@@ -7,18 +7,15 @@ class_name Menu
 @onready var bg : TextureRect = $BG/Background
 @onready var logo : Sprite2D = $Logo
 
-var active : bool = true
-
 const logo_sp : float = 2
 const btn_sp : float = 3
 const btn_sound = preload("res://audio/BTN_CLCK.mp3")
 const logo_sound = preload("res://audio/PENCIL_DRAW_LOGO.mp3")
 
-
 signal game_started
 
 func _ready() -> void:
-	if not active: return
+	if WorldInfo.beach_data.been_before: return
 	start_game_button.pressed.connect(_react_to_start_game)
 	start_game_button.modulate.a = 0
 	_start_aiya_logo_anim()
@@ -34,6 +31,7 @@ func _react_to_start_game() -> void:
 	MusicManager.play_sfx(btn_sound, 0.66)
 	var tween : Tween = create_tween()
 	tween.tween_method(Callable(self, "_set_shader_param_value"), 1.0, 0.0, 3)
+	LevelManager.music_level_changed.emit(LevelManager.Location.BEACH)
 	await tween.finished
 	bg.queue_free()
 	logo.queue_free()

@@ -30,10 +30,7 @@ var level_started : bool = false
 
 func _ready() -> void:
 	super._ready()
-	print(WorldInfo.beach_data.been_before, " and ", WorldInfo.beach_data.come_from)
-	menu.active = not WorldInfo.beach_data.been_before
 	if not WorldInfo.beach_data.been_before:
-		print("been before")
 		player.set_physics_process(false)
 		$Menu/MenuCamera.make_current()
 		change_camera($Menu/MenuCamera)
@@ -97,10 +94,10 @@ func _view_city(body : Node2D) -> void:
 
 func _enter_city(body: Node2D) -> void:
 	if body != player: return
-
+	
 	if doors_open:
 		LevelManager.go(LevelManager.Location.BEACH, LevelManager.Location.ANCIENT_CITY_1)
-
+	
 	if Inventory.is_item_collected(Inventory.Item.STONE):
 		player.show_hint("'E'")
 		await player.push_stone

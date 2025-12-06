@@ -1,6 +1,7 @@
 extends Node
 
 signal level_changed(from : Location, to : Location)
+signal music_level_changed(level: Location)
 
 enum Location {
 	INIT,
@@ -20,11 +21,12 @@ var LocPath : Dictionary [ Location, StringName ] = {
 }
 
 func _ready() -> void:
-	level_changed.emit(Location.INIT, Location.BEACH)
+	music_level_changed.emit(Location.INIT)
 
 func go(from : Location, to: Location, need_remember: bool = true):
 	if need_remember: _write_data(from, to)
 	level_changed.emit(from, to)
+	music_level_changed.emit(to)
 	InputManager.off()
 	await GlobalFader.fade_out()
 	var to_path = LocPath.get(to)

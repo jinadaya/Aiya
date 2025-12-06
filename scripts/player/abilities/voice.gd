@@ -54,8 +54,8 @@ func start_wave(start_position: Vector2, echo: bool = false):
 	if in_progress > 0.0:
 		return
 	
-	if echo: MusicManager.play_sfx(load("res://audio/VOICE_SOUND_ECHO.wav"))
-	else: MusicManager.play_sfx(load("res://audio/VOICE_SOUND.mp3"))
+	if echo: MusicManager.play_sfx(load("res://audio/VOICE_ECHOED.wav"))
+	else: MusicManager.play_sfx(load("res://audio/VOICE_SOUND.ogg"))
 	
 	in_progress = lifetime + time_lock
 	cooldown_timer = cooldown

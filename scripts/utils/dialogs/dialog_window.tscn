@@ -10,7 +10,7 @@
 [sub_resource type="RichTextEffect" id="RichTextEffect_1buro"]
 resource_name = "fader"
 script = ExtResource("3_o0cdo")
-metadata/rt = 113517210900428
+metadata/rt = 2416187625910
 
 [node name="DialogWindow" type="PanelContainer"]
 z_index = 4096

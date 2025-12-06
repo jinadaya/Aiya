@@ -8,6 +8,12 @@
 
 config_version=5
 
+[Fmod]
+
+General/is_live_update_enabled=false
+General/banks_path="res://fmod/Desktop"
+"3D Settings/should_load_by_name"=false
+
 [application]
 
 config/name="Aiya"
@@ -19,7 +25,6 @@ config/features=PackedStringArray("4.5", "GL Compatibility")
 InputManager="*res://scripts/utils/InputManager.gd"
 MusicManager="*res://scripts/utils/MusicManager.gd"
 LevelManager="*res://scripts/utils/LevelManager.gd"
-SongStorage="*res://scripts/utils/SongStorage.gd"
 CollisionMaskStorage="*res://scripts/utils/CollisionMaskStorage.gd"
 GlobalFader="*res://scripts/utils/Fader.gd"
 DialogStorage="*res://scripts/utils/dialogs/DialogStorage.gd"
@@ -117,6 +122,7 @@ interact={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
 textures/webp_compression/compression_method=0
 textures/webp_compression/lossless_compression_factor=10.0
 textures/default_filters/anisotropic_filtering_level=3

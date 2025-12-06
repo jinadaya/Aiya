@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://cpyeggf4ffhwg"]
+[gd_scene load_steps=47 format=3 uid="uid://cpyeggf4ffhwg"]
 
 [ext_resource type="Script" uid="uid://disxg11j1apii" path="res://scenes/ancient_city/1/ancient_city_1.gd" id="1_dg4xb"]
 [ext_resource type="Texture2D" uid="uid://d3hci3iqx68lc" path="res://sprites/levels/beach/cave_main.png" id="1_gi6pg"]
@@ -16,15 +16,14 @@
 [ext_resource type="Texture2D" uid="uid://df4ieehwlb8jl" path="res://sprites/levels/beach/door.png" id="9_v5kh4"]
 [ext_resource type="Texture2D" uid="uid://dkv6k15m7h0lq" path="res://sprites/levels/ancient_city/1/cage_b.png" id="10_mp1kq"]
 [ext_resource type="Texture2D" uid="uid://xe2302tmc7ht" path="res://sprites/levels/ancient_city/1/stick.png" id="11_8yq45"]
-[ext_resource type="Texture2D" uid="uid://bkrky75n5ouvn" path="res://sprites/levels/ancient_city/2/brick23.png" id="12_g5p4d"]
-[ext_resource type="Texture2D" uid="uid://d2k8klv5kdlk6" path="res://sprites/levels/ancient_city/2/brick24.png" id="13_eqiq1"]
+[ext_resource type="Texture2D" uid="uid://o6upmlrpgrfa" path="res://sprites/levels/ancient_city/4.png" id="13_g5krj"]
 [ext_resource type="PackedScene" uid="uid://ufmd468mws3j" path="res://scenes/ancient_city/Platform.tscn" id="14_8of6n"]
-[ext_resource type="Texture2D" uid="uid://djdl8hv4eivsy" path="res://sprites/levels/ancient_city/2/brick21.png" id="14_qgtg5"]
+[ext_resource type="Texture2D" uid="uid://cnodkhqowaxcs" path="res://sprites/levels/ancient_city/3.png" id="14_lga4b"]
 [ext_resource type="Texture2D" uid="uid://d3wbcvy3o2i11" path="res://sprites/levels/ancient_city/1/brick5.png" id="15_oatua"]
 [ext_resource type="Script" uid="uid://cm547ia2r2g1" path="res://scenes/ancient_city/1/floating_platform.gd" id="15_tauce"]
-[ext_resource type="Texture2D" uid="uid://mhq3pm2vfitp" path="res://sprites/levels/ancient_city/2/brick22.png" id="16_r2edi"]
+[ext_resource type="Texture2D" uid="uid://sada540y207a" path="res://sprites/levels/ancient_city/1.png" id="15_x44d4"]
 [ext_resource type="Texture2D" uid="uid://dtuxdpxc6uelu" path="res://sprites/levels/ancient_city/1/brick7.png" id="16_tauce"]
-[ext_resource type="Texture2D" uid="uid://d4k61xhmusca8" path="res://sprites/levels/ancient_city/2/brick20.png" id="17_g5krj"]
+[ext_resource type="Texture2D" uid="uid://d3b6enuk6k0ni" path="res://sprites/levels/ancient_city/2.png" id="17_vgi4t"]
 [ext_resource type="Texture2D" uid="uid://dp73mnm87jj00" path="res://sprites/levels/ancient_city/1/stones2.png" id="17_wdski"]
 [ext_resource type="PackedScene" uid="uid://gf5x7jq7p70q" path="res://scenes/ancient_city/Validator.tscn" id="18_ipaot"]
 [ext_resource type="Texture2D" uid="uid://ckhcag4fa5rs3" path="res://sprites/levels/ancient_city/1/gear_wheel.png" id="20_wdski"]
@@ -423,18 +422,19 @@ flip_h = true
 
 [node name="StoneBgGen" type="Sprite2D" parent="Env"]
 position = Vector2(-7003, 668.00006)
-scale = Vector2(1.2035575, 1.2035576)
-texture = ExtResource("12_g5p4d")
+scale = Vector2(2.012861, 2.0128613)
+texture = ExtResource("13_g5krj")
 
 [node name="StoneBgGen2" type="Sprite2D" parent="Env"]
-position = Vector2(-6823, 178)
-texture = ExtResource("13_eqiq1")
+position = Vector2(-6831, 166.01358)
+scale = Vector2(1.3195884, 1.3195885)
+texture = ExtResource("14_lga4b")
 flip_v = true
 
 [node name="StoneBgGen3" type="Sprite2D" parent="Env"]
-position = Vector2(-6863, -251)
-rotation = 1.5707964
-texture = ExtResource("14_qgtg5")
+position = Vector2(-6854, -367)
+scale = Vector2(1.1301024, 1.1301024)
+texture = ExtResource("15_x44d4")
 
 [node name="Door" type="Sprite2D" parent="Env"]
 position = Vector2(2041.4376, 708.22064)
@@ -442,26 +442,31 @@ scale = Vector2(0.18218586, 0.18284526)
 texture = ExtResource("9_v5kh4")
 
 [node name="Brick24" type="Sprite2D" parent="Env"]
-position = Vector2(-6898, -621)
+position = Vector2(-6889, -782)
 rotation = 1.5707964
-texture = ExtResource("13_eqiq1")
+texture = ExtResource("14_lga4b")
 
 [node name="Brick22" type="Sprite2D" parent="Env"]
-position = Vector2(-6831, -1225)
-texture = ExtResource("16_r2edi")
+position = Vector2(-6843, -1360)
+rotation = -4.712389
+texture = ExtResource("17_vgi4t")
 flip_h = true
 
 [node name="Brick20" type="Sprite2D" parent="Env"]
-position = Vector2(-6788, -1010)
-rotation = -3.1415925
-texture = ExtResource("17_g5krj")
+position = Vector2(-6846, -1023)
+rotation = -1.5707964
+texture = ExtResource("14_lga4b")
+
+[node name="Brick23" type="Sprite2D" parent="Env"]
+position = Vector2(-7053, -1323)
+texture = ExtResource("17_vgi4t")
 
 [node name="Floor" type="StaticBody2D" parent="."]
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="Floor"]
-position = Vector2(-315.75, 1196)
-polygon = PackedVector2Array(3477.75, -204, 3210.75, -212, 3191.75, -207, 3143.75, -213, 3113.75, -220, 3082.75, -223, 3029.75, -227, 2997.75, -227, 2954.75, -225, 2905.75, -227, 2862.75, -231, 2798.75, -212, 2697.75, -221, 2485.75, -215, 2342.75, -201, 2181.75, -218, 2006.75, -225, 1813.75, -232, 1613.75, -234, 1535.75, -249, 1384.75, -256, 1226.75, -241, 1142.75, -252, 931.75, -256, 675.75, -255, 440.75, -273, 278.75, -252, 105.75, -228, -74.25, -239, -351.25, -269, -623.25, -278, -874.25, -285, -1267.25, -294, -1595.25, -306, -2030.25, -312, -2405.25, -298, -2618.25, -313, -2895.25, -296, -3103.25, -295, -3329.25, -312, -3472.25, -300, -4130.25, -335, -4619.25, -321, -5145.25, -326, -5315.25, -344, -5420.25, -316, -5612.25, -330, -5882.25, -321, -5955.25, -326, -5987.25, -307, -6211.25, -321, -6377.25, -284, -6376.25, -344, -6513.25, -417, -6373.25, -462, -6371.25, -476, -6499.25, -522, -6373.25, -556, -6371.25, -563, -6492.25, -584, -6373.25, -609, -6485.25, -627, -6372.25, -678, -6490.25, -720, -6370.25, -744, -6495.25, -773, -6371.25, -816, -6500.25, -888, -6373.25, -931, -6496.25, -985, -6372.25, -1026, -6449.25, -1149, -6380.25, -1269, -6382.25, -1382, -6436.25, -1440, -6421.25, -1547, -6377.25, -1560, -6364.25, -1577, -6385.25, -1598, -6389.25, -1933, -6332.25, -1949, -6327.25, -2146, -6261.25, -2156, -6268.25, -2619, -6280.25, -2868, -6544.25, -2628, -6551.25, -2686, -6783.25, -2680, -6632.25, -2045, -6618.25, -275, -3482.25, 36, 3867.75, -43, 3908.75, -993, 3552.75, -1011, 3498.75, -981, 3460.75, -692, 3509.75, -673, 3454.75, -652, 3505.75, -634, 3457.75, -611, 3504.75, -589, 3459.75, -568, 3508.75, -550, 3456.75, -521, 3511.75, -495, 3459.75, -459, 3517.75, -452, 3461.75, -420, 3519.75, -416, 3459.75, -363, 3529.75, -366, 3459.75, -337, 3538.75, -322, 3466.75, -295, 3477.75, -209)
+position = Vector2(-332, 1196)
+polygon = PackedVector2Array(3477.75, -204, 3210.75, -212, 3191.75, -207, 3143.75, -213, 3113.75, -220, 3082.75, -223, 3029.75, -227, 2997.75, -227, 2954.75, -225, 2905.75, -227, 2862.75, -231, 2798.75, -212, 2697.75, -221, 2485.75, -215, 2342.75, -201, 2181.75, -218, 2006.75, -225, 1813.75, -232, 1613.75, -234, 1535.75, -249, 1384.75, -256, 1226.75, -241, 1142.75, -252, 931.75, -256, 675.75, -255, 440.75, -273, 278.75, -252, 105.75, -228, -74.25, -239, -351.25, -269, -623.25, -278, -874.25, -285, -1267.25, -294, -1595.25, -306, -2030.25, -312, -2405.25, -298, -2618.25, -313, -2895.25, -296, -3103.25, -295, -3329.25, -312, -3472.25, -300, -4130.25, -335, -4619.25, -321, -5145.25, -326, -5315.25, -344, -5420.25, -316, -5612.25, -330, -5882.25, -321, -5955.25, -326, -5987.25, -307, -6211.25, -321, -6377.25, -284, -6376.25, -344, -6373.25, -462, -6371.25, -563, -6370.25, -744, -6371.25, -816, -6373.25, -931, -6372.25, -1026, -6380.25, -1269, -6382.25, -1382, -6436.25, -1440, -6421.25, -1547, -6377.25, -1560, -6364.25, -1577, -6385.25, -1598, -6389.25, -1933, -6332.25, -1949, -6327.25, -2146, -6261.25, -2156, -6268.25, -2619, -6280.25, -2868, -6544.25, -2628, -6551.25, -2686, -6783.25, -2680, -6632.25, -2045, -6618.25, -275, -3482.25, 36, 3867.75, -43, 3908.75, -993, 3552.75, -1011, 3498.75, -981, 3460.75, -692, 3509.75, -673, 3454.75, -652, 3505.75, -634, 3457.75, -611, 3504.75, -589, 3459.75, -568, 3508.75, -550, 3456.75, -521, 3511.75, -495, 3459.75, -459, 3517.75, -452, 3461.75, -420, 3519.75, -416, 3459.75, -363, 3529.75, -366, 3459.75, -337, 3538.75, -322, 3466.75, -295, 3477.75, -209)
 
 [node name="EntryCameraChange" type="Area2D" parent="."]
 
@@ -517,7 +522,7 @@ texture = SubResource("CompressedTexture2D_eqiq1")
 [node name="OwlBlockedDialogAera" type="Area2D" parent="CageGeneral"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CageGeneral/OwlBlockedDialogAera"]
-position = Vector2(-2838, 673)
+position = Vector2(-2843, 673)
 shape = SubResource("RectangleShape2D_iwm3e")
 
 [node name="OwlFreeDialogArea" type="Area2D" parent="CageGeneral"]

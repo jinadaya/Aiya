@@ -1,19 +1,22 @@
-[gd_scene load_steps=59 format=3 uid="uid://cc20cfnfjope1"]
+[gd_scene load_steps=70 format=3 uid="uid://cc20cfnfjope1"]
 
 [ext_resource type="Script" uid="uid://dg4ysrj2tafj" path="res://scenes/ancient_city/2/ancient_city_2.gd" id="1_t51xs"]
 [ext_resource type="Texture2D" uid="uid://ktu6r1dtof5s" path="res://sprites/levels/ancient_city/ancient_city.jpg" id="2_ex7as"]
-[ext_resource type="Texture2D" uid="uid://mhq3pm2vfitp" path="res://sprites/levels/ancient_city/2/brick22.png" id="2_iivrh"]
 [ext_resource type="PackedScene" uid="uid://ufmd468mws3j" path="res://scenes/ancient_city/Platform.tscn" id="2_lw72k"]
 [ext_resource type="PackedScene" uid="uid://6au4oc0p7y45" path="res://scenes/player/Player.tscn" id="3_hbnr3"]
-[ext_resource type="Texture2D" uid="uid://dwyhxni6xctcq" path="res://sprites/levels/ancient_city/2/brick25.png" id="3_hwowk"]
-[ext_resource type="Texture2D" uid="uid://d4k61xhmusca8" path="res://sprites/levels/ancient_city/2/brick20.png" id="4_ifom2"]
+[ext_resource type="Texture2D" uid="uid://o6upmlrpgrfa" path="res://sprites/levels/ancient_city/4.png" id="5_1e0lw"]
+[ext_resource type="Shader" uid="uid://b7k3w7y8xdyo8" path="res://shaders/cave_special/DarkCaveMushroomGlow.gdshader" id="5_ga0u2"]
 [ext_resource type="Texture2D" uid="uid://ckjw1fnrmaq1k" path="res://sprites/levels/ancient_city/2/cat_lays_t.png" id="6_nijxa"]
+[ext_resource type="Texture2D" uid="uid://d3b6enuk6k0ni" path="res://sprites/levels/ancient_city/2.png" id="6_taq70"]
+[ext_resource type="Texture2D" uid="uid://cnodkhqowaxcs" path="res://sprites/levels/ancient_city/3.png" id="7_ga0u2"]
 [ext_resource type="Texture2D" uid="uid://ct0ljktpe46od" path="res://sprites/levels/ancient_city/2/bridge_machine.png" id="7_yqnon"]
+[ext_resource type="Texture2D" uid="uid://btqfc4j84nnj6" path="res://sprites/levels/ancient_city/5.png" id="8_3nlgg"]
 [ext_resource type="Texture2D" uid="uid://dxvlr556gnybx" path="res://sprites/levels/ancient_city/1/brick3.png" id="8_cuh2f"]
-[ext_resource type="Texture2D" uid="uid://djdl8hv4eivsy" path="res://sprites/levels/ancient_city/2/brick21.png" id="8_nijxa"]
 [ext_resource type="Texture2D" uid="uid://chmkxxjnsa1i5" path="res://sprites/levels/ancient_city/1/brick1.png" id="9_hqr3r"]
+[ext_resource type="Texture2D" uid="uid://iiss06tux7t0" path="res://sprites/levels/ancient_city/6.png" id="9_x1u6m"]
 [ext_resource type="Texture2D" uid="uid://den0al36vnbr0" path="res://sprites/levels/ancient_city/2/trade_machine.png" id="9_yqnon"]
 [ext_resource type="Script" uid="uid://t43ob6wf3ixr" path="res://scenes/ancient_city/CollisionPlatform.gd" id="10_bhv18"]
+[ext_resource type="Texture2D" uid="uid://sada540y207a" path="res://sprites/levels/ancient_city/1.png" id="10_mdj1h"]
 [ext_resource type="Texture2D" uid="uid://e8t4orgkx3ty" path="res://sprites/levels/ancient_city/2/fron_bm.png" id="11_bhv18"]
 [ext_resource type="Texture2D" uid="uid://bc12jw8n0w8db" path="res://sprites/levels/ancient_city/1/brick2.png" id="11_ex7as"]
 [ext_resource type="Texture2D" uid="uid://e2ul8bd2pt1k" path="res://sprites/levels/ancient_city/1/brick4.png" id="12_6axic"]
@@ -23,8 +26,84 @@
 [ext_resource type="Texture2D" uid="uid://ckhcag4fa5rs3" path="res://sprites/levels/ancient_city/1/gear_wheel.png" id="13_mrv3o"]
 [ext_resource type="Texture2D" uid="uid://dcd5iqgtrquei" path="res://sprites/levels/ancient_city/1/brick6.png" id="14_taq70"]
 [ext_resource type="Texture2D" uid="uid://u71dr4tviigv" path="res://sprites/levels/ancient_city/2/gear_3.png" id="15_vkyg0"]
+[ext_resource type="Shader" uid="uid://c3qtkvwmo0pj5" path="res://shaders/ItemShine.gdshader" id="16_taq70"]
 [ext_resource type="Shader" uid="uid://oghnab3jvhl1" path="res://shaders/MonitorGlow.gdshader" id="17_hqr3r"]
 [ext_resource type="Texture2D" uid="uid://dp73mnm87jj00" path="res://sprites/levels/ancient_city/1/stones2.png" id="23_ga0u2"]
+
+[sub_resource type="Animation" id="Animation_1e0lw"]
+resource_name = "ForegroundGear"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GearWheel2:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.2617994, 6.021385919380437]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GearWheel3:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.7853982, -7.0685834705770345]
+}
+
+[sub_resource type="Animation" id="Animation_taq70"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GearWheel2:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.2617994]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GearWheel3:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.7853982]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ga0u2"]
+_data = {
+&"ForegroundGear": SubResource("Animation_1e0lw"),
+&"RESET": SubResource("Animation_taq70")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3nlgg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x1u6m"]
+shader = ExtResource("5_ga0u2")
+shader_parameter/glow_color = Color(0.447, 0.565, 0.2, 1)
+shader_parameter/glow_intensity = 2.5
+shader_parameter/glow_spread = 0.03
+shader_parameter/pulse_speed = 2.0
+shader_parameter/pulse_min = 0.4
+shader_parameter/pulse_max = 1.2
+shader_parameter/blue_threshold = 0.3
+shader_parameter/blue_sensitivity = 3.0
 
 [sub_resource type="Curve2D" id="Curve2D_1e0lw"]
 _data = {
@@ -58,6 +137,29 @@ height = 270.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bhv18"]
 size = Vector2(146, 122)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ga0u2"]
+shader = ExtResource("16_taq70")
+shader_parameter/shine_color = Color(1, 1, 1, 1)
+shader_parameter/shine_angle = 45.0
+shader_parameter/shine_speed = 0.3
+shader_parameter/shine_delay = 0.0
+shader_parameter/shine_reverse = false
+shader_parameter/Line_Width = 0.09
+shader_parameter/Line_Smoothness = 0.045
+shader_parameter/Brightness = 3.0
+shader_parameter/Distortion = 2.0
+shader_parameter/LensStrength = 0.05
+shader_parameter/glow_color = Color(0.2, 0.6, 1, 1)
+shader_parameter/glow_intensity = 2.5
+shader_parameter/glow_spread = 0.03
+shader_parameter/pulse_speed = 2.0
+shader_parameter/pulse_min = 0.4
+shader_parameter/pulse_max = 1.2
+shader_parameter/blue_threshold = 0.3
+shader_parameter/blue_sensitivity = 3.0
+shader_parameter/enable_shine = true
+shader_parameter/enable_glow = false
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ex7as"]
 atlas = ExtResource("6_nijxa")
@@ -150,10 +252,21 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nijxa"]
-size = Vector2(325.5, 278.5)
+size = Vector2(325.5, 303)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uxkvx"]
 size = Vector2(3334, 188)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mdj1h"]
+shader = ExtResource("5_ga0u2")
+shader_parameter/glow_color = Color(0.2, 0.6, 1, 1)
+shader_parameter/glow_intensity = 2.390000113525
+shader_parameter/glow_spread = 0.03
+shader_parameter/pulse_speed = 2.0
+shader_parameter/pulse_min = 0.4
+shader_parameter/pulse_max = 1.2
+shader_parameter/blue_threshold = 0.386000018335
+shader_parameter/blue_sensitivity = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_23ec1"]
 size = Vector2(176, 358)
@@ -370,119 +483,188 @@ texture = ExtResource("2_ex7as")
 flip_h = true
 
 [node name="Foreground" type="Parallax2D" parent="."]
+z_index = 10
+scroll_scale = Vector2(1.4, 1)
 scroll_offset = Vector2(-75, 0)
 
+[node name="Stones2" type="Sprite2D" parent="Foreground"]
+self_modulate = Color(0.24353936, 0.24353936, 0.24353936, 1)
+position = Vector2(1647.0001, 745)
+rotation = 1.0471976
+scale = Vector2(2.218394, 2.218394)
+texture = ExtResource("23_ga0u2")
+
+[node name="Stones3" type="Sprite2D" parent="Foreground"]
+self_modulate = Color(0.24353936, 0.24353936, 0.24353936, 1)
+position = Vector2(5576.0005, 852.99976)
+rotation = 2.8797934
+scale = Vector2(2.218394, 2.218394)
+texture = ExtResource("23_ga0u2")
+
+[node name="GearWheel" type="Sprite2D" parent="Foreground"]
+self_modulate = Color(0.15259251, 0.15259251, 0.15259251, 1)
+position = Vector2(4043, 640)
+rotation = -0.5235988
+texture = ExtResource("13_mrv3o")
+
+[node name="GearWheel2" type="Sprite2D" parent="Foreground"]
+self_modulate = Color(0.15259251, 0.15259251, 0.15259251, 1)
+position = Vector2(7852.907, 690.1454)
+rotation = -0.2617994
+texture = ExtResource("13_mrv3o")
+
+[node name="GearWheel3" type="Sprite2D" parent="Foreground"]
+self_modulate = Color(0.15259251, 0.15259251, 0.15259251, 1)
+position = Vector2(8986.907, 348.1454)
+rotation = -0.7853982
+texture = ExtResource("13_mrv3o")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Foreground"]
+libraries = {
+&"": SubResource("AnimationLibrary_ga0u2")
+}
+autoplay = "ForegroundGear"
+
 [node name="Env" type="StaticBody2D" parent="."]
+material = SubResource("ShaderMaterial_3nlgg")
 position = Vector2(83, -1760)
 collision_layer = 2
 
 [node name="Brick27" type="Sprite2D" parent="Env"]
 z_index = -1
-position = Vector2(2029, 1923)
+material = SubResource("ShaderMaterial_x1u6m")
+position = Vector2(2012, 1899)
 rotation = 1.5707964
-texture = ExtResource("3_hwowk")
+texture = ExtResource("5_1e0lw")
 
 [node name="Brick22" type="Sprite2D" parent="Env"]
 self_modulate = Color(0.86369616, 0.757834, 0.7441743, 1)
-position = Vector2(670, 2024)
-texture = ExtResource("2_iivrh")
+material = SubResource("ShaderMaterial_x1u6m")
+position = Vector2(639, 1996)
+scale = Vector2(1.1929824, 1.1929824)
+texture = ExtResource("6_taq70")
 
 [node name="Brick23" type="Sprite2D" parent="Env"]
 self_modulate = Color(0.86369616, 0.757834, 0.7441743, 1)
-position = Vector2(575, 2241)
-texture = ExtResource("2_iivrh")
+material = SubResource("ShaderMaterial_x1u6m")
+position = Vector2(587.00006, 2207.0002)
+scale = Vector2(1.1491228, 1.1491228)
+texture = ExtResource("6_taq70")
 flip_h = true
 flip_v = true
 
 [node name="Brick25" type="Sprite2D" parent="Env"]
 self_modulate = Color(0.86369616, 0.757834, 0.7441743, 1)
-position = Vector2(1080, 1893)
-texture = ExtResource("3_hwowk")
+material = SubResource("ShaderMaterial_x1u6m")
+position = Vector2(1072.9462, 1928.25)
+scale = Vector2(1.226688, 1.2266881)
+texture = ExtResource("5_1e0lw")
 
 [node name="Brick20" type="Sprite2D" parent="Env"]
 self_modulate = Color(0.86369616, 0.757834, 0.7441743, 1)
-position = Vector2(1412, 2032)
-texture = ExtResource("4_ifom2")
+material = SubResource("ShaderMaterial_x1u6m")
+position = Vector2(1399, 1975.9999)
+scale = Vector2(1.2250859, 1.2250859)
+texture = ExtResource("7_ga0u2")
 flip_h = true
 
 [node name="Brick21" type="Sprite2D" parent="Env"]
 self_modulate = Color(0.86369616, 0.757834, 0.7441743, 1)
-position = Vector2(2170, 1965)
-texture = ExtResource("8_nijxa")
-
-[node name="Brick26" type="Sprite2D" parent="Env"]
-self_modulate = Color(0.86369616, 0.757834, 0.7441743, 1)
-position = Vector2(1730, 1901)
-texture = ExtResource("3_hwowk")
+material = SubResource("ShaderMaterial_x1u6m")
+position = Vector2(2178.0002, 1979.0001)
+scale = Vector2(1.5514468, 1.5514468)
+texture = ExtResource("5_1e0lw")
 
 [node name="Brick24" type="Sprite2D" parent="Env"]
 self_modulate = Color(0.86369616, 0.757834, 0.7441743, 1)
-position = Vector2(2662, 1973)
-texture = ExtResource("2_iivrh")
+material = SubResource("ShaderMaterial_x1u6m")
+position = Vector2(2641.0002, 1904)
+scale = Vector2(1.1535088, 1.1218742)
+texture = ExtResource("6_taq70")
+
+[node name="Brick26" type="Sprite2D" parent="Env"]
+self_modulate = Color(0.86369616, 0.757834, 0.7441743, 1)
+material = SubResource("ShaderMaterial_x1u6m")
+position = Vector2(1721, 1861)
+texture = ExtResource("8_3nlgg")
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="Env"]
 position = Vector2(879, 1888)
-polygon = PackedVector2Array(-169, -122, -181, -73, -429, -68, -451, -56, -468, 26, -466, 402, -474, 420, -548, 414, -565, 448, -565, 616, -343, 625, -323, 605, -332, 568, -317, 562, -89, 562, -50, 548, -47, 496, -52, 86, -24, 75, 13, 80, 19, 149, 42, 143, 383, 146, 378, 405, 406, 420, 529, 417, 535, 357, 543, 132, 569, 98, 606, 89, 654, 86, 666, 146, 705, 160, 723, 155, 802, 163, 1005, 157, 1013, 223, 1033, 232, 1039, 254, 1062, 269, 1523, 266, 1529, 354, 1546, 360, 1711, 365, 1737, 330, 1742, 84, 1756, 57, 1794, 33, 1847, 30, 1910, 29, 1957, 22, 1976, 30, 2026, 29, 2044, 16, 2045, -162, 2022, -177, 1826, -181, 1809, -164, 1809, -124, 1561, -122, -147, -129)
+polygon = PackedVector2Array(-169, -122, -179, -105, -181, -73, -219, -52, -277, -42, -390, -41, -434, -26, -468, 26, -476, 356, -519, 362, -534, 446, -521, 548, -89, 562, -50, 548, -47, 496, -52, 86, -24, 75, 13, 80, 19, 149, 42, 143, 383, 146, 378, 405, 406, 420, 529, 417, 535, 357, 543, 132, 569, 98, 606, 89, 654, 86, 817, 98, 841, 91, 907, 88, 976, 83, 1003, 91, 1005, 157, 1052, 176, 1054, 266, 1073, 296, 1136, 298, 1189, 290, 1367, 284, 1442, 292, 1523, 266, 1529, 354, 1546, 360, 1711, 365, 1737, 330, 1735, 91, 1735, 53, 1754, 19, 1802, -12, 1880, -14, 1943, -13, 1994, -19, 2013, -174, 1991, -205, 1829, -201, 1820, -163, 1809, -124, 1561, -122, -147, -129)
 
 [node name="Brick30" type="Sprite2D" parent="Env"]
 self_modulate = Color(0.86369616, 0.757834, 0.7441743, 1)
-position = Vector2(5861, 1977)
+material = SubResource("ShaderMaterial_x1u6m")
+position = Vector2(5879, 1950)
 rotation = 3.1415925
-texture = ExtResource("2_iivrh")
+scale = Vector2(1.1838882, 1.1838882)
+texture = ExtResource("6_taq70")
 flip_h = true
 flip_v = true
 
 [node name="Brick28" type="Sprite2D" parent="Env"]
 z_index = -1
-position = Vector2(7963, 1597)
+material = SubResource("ShaderMaterial_x1u6m")
+position = Vector2(7942, 1586)
 rotation = 1.5707964
-texture = ExtResource("3_hwowk")
+scale = Vector2(1.1069891, 1.1069893)
+texture = ExtResource("9_x1u6m")
 flip_h = true
 
 [node name="Brick29" type="Sprite2D" parent="Env"]
 self_modulate = Color(0.86369616, 0.757834, 0.7441743, 1)
-position = Vector2(6367, 1680)
+material = SubResource("ShaderMaterial_x1u6m")
+position = Vector2(6303.0005, 1669.0001)
 rotation = -1.5707964
-texture = ExtResource("2_iivrh")
+scale = Vector2(1.1680572, 1.1680572)
+texture = ExtResource("6_taq70")
 flip_h = true
 
 [node name="Brick33" type="Sprite2D" parent="Env"]
 self_modulate = Color(0.86369616, 0.757834, 0.7441743, 1)
-position = Vector2(6799, 1606)
+material = SubResource("ShaderMaterial_x1u6m")
+position = Vector2(6781.157, 1619.8091)
 rotation = 3.1415927
-texture = ExtResource("8_nijxa")
+scale = Vector2(1.4908471, 1.4908473)
+texture = ExtResource("5_1e0lw")
 flip_h = true
 
 [node name="Brick31" type="Sprite2D" parent="Env"]
 self_modulate = Color(0.86369616, 0.757834, 0.7441743, 1)
-position = Vector2(7166, 1722)
+material = SubResource("ShaderMaterial_x1u6m")
+position = Vector2(7146.9536, 1736.7512)
 rotation = 1.5707964
-texture = ExtResource("3_hwowk")
+scale = Vector2(1.1452385, 1.1452384)
+texture = ExtResource("8_3nlgg")
 flip_h = true
 
 [node name="Brick32" type="Sprite2D" parent="Env"]
 self_modulate = Color(0.86369616, 0.757834, 0.7441743, 1)
-position = Vector2(7210, 1559)
+material = SubResource("ShaderMaterial_x1u6m")
+position = Vector2(7197, 1565)
 rotation = 1.5707964
-texture = ExtResource("4_ifom2")
+texture = ExtResource("10_mdj1h")
 flip_h = true
 
 [node name="Brick34" type="Sprite2D" parent="Env"]
 self_modulate = Color(0.86369616, 0.757834, 0.7441743, 1)
-position = Vector2(7633, 1549)
+material = SubResource("ShaderMaterial_x1u6m")
+position = Vector2(7638, 1515)
 rotation = 3.1415927
-texture = ExtResource("3_hwowk")
+texture = ExtResource("8_3nlgg")
 flip_h = true
 
 [node name="Brick35" type="Sprite2D" parent="Env"]
 self_modulate = Color(0.86369616, 0.757834, 0.7441743, 1)
-position = Vector2(5428, 1975)
-texture = ExtResource("2_iivrh")
+material = SubResource("ShaderMaterial_x1u6m")
+position = Vector2(5439, 1945)
+scale = Vector2(1.2456146, 1.1798245)
+texture = ExtResource("6_taq70")
 flip_h = true
 
 [node name="CollisionShape2D2" type="CollisionPolygon2D" parent="Env"]
 position = Vector2(5377, 1630)
-polygon = PackedVector2Array(-195, 84, -209, 93, -207, 274, -215, 307, -148, 292, -126, 285, -92, 292, -27, 288, 42, 290, 87, 323, 101, 386, 98, 577, 114, 622, 421, 626, 437, 599, 441, 362, 448, 323, 473, 303, 500, 290, 547, 290, 567, 297, 621, 290, 632, 294, 654, 285, 675, 290, 726, 288, 735, 314, 914, 312, 930, 297, 935, 245, 926, 227, 926, 211, 935, 198, 932, 178, 937, 61, 962, 16, 1009, 3, 1163, 5, 1170, 167, 1643, 165, 1658, 277, 1907, 273, 1927, 84, 2096, 80, 2102, 60, 2442, 48, 2453, 146, 2713, 142, 2727, 104, 2720, -197, 2707, -220, 2680, -226, 1576, -220, 1561, -212, 829, -202, 800, -189, 784, -162, 786, 62, 771, 83, 531, 83, 513, 98, 513, 134, 497, 145, 32, 143, 19, 123, 21, 92, 1, 80)
+polygon = PackedVector2Array(-195, 84, -209, 93, -207, 274, -215, 307, -148, 292, -126, 285, -92, 292, -27, 288, 42, 290, 87, 323, 101, 386, 99, 565, 145, 571, 225, 575, 464, 572, 478, 546, 479, 350, 501, 320, 547, 290, 567, 297, 621, 290, 632, 294, 654, 285, 675, 290, 726, 288, 735, 314, 914, 312, 930, 297, 935, 245, 926, 227, 926, 211, 935, 198, 932, 178, 937, 61, 962, 16, 1009, 3, 1163, 5, 1170, 167, 1643, 165, 1658, 277, 1907, 273, 1927, 84, 2096, 80, 2102, 60, 2442, 48, 2453, 146, 2713, 142, 2727, 104, 2720, -197, 2707, -220, 2680, -226, 1576, -220, 1561, -212, 842, -196, 813, -182, 792, -153, 777, 31, 767, 57, 764, 84, 574, 87, 564, 106, 564, 151, 448, 174, 123, 167, 4, 159, 5, 142, -1, 100, 1, 80)
 
 [node name="Platform" parent="." instance=ExtResource("2_lw72k")]
 position = Vector2(201, 1800)
@@ -565,6 +747,7 @@ position = Vector2(5, -114)
 shape = SubResource("RectangleShape2D_bhv18")
 
 [node name="Stick" type="Sprite2D" parent="InvPlatforms/P3/PathFollow2D/P3/PickupGearArea"]
+material = SubResource("ShaderMaterial_ga0u2")
 position = Vector2(0, -58)
 rotation = -1.5707964
 scale = Vector2(0.6681904, 0.11073854)
@@ -579,7 +762,7 @@ limit_right = 8300
 limit_bottom = 525
 
 [node name="CatEntry" type="Node2D" parent="."]
-position = Vector2(2787, -133)
+position = Vector2(2778, -155)
 
 [node name="Sprite" type="AnimatedSprite2D" parent="CatEntry"]
 position = Vector2(99.99999, 91)
@@ -594,7 +777,7 @@ frame_progress = 0.6335402
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CatEntry/CatDialogArea"]
-position = Vector2(55.25, -3.75)
+position = Vector2(55.25, 8.5)
 shape = SubResource("RectangleShape2D_nijxa")
 
 [node name="RestartArea" type="Area2D" parent="."]
@@ -609,6 +792,7 @@ shape = SubResource("RectangleShape2D_uxkvx")
 
 [node name="BridgeMachine" type="Sprite2D" parent="BridgeMachine"]
 z_index = -1
+material = SubResource("ShaderMaterial_mdj1h")
 position = Vector2(2304, -438.59998)
 scale = Vector2(0.5, 0.492)
 texture = ExtResource("7_yqnon")
@@ -643,6 +827,7 @@ scale = Vector2(0.37484807, 0.37484807)
 texture = ExtResource("13_mrv3o")
 
 [node name="TradeMachine" type="Node2D" parent="."]
+position = Vector2(0, 33)
 
 [node name="TradeMachine" type="Sprite2D" parent="TradeMachine"]
 z_index = -1
@@ -673,7 +858,7 @@ texture = ExtResource("15_vkyg0")
 [node name="Player" parent="." instance=ExtResource("3_hbnr3")]
 z_index = 3
 texture_filter = 1
-position = Vector2(200, 1601)
+position = Vector2(235, 1589)
 
 [node name="CharacterCamera" type="Camera2D" parent="Player"]
 zoom = Vector2(0.8, 0.8)
